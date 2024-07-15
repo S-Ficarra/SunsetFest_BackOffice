@@ -1,24 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginPage from './views/loginPage/loginPage';
+import DashboardPage from './views/dashboardPage/dashboadPage';
+
+
+export const BASE_URL = 'http://localhost:3000/'
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path='/backoffice/login' element={<LoginPage/>} />
+          <Route path='/backoffice/dashboard' element={<DashboardPage/>} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

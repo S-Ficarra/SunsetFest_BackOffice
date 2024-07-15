@@ -1,0 +1,67 @@
+.MenuContainer {
+    width: 20vw;
+    height: 100vh;
+    margin: 0;
+    background-color: var(--glamblue);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+}
+
+.ImgContainer {
+    margin-top: 1em;
+}
+
+.ImgContainer img {
+    width: 8vw;
+}
+
+.ButtonContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+}
+
+.ButtonContainer a {
+    width: 100%;
+}
+
+.ButtonContainer button {
+    margin: .5em 0 .5em 0;
+    padding: .5em;
+    width: 100%;
+    font-family: 'Alegreya Sans SC';
+    font-size: 1.5em;
+    font-weight: 1000;
+    color: white;
+    background-color: var(--glampink);
+    border-radius: 10px;
+    -webkit-text-stroke: 1px black;
+}
+
+.BottomContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 65%;
+    margin-top: 1.5em;
+}
+
+.BottomContainer a {
+    width: 2em;  
+}
+
+
+.BottomContainer button {
+    margin: .5em 0 .5em 0;
+    padding: .5em;
+    font-family: 'Alegreya Sans SC';
+    font-size: 1em;
+    font-weight: 600;
+    color: white;
+    background-color: #0a4a5c;
+    border-radius: 10px;
+}
