@@ -1,22 +1,30 @@
-import React from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
 import './login.css'
+import { useNavigate } from 'react-router-dom';
+import useSignIn from 'react-auth-kit/hooks/useSignIn';
+import { fetchLogin } from "../../services/login.service";
 import Logo from '../../assets/HeroLogo.png'
-import useLogin from "../../hooks/useLogin";
 
 function Login () {
 
-    const { email, setEmail, password, setPassword, handleLogin } = useLogin();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
-
+    const signIn = useSignIn();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const token = await handleLogin();
+        const token = await fetchLogin(email, password);
         if (token) {
+            signIn({
+                auth: {
+                    token: token,
+                    type: 'Bearer'
+                },
+            })
             navigate('/backoffice/dashboard');
         } else {
-            alert('Email et/ou mot de passe incorrect')
+            alert('Email et/ou mot de passe incorrect');
         }
     };
 

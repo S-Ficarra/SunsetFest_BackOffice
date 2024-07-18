@@ -1,0 +1,39 @@
+.ProfileContainer {
+    margin: 3em auto;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ProfileContainer h1{
+    font-family: 'Alegreya Sans SC';
+    text-decoration: underline;
+}
+
+.ProfileContainer p {
+    font-family: 'Alegreya Sans SC';    
+    font-size: 1.5em;
+}
+
+.ProfileContainer span {
+    font-weight: 800;
+
+}
+
+.AddUserContainer button {
+    font-family: 'Alegreya Sans SC';
+    font-size: 1.5em;
+    font-weight: 800;
+    color: white;
+    background-color: var(--glamblue);
+    border-radius: 10px;
+    padding: 1em;
+    cursor: pointer;
+    transition: all .3s ease;
+    margin: 1em 0 1em 0;
+}
+
+.AddUserContainer button:hover {
+    background-color: var(--glampink);
+}

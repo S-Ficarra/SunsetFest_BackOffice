@@ -1,0 +1,27 @@
+.DashboardButtons {
+    margin: auto auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.DashboardButtons a {
+    flex: 0 1 22%;
+    text-align: center; 
+}
+
+.DashboardButtons button {
+    font-family: 'Alegreya Sans SC';
+    font-weight: 800;
+    color: white;
+    background-color: var(--glampink);
+    font-size: 2em;
+    width: 100%;
+    padding: 2em .5em 2em .5em;
+    border-radius: 10px;
+    -webkit-text-stroke: 1px black;
+    box-shadow: grey 2px 2px 1px;
+    cursor: pointer;
+}

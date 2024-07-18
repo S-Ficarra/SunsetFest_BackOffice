@@ -1,0 +1,87 @@
+.MainContainer {
+    width: 100%;
+}
+
+.MainContainer h1 {
+    width: 90%;
+    text-decoration: underline;
+    font-family: 'Alegreya Sans SC';
+    margin: 1em auto;
+}
+
+.UsersHeader {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.TitleContainer {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr 1fr 2fr;
+    text-align: center;
+    justify-self: center;
+    font-family: 'Alegreya Sans SC';
+}
+
+#Name {
+    grid-column-start: 2; 
+}
+
+
+.AllUsersContainer {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.UserContainer {
+    width: 90%;
+    height: 15%;
+    background-color: hsla(193, 81%, 33%, 0.7);
+    margin: .5em 0 .5em 0;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr 1fr 2fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.UserContainer p {
+    font-family: 'Alegreya Sans SC';
+    color: white;
+    font-size: 1.5em;
+}
+
+.ActionContainer img {
+    width: 20px;
+    height: 20px;
+}
+
+
+.ActionContainer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.ActionContainer button{
+    background-color: var(--glamblue);
+    border-radius: 10px;
+    padding: 1em;
+    cursor: pointer;
+    transition: all .3s ease;
+    margin: 1em 0 1em 0;
+}
+
+.ActionContainer button:hover{
+    background-color: var(--glampink);
+}
+
+.ActionContainer p {
+    margin: .5em 0 0 0;
+}
+

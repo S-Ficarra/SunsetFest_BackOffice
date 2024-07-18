@@ -1,20 +1,23 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
 import './dashboardMenu.css'
+import { useNavigate } from 'react-router-dom';
 import HeroLogo from '../../assets/HeroLogo.png'
 import SettingsLogo from '../../assets/gear-solid.svg'
 import { Link } from "react-router-dom";
+import useSignOut from 'react-auth-kit/hooks/useSignOut';
+
 
 
 function DashboardMenu () {
 
-    const navigate = useNavigate();
+    const naviguate = useNavigate()
+    const signOut = useSignOut()
 
-    const handleClick = async (event) => {
-        event.preventDefault();
-        localStorage.removeItem('jwtToken')
-        navigate('/backoffice/login');
-    }
+
+    const logOut = () => {
+        signOut()
+        naviguate('/backoffice/login')
+    } 
 
     return (
         <div className="MenuContainer">
@@ -34,7 +37,7 @@ function DashboardMenu () {
                 <Link to='/backoffice/utilisateurs'>
                     <img src={SettingsLogo} alt="Paramètres" />
                 </Link>
-                <button onClick={handleClick}>SE DÉCONNECTER</button>
+                <button onClick={() => logOut()}>SE DÉCONNECTER</button>
             </div>
         </div>
     );

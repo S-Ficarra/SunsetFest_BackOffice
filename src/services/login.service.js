@@ -1,12 +1,20 @@
 import axios from 'axios';
 import { BASE_URL } from '../App';
 
-export const login = async (email, password) => {
+export const fetchLogin = async (email, password) => {
+
     try {
+
         const response = await axios.post(`${BASE_URL}login`, { email, password });
-        const authHeader = response.data;
-        return authHeader
+        const jwtToken = response.data;
+
+        if (jwtToken) {
+            return jwtToken;
+        };
+
     } catch (error) {
-        throw error;
-    }
+        console.error('Login failed:', error);
+    };
+    return null;
+
 };
