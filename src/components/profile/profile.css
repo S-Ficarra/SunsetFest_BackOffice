@@ -21,7 +21,7 @@
 
 }
 
-.AddUserContainer button {
+.AddUserButtonContainer button {
     font-family: 'Alegreya Sans SC';
     font-size: 1.5em;
     font-weight: 800;
@@ -34,6 +34,6 @@
     margin: 1em 0 1em 0;
 }
 
-.AddUserContainer button:hover {
+.AddUserButtonContainer button:hover {
     background-color: var(--glampink);
 }

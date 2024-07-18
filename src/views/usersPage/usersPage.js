@@ -1,5 +1,5 @@
 import DashboardMenu from "../../components/dashboardMenu/dashboardMenu";
-import LoggedUser from "../../components/loggedUser/loggedUser";
+import Profile from "../../components/profile/profile";
 import Users from "../../components/users/users";
 import './usersPage.css'
 
@@ -9,7 +9,7 @@ function UsersPage () {
         <div className="PageContainer">
             <DashboardMenu />
             <div className="UserPage">
-                <LoggedUser />
+                <Profile />
                 <Users />
             </div>
         </div>

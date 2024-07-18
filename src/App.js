@@ -6,8 +6,7 @@ import AuthProvider from 'react-auth-kit';
 import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
 import createStore from 'react-auth-kit/createStore';
 import UsersPage from './views/usersPage/usersPage';
-
-
+import AddUserPage from './views/addUserPage/addUserPage';
 
 export const BASE_URL = 'http://localhost:3000/'
 
@@ -30,6 +29,7 @@ function App() {
                 <Route path='*' element={<DashboardPage />}/>
                 <Route path='/backoffice/dashboard' element={<DashboardPage />}/>
                 <Route path='/backoffice/utilisateurs' element={<UsersPage />}/>
+                <Route path='/backoffice/utilisateurs/ajouter' element={<AddUserPage />}/>
               </Route>
             </Routes>
           </div>

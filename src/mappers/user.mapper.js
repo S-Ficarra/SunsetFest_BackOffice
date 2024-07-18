@@ -1,8 +1,9 @@
+import { CreateUserDto } from "../dto/user.dto";
 import { UserModel } from "../models/user.model";
 
 export const UserMapper = {
 
-    getRoleFromId(roleId) {
+    getRoleName(roleId) {
         switch (roleId) {
             case 1:
                 return 'Auteur';
@@ -10,20 +11,30 @@ export const UserMapper = {
                 return 'Editeur';
             case 3:
                 return 'Administrateur';
-            default: 
-                return 'Role inconnu'
         };
     },
     
     transformUserDtoToModel(userDto) {
-        const fullname = `${userDto.firstName} ${userDto.name}`;
-        const role = this.getRoleFromId(userDto.role);
+        const fullname = `${userDto._name} ${userDto._firstName}`;
+        const role = this.getRoleName(parseInt(userDto._role));
 
         return new UserModel (
-            userDto.id,
+            userDto._id,
             fullname,
-            userDto.email,
+            userDto._email,
             role
         );
-    }
+    },
+
+    transformUserDataToDto (name, firstName, email, password, role) {
+        const newUser = new CreateUserDto (
+            name,
+            firstName,
+            email,
+            password,
+            role
+        );
+
+        return newUser
+    },
 };

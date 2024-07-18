@@ -1,10 +1,11 @@
 import React from "react";
-import './loggedUser.css'
+import './profile.css'
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { GetUser } from "../../controllers/user.controller";
 import { decodeToken } from "react-jwt";
+import { Link } from "react-router-dom";
 
-export function LoggedUser () {
+export function Profile () {
 
     const authHeader = useAuthHeader()
     const userId = decodeToken(authHeader)
@@ -19,11 +20,11 @@ export function LoggedUser () {
                     <p><span>ADRESSE EMAIL : </span> {user.email}</p>
                     <p><span>RÔLE : </span> {user.role} </p>
                 </div>
-                {user.role === 'Administrator' && (<div className="AddUserContainer">
-                    <button>AJOUTER UN UTILISATEUR</button>
+                {user.role === 'Administrateur' && (<div className="AddUserButtonContainer">
+                    <Link to='/backoffice/utilisateurs/ajouter'><button>AJOUTER UN UTILISATEUR</button></Link>
                 </div>)}
             </div>
         </div>
     );
 }
-export default LoggedUser;
+export default Profile;

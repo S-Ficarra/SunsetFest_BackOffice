@@ -4,6 +4,7 @@ import { decodeToken } from "react-jwt";
 import './users.css'
 import Pen from '../../assets/pen-solid.svg'
 import Trash from '../../assets/trash-solid.svg'
+import { DeleteUser } from "../../controllers/user.controller";
 
 
 function Users () {
@@ -12,6 +13,20 @@ function Users () {
     const { users } = GetAllUser(authHeader)
     const userId = decodeToken(authHeader)
     const { user: currentUser } = GetUser(authHeader, userId.sub)
+
+    const handleDelete = async (e, userId) => {
+        e.preventDefault();
+        const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?");
+
+        if (confirmation) {
+            const response = await DeleteUser(authHeader, userId);
+            if (response.response.status === 200) {
+                window.location.reload();
+            }
+        } else {
+            window.location.reload();
+        }
+    };
 
     
     return (
@@ -31,7 +46,7 @@ function Users () {
                         <p>{user.fullName}</p>
                         <p>{user.email}</p>
                         <p>{user.role}</p>
-                        {currentUser.role === 'Administrator' && (
+                        {currentUser.role === 'Administrateur' && (
                             <div className="ActionContainer">
                                 <button>
                                     <div className="EditContainer">
@@ -39,7 +54,7 @@ function Users () {
                                         <p>Modifier</p>
                                     </div>
                                 </button>
-                                <button>
+                                <button onClick={(e) => handleDelete(e, user.id)}>
                                     <div className="DeleteContainer">
                                         <img src={Trash} alt="Supprimer un utilisateur" />
                                         <p>Supprimer</p>

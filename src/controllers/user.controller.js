@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { UserService } from '../services/user.service';
 import { UserMapper } from '../mappers/user.mapper';
 
-
 export const GetAllUser = (authHeader) => {
 
     const [users, setUsers] = useState ([]);
@@ -15,7 +14,7 @@ export const GetAllUser = (authHeader) => {
     }, [authHeader]);
 
     return { users } 
-}
+};
 
 export const GetUser = (authHeader, userId) => {
 
@@ -29,5 +28,33 @@ export const GetUser = (authHeader, userId) => {
     }, [authHeader, userId]);
 
     return { user };
+
+};
+
+export const CreateUser = async (authHeader, name, firstName, email, password, role) => {
+
+    const newUser = UserMapper.transformUserDataToDto(name, firstName, email, password, role)
+    let response = await UserService.createUser(authHeader, newUser);
+
+    if (response.response.status === 400) {
+        return null
+    };
+
+    if (response.response.status === 200) {
+        return UserMapper.transformUserDtoToModel(response.responseData)
+    }
+};
+
+export const DeleteUser = async (authHeader, userId) => {
+
+    const response = await UserService.deleteUser(authHeader, userId);
+
+    if (response.response.status === 200) {
+        return response; 
+    } else {
+        throw new Error(`Failed to delete user. Status code: ${response.status}`);
+    }
+
+
 
 }
