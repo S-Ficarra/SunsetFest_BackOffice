@@ -7,9 +7,7 @@ export const UserService = {
     async fetchAllUsers (authHeader) {
         const response = await fetch(`${BASE_URL}users`, {
             headers: {'Authorization': authHeader}});
-        if (response.status === 401) {
-            return response.statusText
-        } else {
+        if (response.status === 200) {
             const data = await response.json();
             return data.map(user => new UserDto (
                 user._id,
@@ -18,27 +16,30 @@ export const UserService = {
                 user._email,
                 user._role,
             ));
+        } else {
+            return response.statusText
         };    
     },
 
     async fetchUser (authHeader, userId) {
         const response = await fetch (`${BASE_URL}users/${userId}`, {
             headers: {'Authorization' : authHeader}});
-        if (response.status === 401) {
-            return response.statusText
-        } else {
-            const user = await response.json();
+        if (response.status === 200) {
+            const data = await response.json();
             return new UserDto (
-                user._id,
-                user._name,
-                user._firstName,
-                user._email,
-                user._role,
-            )
-        }
+                data._id,
+                data._name,
+                data._firstName,
+                data._email,
+                data._role,
+            );
+        } else {
+            return response.statusText
+        };
     },
 
     async createUser (authHeader, newUser) {
+        
         const response = await fetch (`${BASE_URL}users/create`, {
             method: 'POST',
             headers: {
@@ -46,16 +47,28 @@ export const UserService = {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(newUser)
-        })
+        });
         
-        const responseData = await response.json()
-       
-        return {response, responseData};
-
+        const data = await response.json();
+        return {response, data};
     },
 
-    async deleteUser (authHeader, userId) {
+    async editUser (authHeader, userId, userEdited) {
+        const response = await fetch (`${BASE_URL}users/${userId}/edit`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userEdited)
+        });
 
+        const data = await response.json();
+        return {response, data};
+    },
+
+
+    async deleteUser (authHeader, userId) {
         const response = await fetch(`${BASE_URL}users/${userId}/delete`, {
             method: 'POST',
             headers: {
@@ -64,10 +77,8 @@ export const UserService = {
             },
         });
 
-        const message = await response.json();
-
-        return {response, message}; 
+        const data = await response.json();
+        return {response, data}; 
     },
-
 
 };

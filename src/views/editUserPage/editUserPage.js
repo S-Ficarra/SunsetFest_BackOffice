@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-import './addUserPage.css'
-import AddUser from "../../components/addUser/addUser";
+import './editUserPage.css'
+import EditUser from "../../components/editUser/editUser";
 import DashboardMenu from "../../components/dashboardMenu/dashboardMenu";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { GetUser } from "../../controllers/user.controller";
@@ -8,12 +8,11 @@ import { decodeToken } from "react-jwt";
 import { useNavigate } from "react-router-dom";
 
 
-function AddUserPage () {
+function EditUserPage () {
 
-    /*authHeader got and placed here to handle the if condition to display the page only to administrator users, then passed as props to AddUser component to send the token to the API endpoint that check the role too*/
+    /*authHeader got and placed here to handle the if condition to displaying the page only to administrator users, then passed as props to EditUser component to send the token to the API endpoint that check the role too*/
 
     /*useEffect is used to fetch the data once the component is mounted, and fetch it again only if authHeader change*/
-
 
     const navigate = useNavigate();
     const authHeader = useAuthHeader()
@@ -34,8 +33,8 @@ function AddUserPage () {
         return (
             <div className="PageContainer">
                 <DashboardMenu />
-                <div className="AddUserPage">
-                    <AddUser authHeader={authHeader}/>    
+                <div className="EditUserPage">
+                    <EditUser authHeader={authHeader}/>    
                 </div>    
             </div>
         );
@@ -44,4 +43,4 @@ function AddUserPage () {
     };
 
 };
-export default AddUserPage;
+export default EditUserPage;

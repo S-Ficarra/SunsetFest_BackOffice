@@ -1,8 +1,9 @@
 export class UserModel {
 
-    constructor(id, fullName, email, role) {
+    constructor(id, firstName, name, email, role) {
         this.id = id;
-        this.fullName = fullName.toUpperCase();
+        this.firstName = firstName.toUpperCase();
+        this.name = name.toUpperCase();
         this.email = email.toUpperCase();
         this.role = role;
     };

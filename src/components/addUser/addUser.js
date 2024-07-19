@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import './addUser.css'
+import { Link } from "react-router-dom";
+import { translator } from "../../services/utils";
 import { CreateUser } from "../../controllers/user.controller";
 
 function AddUser ({authHeader}) {
 
     const [userCreated, setUserCreated] = useState(null);
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,36 +20,41 @@ function AddUser ({authHeader}) {
         const password = formData.get('password');
         const role = formData.get('role');
 
-        let userCreated = await CreateUser(authHeader, name, firstName, email, password, role)
-
-        if (userCreated == null) {
-            alert('Cette adresse email est déjà utilisée')
-        } else {
+        try {
+            let userCreated = await CreateUser(authHeader, name, firstName, email, password, role);
             setUserCreated(userCreated);
+        } catch (error) {
+            const translatedMessage = translator(error.message);
+            alert(translatedMessage); 
         };
+    }; 
 
-    } 
+    const handleResetForm = () => {
+        setUserCreated(null);
+    };
 
     if (userCreated) {
         return (
             <div className="SucessMessage">
                 <h1>Utilisateur créé avec succès!</h1>
                 <p>Id : {userCreated.id}</p>
-                <p>Nom : {userCreated.fullName}</p>
+                <p>Nom : {userCreated.firstName} {userCreated.name} </p>
                 <p>Email : {userCreated.email}</p>
                 <p>Rôle : {userCreated.role}</p>
+                <Link to='/backoffice/utilisateurs'><button>Retour au tableau de bord</button></Link>
+                <button onClick={handleResetForm}>Ajouter un nouvel utilisateur</button>
             </div>
         );
-    }
+    };
 
     return (
         <div className="AddUserContainer">
             <form onSubmit={handleSubmit}>
                 <div className="InputContainer">
-                    <label htmlFor="name">NOM :</label>
-                    <input name='name' type="text" required/>
                     <label htmlFor="firstName">PRENOM :</label>
                     <input name='firstName' type="text" required/>
+                    <label htmlFor="name">NOM :</label>
+                    <input name='name' type="text" required/>
                     <label htmlFor="email">ADRESSE E-MAIL :</label>
                     <input name='email' type="email" required/>
                     <label htmlFor="password">MOT DE PASSE : </label>

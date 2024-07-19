@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import './profile.css'
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { GetUser } from "../../controllers/user.controller";
@@ -9,14 +9,24 @@ export function Profile () {
 
     const authHeader = useAuthHeader()
     const userId = decodeToken(authHeader)
-    const { user } = GetUser(authHeader, userId.sub)
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const user = await GetUser(authHeader, userId.sub);
+            setUser(user)
+        };
+
+        fetchUser();
+      }, [authHeader, userId.sub]);
 
     return (
         <div className="MainContainer">
             <h1>Votre Profil</h1>
             <div className="ProfileContainer">
                 <div className="InfoContainer">
-                    <p><span>NOM : </span> {user.fullName}</p>
+                    <p><span>NOM : </span> {user.name}</p>
+                    <p><span>PRÉNOM : </span> {user.firstName}</p>
                     <p><span>ADRESSE EMAIL : </span> {user.email}</p>
                     <p><span>RÔLE : </span> {user.role} </p>
                 </div>

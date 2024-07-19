@@ -1,60 +1,54 @@
-import { useState, useEffect } from 'react';
 import { UserService } from '../services/user.service';
 import { UserMapper } from '../mappers/user.mapper';
 
-export const GetAllUser = (authHeader) => {
+export const GetAllUser = async (authHeader) => {
 
-    const [users, setUsers] = useState ([]);
+    const userDtoArray = await UserService.fetchAllUsers(authHeader);
+    const userModelsArray = userDtoArray.map(dto => UserMapper.transformUserDtoToModel(dto));
 
-    useEffect(() => {
-        UserService.fetchAllUsers(authHeader).then(usersDto => {
-            const userModels = usersDto.map(dto => UserMapper.transformUserDtoToModel(dto));
-            setUsers(userModels);
-        }); 
-    }, [authHeader]);
-
-    return { users } 
+    return userModelsArray;
 };
 
-export const GetUser = (authHeader, userId) => {
+export const GetUser = async (authHeader, userId) => {
 
-    const [user, setUser] = useState ({});
+    const userDto = await UserService.fetchUser(authHeader, userId);
+    const userModel = UserMapper.transformUserDtoToModel(userDto);
 
-    useEffect(() => {
-        UserService.fetchUser(authHeader, userId).then(userDto => {
-            const userModel = UserMapper.transformUserDtoToModel(userDto);
-            setUser(userModel);
-        });
-    }, [authHeader, userId]);
-
-    return { user };
-
+    return userModel;
 };
 
 export const CreateUser = async (authHeader, name, firstName, email, password, role) => {
 
-    const newUser = UserMapper.transformUserDataToDto(name, firstName, email, password, role)
-    let response = await UserService.createUser(authHeader, newUser);
+    const newUser = UserMapper.transformUserDataToDto(name, firstName, email, password, role);
+    let { response, data } = await UserService.createUser(authHeader, newUser);
 
-    if (response.response.status === 400) {
-        return null
+    if (response.status === 200) {
+        return UserMapper.transformUserDtoToModel(data);
+    } else {
+        throw new Error(data.message);
     };
+};
 
-    if (response.response.status === 200) {
-        return UserMapper.transformUserDtoToModel(response.responseData)
-    }
+export const EditUser = async (authHeader, formData, id) => {
+
+    const userEdited = UserMapper.transformUserDataToDto(formData.name, formData.firstName, formData.email, formData.password, formData.role);
+    let { response, data } = await UserService.editUser(authHeader, id, userEdited);
+
+    if (response.status === 200) {
+        return UserMapper.transformUserDtoToModel(data);
+    } else {
+        throw new Error(`${data.message} Status code: ${response.status} ${response.statusText}`);
+    };
 };
 
 export const DeleteUser = async (authHeader, userId) => {
 
-    const response = await UserService.deleteUser(authHeader, userId);
+    let { response, data } = await UserService.deleteUser(authHeader, userId);
+    console.log(response, data);
 
-    if (response.response.status === 200) {
-        return response; 
+    if (response.status === 200) {
+        return data; 
     } else {
-        throw new Error(`Failed to delete user. Status code: ${response.status}`);
-    }
-
-
-
-}
+        throw new Error(`${data.message} Status code: ${response.status} ${response.statusText}`);
+    };
+};

@@ -13,14 +13,25 @@ export const UserMapper = {
                 return 'Administrateur';
         };
     },
+
+    getRoleId (roleName) {
+        switch (roleName) {
+            case 'Auteur':
+                return '1';
+            case 'Editeur':
+                return '2';
+            case 'Administrateur':
+                return '3';
+        };
+    },
     
     transformUserDtoToModel(userDto) {
-        const fullname = `${userDto._name} ${userDto._firstName}`;
         const role = this.getRoleName(parseInt(userDto._role));
 
         return new UserModel (
             userDto._id,
-            fullname,
+            userDto._firstName,
+            userDto._name,
             userDto._email,
             role
         );

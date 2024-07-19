@@ -5,6 +5,9 @@ import './usersPage.css'
 
 function UsersPage () {
 
+    
+    /*authHeader not  placed here like editUserPage or addUserPage as condition for display are inside the users component and not here*/
+
     return (
         <div className="PageContainer">
             <DashboardMenu />
