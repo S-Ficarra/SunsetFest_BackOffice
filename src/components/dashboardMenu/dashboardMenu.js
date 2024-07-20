@@ -22,7 +22,7 @@ function DashboardMenu () {
     return (
         <div className="MenuContainer">
             <div className="ImgContainer">
-                <img src={HeroLogo} alt="" />
+                <Link to='/backoffice/dahsboard' ><img src={HeroLogo} alt="" /></Link>
             </div>
             <div className="ButtonContainer">
                 <Link to='/backoffice/alertes'><button>ALERTES</button></Link>

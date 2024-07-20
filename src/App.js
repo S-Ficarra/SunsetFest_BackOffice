@@ -5,9 +5,10 @@ import DashboardPage from './views/dashboardPage/dashboadPage';
 import AuthProvider from 'react-auth-kit';
 import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
 import createStore from 'react-auth-kit/createStore';
-import UsersPage from './views/usersPage/usersPage';
-import AddUserPage from './views/addUserPage/addUserPage';
-import EditUserPage from './views/editUserPage/editUserPage';
+import UsersPage from './views/Users/usersPage/usersPage';
+import AddUserPage from './views/Users/addUserPage/addUserPage';
+import EditUserPage from './views/Users/editUserPage/editUserPage';
+import FaqsPage from './views/faqsPage/faqsPage';
 
 export const BASE_URL = 'http://localhost:3000/'
 
@@ -32,6 +33,7 @@ function App() {
                 <Route path='/backoffice/utilisateurs' element={<UsersPage />}/>
                 <Route path='/backoffice/utilisateurs/ajouter' element={<AddUserPage />}/>
                 <Route path='/backoffice/utilisateurs/:id/editer' element={<EditUserPage />}/>
+                <Route path='/backoffice/faqs' element={<FaqsPage />}/>
               </Route>
             </Routes>
           </div>

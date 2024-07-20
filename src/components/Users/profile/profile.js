@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import './profile.css'
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { GetUser } from "../../controllers/user.controller";
+import { GetUser } from "../../../controllers/user.controller";
 import { decodeToken } from "react-jwt";
 import { Link } from "react-router-dom";
 
@@ -25,11 +25,12 @@ export function Profile () {
             <h1>Votre Profil</h1>
             <div className="ProfileContainer">
                 <div className="InfoContainer">
-                    <p><span>NOM : </span> {user.name}</p>
-                    <p><span>PRÉNOM : </span> {user.firstName}</p>
-                    <p><span>ADRESSE EMAIL : </span> {user.email}</p>
-                    <p><span>RÔLE : </span> {user.role} </p>
+                    <p><span>NOM : </span>{user.name}</p>
+                    <p><span>PRÉNOM : </span>{user.firstName} {user.name}</p>
+                    <p><span>ADRESSE EMAIL : </span>{user.email}</p>
+                    <p><span>RÔLE : </span>{user.role}</p>
                 </div>
+                {/*Allow only admin to have the option to add user*/}
                 {user.role === 'Administrateur' && (<div className="AddUserButtonContainer">
                     <Link to='/backoffice/utilisateurs/ajouter'><button>AJOUTER UN UTILISATEUR</button></Link>
                 </div>)}

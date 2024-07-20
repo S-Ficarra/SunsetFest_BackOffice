@@ -7,3 +7,8 @@ export const translator = (message) => {
 
     return translations[message] || "Une erreur s'est produite";
 };
+
+export const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+};

@@ -1,20 +1,20 @@
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import React, {useState, useEffect} from "react";
-import { GetAllUser, GetUser } from "../../controllers/user.controller";
+import { GetAllUser, GetUser } from "../../../controllers/user.controller";
 import { decodeToken } from "react-jwt";
-import './users.css'
+import './allUsers.css'
 import { Link } from "react-router-dom";
-import Pen from '../../assets/pen-solid.svg'
-import Trash from '../../assets/trash-solid.svg'
-import { DeleteUser } from "../../controllers/user.controller";
+import Pen from '../../../assets/pen-solid.svg'
+import Trash from '../../../assets/trash-solid.svg'
+import { DeleteUser } from "../../../controllers/user.controller";
 
 
-function Users () {
+function AllUsers () {
 
     const authHeader = useAuthHeader();
     const userId = decodeToken(authHeader);
 
-    const [allUsers, setAllUsers] = useState([])
+    const [allUsers, setAllUsers] = useState([]);
     useEffect(() => {
         const fetchAllUser = async () => {
             const allUsers = await GetAllUser(authHeader);
@@ -57,7 +57,8 @@ function Users () {
             <h1>VOTRE ÉQUIPE</h1>
             <div className="UsersHeader">
                 <div className="TitleContainer">
-                    <h2 id="Name">Nom</h2>
+                    <h2>ID</h2>
+                    <h2>Nom</h2>
                     <h2>Adresse Email</h2>
                     <h2>Rôle</h2>
                 </div>
@@ -69,6 +70,7 @@ function Users () {
                         <p>{user.firstName} {user.name}</p>
                         <p>{user.email}</p>
                         <p>{user.role}</p>
+                        {/*Allow only admin to have the option to delete and edit user*/}
                         {userLogged.role === 'Administrateur' && (
                             <div className="ActionContainer">
                                 <Link to={`/backoffice/utilisateurs/${user.id}/editer`}>
@@ -93,4 +95,4 @@ function Users () {
         </div>
     );
 }
-export default Users;
+export default AllUsers;

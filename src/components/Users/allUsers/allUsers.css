@@ -24,11 +24,6 @@
     font-family: 'Alegreya Sans SC';
 }
 
-#Name {
-    grid-column-start: 2; 
-}
-
-
 .AllUsersContainer {
     width: 100%;
     text-align: center;

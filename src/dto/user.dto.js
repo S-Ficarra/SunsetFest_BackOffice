@@ -18,4 +18,4 @@ export class CreateUserDto {
         this.password = password
         this.role = role;
     };
-}
+};

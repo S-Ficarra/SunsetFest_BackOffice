@@ -17,7 +17,7 @@ export const UserService = {
                 user._role,
             ));
         } else {
-            return response.statusText
+            return response.statusText;
         };    
     },
 
@@ -34,7 +34,7 @@ export const UserService = {
                 data._role,
             );
         } else {
-            return response.statusText
+            return response.statusText;
         };
     },
 

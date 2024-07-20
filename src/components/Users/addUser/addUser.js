@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import './addUser.css'
 import { Link } from "react-router-dom";
-import { translator } from "../../services/utils";
-import { CreateUser } from "../../controllers/user.controller";
+import { translator } from "../../../services/utils";
+import { CreateUser } from "../../../controllers/user.controller";
 
 function AddUser ({authHeader}) {
 

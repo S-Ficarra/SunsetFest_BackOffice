@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { GetUser, EditUser as Edit} from "../../controllers/user.controller";
-import { UserMapper } from "../../mappers/user.mapper"; 
-import { translator } from "../../services/utils";
+import { GetUser, EditUser as Edit} from "../../../controllers/user.controller";
+import { UserMapper } from "../../../mappers/user.mapper"; 
+import { translator } from "../../../services/utils";
 import { Link } from "react-router-dom";
 import './editUser.css'
 
@@ -74,10 +74,10 @@ function EditUser ({ authHeader }) {
         <div className="AddUserContainer">
             <form onSubmit={handleSubmit}>
                 <div className="InputContainer">
-                    <label htmlFor="name">NOM :</label>
-                    <input name='name' type="text" required defaultValue={formState.name} onChange={(e) => {handleChange(e)}}/>
                     <label htmlFor="firstName">PRENOM :</label>
                     <input name='firstName' type="text" required defaultValue={formState.firstName} onChange={(e) => {handleChange(e)}}/>
+                    <label htmlFor="name">NOM :</label>
+                    <input name='name' type="text" required defaultValue={formState.name} onChange={(e) => {handleChange(e)}}/>
                     <label htmlFor="email">ADRESSE E-MAIL :</label>
                     <input name='email' type="email" required defaultValue={formState.email} onChange={(e) => {handleChange(e)}}/>
                     <label htmlFor="password">MOT DE PASSE : </label>
