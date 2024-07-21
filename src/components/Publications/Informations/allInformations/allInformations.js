@@ -3,11 +3,12 @@ import './allInformations.css'
 import { Link } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
-import { GetAllInformations } from "../../../../controllers/informations.controllers";
+import { GetAllInformations, DeleteInformation } from "../../../../controllers/informations.controllers";
 import { GetUser } from "../../../../controllers/user.controller";
 import { convertToBase64, formatDate } from "../../../../services/utils";
 import Pen from '../../../../assets/pen-solid.svg'
 import Trash from '../../../../assets/trash-solid.svg'
+import { all } from "axios";
 
 function AllInformations () {
 
@@ -27,12 +28,32 @@ function AllInformations () {
     const [allInformations, setAllInformations] = useState([]);
     useEffect(() => {
         const fetchAllInformations= async () => {
-            const allInformations = await GetAllInformations(authHeader);
-            setAllInformations(allInformations);
+            try {
+                const allInformations = await GetAllInformations(authHeader);
+                setAllInformations(allInformations);
+            } catch (error) {
+                alert(error)
+            }
         };
 
         fetchAllInformations();
     }, [authHeader]);
+
+    const handleDelete = async (e, informationId) => {
+
+        e.preventDefault();
+        const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer cet Information ?");
+
+        if (confirmation) {
+            try {
+                await DeleteInformation(authHeader, informationId);
+                alert(`Information ${informationId} supprimé`);
+                window.location.reload();
+            } catch (error) {
+                alert(`Erreur lors de la suppression de l'information : ${error.message}`);
+            };
+        };
+    };
 
 
     return (
@@ -71,7 +92,7 @@ function AllInformations () {
                                     </div>
                                 </button>
                             </Link>
-                            <button onClick={{/*(e) => handleDelete(e, information.id)*/}}>
+                            <button onClick={(e) => handleDelete(e, information.id)}>
                                 <div className="DeleteContainer">
                                     <img src={Trash} alt="Supprimer une Information" />
                                     <p>Supprimer</p>

@@ -6,8 +6,8 @@ export const InformationssService = {
     async fetchAllInformations (authHeader) {
         const response = await fetch (`${BASE_URL}informations`, {
             headers: {'Authorization': authHeader}});
-        if (response.status === 200) {
             const data = await response.json();
+        if (response.status === 200) {
             return data.map(information => new InformationsDto (
                 information._id,
                 information._user,
@@ -18,8 +18,21 @@ export const InformationssService = {
                 information._content,
             ));
         } else {
-            return response.statusText
+            return {response, data}; 
         };
+    },
+
+    async deleteInformation (authHeader, informationId) {
+        const response = await fetch(`${BASE_URL}informations/${informationId}/delete`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const data = await response.json();
+        return {response, data}; 
     },
 
 }
