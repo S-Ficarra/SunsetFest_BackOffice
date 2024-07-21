@@ -1,0 +1,57 @@
+.TitleContainer {
+    width: 95%;
+    margin: 1em auto;
+    grid-template-columns: .5fr 2fr 1fr 2fr .7fr .7fr .7fr .7fr .5fr;
+}
+
+.informationContainer {
+    margin: 1em auto;
+    display: grid;
+    grid-template-columns: .5fr 2fr 1fr 2fr .7fr .7fr .7fr .7fr .5fr;
+    justify-items: center;
+    align-items: center;
+    width: 95%;
+    height: 20em;
+    background-color: hsla(193, 81%, 33%, 0.7);
+    border-radius: 10px;
+    padding: .5em;
+}
+
+.informationContainer img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+}
+
+.informationContainer p {
+    margin: 1em;
+    font-family: 'Alegreya Sans SC';
+    color: white;
+    font-size: 1.2em;
+}
+
+#text {
+    height: 80%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#text::-webkit-scrollbar {
+    width: 12px;
+}
+
+#text::-webkit-scrollbar-track {
+    background: var(--glamblue); 
+    border-radius: 10px;
+}
+
+#text::-webkit-scrollbar-thumb {
+    background: #ffffff; 
+    border-radius: 6px;
+    padding: 2px;
+    border: solid 4px var(--glamblue);
+}
+
+#text::-webkit-scrollbar-thumb:hover {
+    background: #d4d4d4; 
+}

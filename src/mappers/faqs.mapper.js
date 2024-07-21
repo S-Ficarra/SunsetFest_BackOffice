@@ -1,4 +1,3 @@
-import { FaqsDto } from "../dto/faqs.dto";
 import { FaqsModel } from "../models/faqs.model";
 
 export const FaqsMapper = {

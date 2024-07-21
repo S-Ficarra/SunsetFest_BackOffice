@@ -11,6 +11,7 @@ import EditUserPage from './views/Users/editUserPage/editUserPage';
 import FaqsPage from './views/Publications/FAQs/allFaqsPage/allFaqsPage';
 import AddFaqPage from './views/Publications/FAQs/addFaqPage/addFaqPage';
 import EditFaqPage from './views/Publications/FAQs/editFaqPage/editFaqPage';
+import AllInformationsPage from './views/Publications/Informations/allInformationsPage/allInformationPage';
 
 export const BASE_URL = 'http://localhost:3000/'
 
@@ -38,6 +39,7 @@ function App() {
                 <Route path='/backoffice/faqs' element={<FaqsPage />}/>
                 <Route path='/backoffice/faqs/ajouter' element={<AddFaqPage />}/>
                 <Route path='/backoffice/faqs/:id/editer' element={<EditFaqPage />}/>
+                <Route path='/backoffice/informations' element={<AllInformationsPage />}/>
               </Route>
             </Routes>
           </div>

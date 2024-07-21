@@ -37,7 +37,6 @@ function AllFaqs () {
         fetchAllFaqs();
     }, [authHeader]);
 
-
     const handleDelete = async (e, faqId) => {
 
         e.preventDefault();
@@ -78,8 +77,8 @@ function AllFaqs () {
                     <p>{faqs.userName}</p>
                     <p>{formatDate(faqs.createdAt)}</p>
                     <p>{formatDate(faqs.modifiedAt)}</p>
-                    {/*Allow only admin to have the option to delete and edit */}
-                    {userLogged.role === 'Administrateur' && (
+                    {/*Allow only admin & editor to have the option to delete and edit */}
+                    {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
                             <div className="ActionContainerFaq">
                                 <Link to={`/backoffice/faqs/${faqs.id}/editer`}>
                                     <button>

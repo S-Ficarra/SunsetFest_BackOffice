@@ -1,16 +1,17 @@
 import React from "react";
 import DashboardMenu from "../../../../components/dashboardMenu/dashboardMenu";
-import AllFaqs from "../../../../components/Publications/FAQS/allFaqs/allFaqs";
+import AllInformations from "../../../../components/Publications/Informations/allInformations/allInformations";
 
-function FaqsPage () {
+function AllInformationsPage () {
 
     return (
         <div className="PageContainer">
             <DashboardMenu />
             <div>
-                <AllFaqs />
+                <AllInformations />
             </div>
         </div>
     );
+
 };
-export default FaqsPage;
+export default AllInformationsPage
