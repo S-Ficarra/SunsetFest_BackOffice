@@ -57,7 +57,9 @@ function AllFaqs () {
     
     return (
         <div className="AllFaqsContainer">
-            <h1 className="MainTitle">TOUTES LES FAQs</h1>
+            <div className="ButtonContainerAllFaq">
+                <Link to="/backoffice/faqs/ajouter"><button>AJOUTER UNE NOUVELLE FAQ</button></Link>
+            </div>
             <div className="TitleContainer">
                 <h2>ID</h2>
                 <h2>Question</h2>
@@ -71,14 +73,14 @@ function AllFaqs () {
                 <div className="FaqsContainer" key={faqs.id}>
                     <p>{faqs.id}</p>
                     <p>{faqs.question}</p>
-                    <p id="Answer">{faqs.answer}</p>
+                    <div id="Answer" dangerouslySetInnerHTML={{ __html: faqs.answer }}></div>
                     <p className={faqs.status ? "online" : "offline"}>{faqs.status ? "Publié" : "Non Publié"}</p>
                     <p>{faqs.userName}</p>
                     <p>{formatDate(faqs.createdAt)}</p>
                     <p>{formatDate(faqs.modifiedAt)}</p>
                     {/*Allow only admin to have the option to delete and edit */}
                     {userLogged.role === 'Administrateur' && (
-                            <div className="ActionContainer">
+                            <div className="ActionContainerFaq">
                                 <Link to={`/backoffice/faqs/${faqs.id}/editer`}>
                                     <button>
                                         <div className="EditContainer">

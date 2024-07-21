@@ -23,6 +23,55 @@ export const FaqsService = {
         };
     },
 
+    async fetchFaq (authHeader, faqId) {
+        const response = await fetch (`${BASE_URL}faqs/${faqId}`, {
+            headers: {'Authorization': authHeader}});
+        if (response.status === 200) {
+            const data = await response.json();
+            return new FaqsDto (
+                data._id,
+                data._user,
+                data._createdAt,
+                data._modifiedAt,
+                data._status,
+                data._type,
+                data._question,
+                data._answer
+            );
+        } else {
+            return response.statusText
+        };
+    },
+
+    async createFaq (authHeader, newFaq) {
+        
+        const response = await fetch (`${BASE_URL}faqs/create`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newFaq)
+        });
+        
+        const data = await response.json();
+        return {response, data};
+    },
+
+    async editFaq (authHeader, faqId, faqEdited) {
+        const response = await fetch (`${BASE_URL}faqs/${faqId}/edit`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(faqEdited)
+        });
+
+        const data = await response.json();
+        return {response, data};
+    },
+
     async deleteFaq (authHeader, faqId) {
         const response = await fetch(`${BASE_URL}faqs/${faqId}/delete`, {
             method: 'POST',

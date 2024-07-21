@@ -43,6 +43,12 @@
     border-radius: 10px;
     -webkit-text-stroke: 1px black;
     cursor: pointer;
+    transition: all .3s ease;
+}
+
+.ButtonContainer button:hover {
+    background-color: #c12050;
+    box-shadow: 0px 0px 20px var(--glampink);
 }
 
 .BottomContainer {
@@ -59,11 +65,17 @@
 
 .BottomContainer button {
     margin: .5em 0 .5em 0;
-    padding: .5em;
+    padding: 1em;
     font-family: 'Alegreya Sans SC';
     font-size: 1em;
     font-weight: 600;
     color: white;
     background-color: #0a4a5c;
     border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.BottomContainer button:hover {
+    background-color: var(--glampink);
 }

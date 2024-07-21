@@ -1,7 +1,23 @@
-.MainTitle {
-    width: 90%;
-    margin: 0 auto;
+.ButtonContainerAllFaq {
+    display: flex;
+    justify-content: center;
+}
+
+.ButtonContainerAllFaq button{
+    margin: 1em;
+    padding: .5em 2em;
     font-family: 'Alegreya Sans SC';
+    font-size: 2em;
+    font-weight: 500;
+    color: white;
+    background-color: var(--glamblue);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.ButtonContainerAllFaq button:hover {
+    background-color: var(--glampink);
 }
 
 .TitleContainer {
@@ -77,23 +93,30 @@
     margin-right: 5px;
 }
 
-.ActionContainer {
+.ActionContainerFaq {
     display: inline-block;
 }
 
-.ActionContainer button {
+.ActionContainerFaq button {
     padding: .5em;
     margin: .5em;
     font-size: .5em;
     width: 8em;
     height: 8em;
+    border-radius: 10px;
+    background-color: var(--glamblue);
+    transition: all .3s ease;
 }
 
-.ActionContainer button img{
+.ActionContainerFaq button:hover {
+    background-color: var(--glampink);
+}
+
+.ActionContainerFaq button img{
     height: 10px;
     width: 10px;
 }
 
-.ActionContainer p {
+.ActionContainerFaq p {
     margin: 0;
 }

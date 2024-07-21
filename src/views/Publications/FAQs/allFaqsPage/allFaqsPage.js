@@ -1,6 +1,6 @@
 import React from "react";
-import DashboardMenu from "../../components/dashboardMenu/dashboardMenu";
-import AllFaqs from "../../components/Publications/FAQS/allFaqs/allFaqs";
+import DashboardMenu from "../../../../components/dashboardMenu/dashboardMenu";
+import AllFaqs from "../../../../components/Publications/FAQS/allFaqs/allFaqs";
 
 function FaqsPage () {
 

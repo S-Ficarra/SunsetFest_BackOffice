@@ -37,10 +37,10 @@ function AddUser ({authHeader}) {
         return (
             <div className="SucessMessage">
                 <h1>Utilisateur créé avec succès!</h1>
-                <p>Id : {userCreated.id}</p>
-                <p>Nom : {userCreated.firstName} {userCreated.name} </p>
-                <p>Email : {userCreated.email}</p>
-                <p>Rôle : {userCreated.role}</p>
+                <p><span>Id :</span> {userCreated.id}</p>
+                <p><span>Nom :</span> {userCreated.firstName} {userCreated.name} </p>
+                <p><span>Email :</span> {userCreated.email}</p>
+                <p><span>Rôle :</span> {userCreated.role}</p>
                 <Link to='/backoffice/utilisateurs'><button>Retour au tableau de bord</button></Link>
                 <button onClick={handleResetForm}>Ajouter un nouvel utilisateur</button>
             </div>

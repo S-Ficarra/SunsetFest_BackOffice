@@ -8,7 +8,9 @@ import createStore from 'react-auth-kit/createStore';
 import UsersPage from './views/Users/usersPage/usersPage';
 import AddUserPage from './views/Users/addUserPage/addUserPage';
 import EditUserPage from './views/Users/editUserPage/editUserPage';
-import FaqsPage from './views/faqsPage/faqsPage';
+import FaqsPage from './views/Publications/FAQs/allFaqsPage/allFaqsPage';
+import AddFaqPage from './views/Publications/FAQs/addFaqPage/addFaqPage';
+import EditFaqPage from './views/Publications/FAQs/editFaqPage/editFaqPage';
 
 export const BASE_URL = 'http://localhost:3000/'
 
@@ -34,6 +36,8 @@ function App() {
                 <Route path='/backoffice/utilisateurs/ajouter' element={<AddUserPage />}/>
                 <Route path='/backoffice/utilisateurs/:id/editer' element={<EditUserPage />}/>
                 <Route path='/backoffice/faqs' element={<FaqsPage />}/>
+                <Route path='/backoffice/faqs/ajouter' element={<AddFaqPage />}/>
+                <Route path='/backoffice/faqs/:id/editer' element={<EditFaqPage />}/>
               </Route>
             </Routes>
           </div>
