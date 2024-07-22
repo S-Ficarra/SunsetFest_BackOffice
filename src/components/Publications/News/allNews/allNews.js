@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import './allNews.css'
 import { Link } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
@@ -73,7 +72,7 @@ function AllNews () {
     return (
         <div>
             <div className="ButtonContainerAllFaq">
-                <Link to="/backoffice/informations/ajouter"><button>AJOUTER UNE NOUVELLE INFORMATION</button></Link>
+                <Link to="/backoffice/actualites/ajouter"><button>AJOUTER UNE NOUVELLE ACTUALITÉ</button></Link>
             </div>
             <div className="TitleContainer">
                 <h2>ID</h2>

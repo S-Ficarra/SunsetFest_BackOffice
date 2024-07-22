@@ -1,3 +1,12 @@
+.MainTitle {
+    text-align: center;
+    font-family: 'Alegreya Sans SC';
+    font-size: 3em;
+    font-weight: 800;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
 #coreText .ql-editor {
     height: 15em;
     font-family: 'Alegreya Sans SC';

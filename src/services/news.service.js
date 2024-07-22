@@ -22,6 +22,22 @@ export const NewsService = {
         };
     },
 
+    async createNews (authHeader, newNews) {
+       
+        const response = await fetch (`${BASE_URL}news/create`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+            },
+            body: newNews
+        });
+        
+        const data = await response.json();
+        console.log(data);
+        return {response, data};
+    },
+
+
     async deleteNews (authHeader, newsId) {
         const response = await fetch(`${BASE_URL}news/${newsId}/delete`, {
             method: 'POST',

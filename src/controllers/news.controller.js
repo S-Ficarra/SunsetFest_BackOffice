@@ -14,6 +14,17 @@ export const GetAllNews = async (authHeader) => {
 
 };
 
+export const CreateNews = async (authHeader, newNews) => {
+   
+    let { response, data } = await NewsService.createNews(authHeader, newNews);
+
+    if (response.status === 200) {
+        return IllustratedMapper.transformIllustratedDtoToModel(data);
+    } else {
+        throw new Error(data.message);
+    };
+};
+
 
 export const DeleteNews = async (authHeader, newsId) => {
 

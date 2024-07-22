@@ -69,6 +69,7 @@ function AddFaq () {
 
     return (
         <div>
+            <h1 className="MainTitle">Ajouter une FAQ</h1>
             <div className="FormContainer">
                 <form onSubmit={handleSubmit}>
                     <div className="InputContainerAddFaq">
