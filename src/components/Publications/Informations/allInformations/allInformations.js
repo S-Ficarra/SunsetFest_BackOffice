@@ -5,10 +5,9 @@ import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
 import { GetAllInformations, DeleteInformation } from "../../../../controllers/informations.controllers";
 import { GetUser } from "../../../../controllers/user.controller";
-import { convertToBase64, formatDate } from "../../../../services/utils";
+import { formatDate } from "../../../../services/utils";
 import Pen from '../../../../assets/pen-solid.svg'
 import Trash from '../../../../assets/trash-solid.svg'
-import { all } from "axios";
 
 function AllInformations () {
 
@@ -32,12 +31,13 @@ function AllInformations () {
                 const allInformations = await GetAllInformations(authHeader);
                 setAllInformations(allInformations);
             } catch (error) {
-                alert(error)
+                console.log(error)
             }
         };
 
         fetchAllInformations();
     }, [authHeader]);
+
 
     const handleDelete = async (e, informationId) => {
 
@@ -55,6 +55,18 @@ function AllInformations () {
         };
     };
 
+    if (allInformations.length === 0) {
+        return (
+            <>
+                <div className="ButtonContainerAllFaq">
+                    <Link to="/backoffice/informations/ajouter"><button>AJOUTER UNE NOUVELLE INFORMATION</button></Link>
+                </div>
+                <div className="EmptyTitle">
+                    <h2>Il n'y a aucune Information pour le moment</h2>
+                </div>
+            </>
+        )
+    }
 
     return (
         <div>

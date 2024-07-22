@@ -3,10 +3,15 @@ import { FaqsMapper } from "../mappers/faqs.mapper";
 
 export const GetAllFaqs = async (authHeader) => {
 
-    const faqsDtoArray = await FaqsService.fetchAllFaqs(authHeader);
-    const faqsModelsArray = faqsDtoArray.map(dto => FaqsMapper.transformFaqsDtoToModel(dto));
+    let response = await FaqsService.fetchAllFaqs(authHeader);
+    
+    if (Array.isArray(response)) {
+        const faqsModelsArray = response.map(dto => FaqsMapper.transformFaqsDtoToModel(dto));
+        return faqsModelsArray;
+    }
 
-    return faqsModelsArray;
+    throw new Error(`Error: ${response.data.message} Status code: ${response.response.status} ${response.response.statusText}`);
+
 };
 
 export const GetFaq = async (authHeader, faqId) => {

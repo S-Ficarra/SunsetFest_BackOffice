@@ -61,7 +61,7 @@ function AddFaq () {
                 <p><span>Statut :</span> {faqCreated.status ? 'Publié' : 'Non publié'}</p>
                 <p><span>Auteur :</span> {faqCreated.userName}</p>
                 <p><span>Créé le :</span> {formatDate(faqCreated.createdAt)}</p>
-                <Link to='/backoffice/faqs'><button>Retour au tableau de bord</button></Link>
+                <Link to='/backoffice/faqs'><button>Retour aux FAQs</button></Link>
                 <button onClick={handleResetForm}>Ajouter une nouvelle FAQ</button>
             </div>
         );

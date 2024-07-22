@@ -6,8 +6,8 @@ export const FaqsService = {
     async fetchAllFaqs (authHeader) {
         const response = await fetch (`${BASE_URL}faqs`, {
             headers: {'Authorization': authHeader}});
-        if (response.status === 200) {
             const data = await response.json();
+        if (response.status === 200) {
             return data.map(faqs => new FaqsDto (
                 faqs._id,
                 faqs._user,
@@ -19,15 +19,15 @@ export const FaqsService = {
                 faqs._answer
             ));
         } else {
-            return response.statusText
+            return {response, data}; 
         };
     },
 
     async fetchFaq (authHeader, faqId) {
         const response = await fetch (`${BASE_URL}faqs/${faqId}`, {
             headers: {'Authorization': authHeader}});
-        if (response.status === 200) {
             const data = await response.json();
+        if (response.status === 200) {
             return new FaqsDto (
                 data._id,
                 data._user,

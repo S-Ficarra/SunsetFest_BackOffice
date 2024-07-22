@@ -22,6 +22,21 @@ export const InformationssService = {
         };
     },
 
+    async createInformation (authHeader, newInformation) {
+       
+        const response = await fetch (`${BASE_URL}informations/create`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+            },
+            body: newInformation
+        });
+        
+        const data = await response.json();
+        console.log(data);
+        return {response, data};
+    },
+
     async deleteInformation (authHeader, informationId) {
         const response = await fetch(`${BASE_URL}informations/${informationId}/delete`, {
             method: 'POST',

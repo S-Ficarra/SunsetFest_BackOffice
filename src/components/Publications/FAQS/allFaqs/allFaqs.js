@@ -30,8 +30,12 @@ function AllFaqs () {
     const [allFaqs, setAllFaqs] = useState([]);
     useEffect(() => {
         const fetchAllFaqs = async () => {
-            const allFaqs = await GetAllFaqs(authHeader);
-            setAllFaqs(allFaqs);
+            try {
+                const allFaqs = await GetAllFaqs(authHeader);
+                setAllFaqs(allFaqs);
+            } catch (error) {
+                console.log(error);
+            }
         };
 
         fetchAllFaqs();
@@ -52,6 +56,19 @@ function AllFaqs () {
             };
         };
     };
+
+    if (allFaqs.length === 0) {
+        return (
+            <>
+                <div className="ButtonContainerAllFaq">
+                    <Link to="/backoffice/faqs/ajouter"><button>AJOUTER UNE NOUVELLE FAQ</button></Link>
+                </div>
+                <div className="EmptyTitle">
+                    <h2>Il n'y a aucune FAQ pour le moment</h2>
+                </div>
+            </>
+        )
+    }
 
     
     return (
