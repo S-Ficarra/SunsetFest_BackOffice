@@ -1,5 +1,5 @@
 import { BASE_URL } from "../App";
-import { InformationsDto } from "../dto/informations.dto";
+import { IllustratedDto } from "../dto/illustrated.dto";
 
 export const InformationssService = {
 
@@ -8,7 +8,7 @@ export const InformationssService = {
             headers: {'Authorization': authHeader}});
             const data = await response.json();
         if (response.status === 200) {
-            return data.map(information => new InformationsDto (
+            return data.map(information => new IllustratedDto (
                 information._id,
                 information._user,
                 information._createdAt,
@@ -27,7 +27,7 @@ export const InformationssService = {
             headers: {'Authorization': authHeader}});
             const data = await response.json();
         if (response.status === 200) {
-            return new InformationsDto (
+            return new IllustratedDto (
                 data._id,
                 data._user,
                 data._createdAt,

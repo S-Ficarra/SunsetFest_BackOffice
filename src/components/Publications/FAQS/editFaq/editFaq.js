@@ -2,7 +2,7 @@ import React, { useState, useEffect }from "react";
 import './editFaq.css'
 import { useParams } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { GetFaq, EditFaq as Edit} from "../../../../controllers/faqs.controllers";
+import { GetFaq, EditFaq as Edit} from "../../../../controllers/faqs.controller";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";

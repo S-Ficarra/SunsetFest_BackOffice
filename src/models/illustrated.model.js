@@ -1,4 +1,4 @@
-export class InformationsModel {
+export class IllustratedModel {
 
     constructor(id, userName, userRole, createdAt, modifiedAt, status, title, text, image) {
         this.id = id;

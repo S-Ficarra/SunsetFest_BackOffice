@@ -1,12 +1,12 @@
 import { InformationssService } from "../services/informations.service";
-import { InformationsMapper } from "../mappers/Informations.mapper";
+import { IllustratedMapper } from "../mappers/illustrated.mapper";
 
 export const GetAllInformations = async (authHeader) => {
 
     let response = await InformationssService.fetchAllInformations(authHeader);
     
     if (Array.isArray(response)) {
-        const InformationsModelArray = response.map(dto => InformationsMapper.transformInformationDtoToModel(dto));
+        const InformationsModelArray = response.map(dto => IllustratedMapper.transformIllustratedDtoToModel(dto));
         return InformationsModelArray;
     }
     
@@ -16,7 +16,7 @@ export const GetAllInformations = async (authHeader) => {
 export const GetInformation = async (authHeader, informationId) => {
 
     const informationDto = await InformationssService.fetchInformation (authHeader, informationId);
-    const informationModel = InformationsMapper.transformInformationDtoToModel(informationDto);
+    const informationModel = IllustratedMapper.transformIllustratedDtoToModel(informationDto);
 
     return informationModel;
 };
@@ -26,7 +26,7 @@ export const CreateInformation = async (authHeader, newInformation) => {
     let { response, data } = await InformationssService.createInformation(authHeader, newInformation);
 
     if (response.status === 200) {
-        return InformationsMapper.transformInformationDtoToModel(data);
+        return IllustratedMapper.transformIllustratedDtoToModel(data);
     } else {
         throw new Error(data.message);
     };
@@ -37,7 +37,7 @@ export const EditInformation = async (authHeader, editedInformation, id) => {
     let { response, data } = await InformationssService.editInformation(authHeader, id, editedInformation);
 
     if (response.status === 200) {
-        return InformationsMapper.transformInformationDtoToModel(data);
+        return IllustratedMapper.transformIllustratedDtoToModel(data);
     } else {
         throw new Error(`${data.message} Status code: ${response.status} ${response.statusText}`);
     };

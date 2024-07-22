@@ -3,7 +3,7 @@ import './allFaqs.css'
 import { Link } from "react-router-dom";
 import { decodeToken } from "react-jwt";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { GetAllFaqs, DeleteFaq } from "../../../../controllers/faqs.controllers";
+import { GetAllFaqs, DeleteFaq } from "../../../../controllers/faqs.controller";
 import { GetUser } from "../../../../controllers/user.controller";
 import { formatDate } from "../../../../services/utils";
 import Pen from '../../../../assets/pen-solid.svg'

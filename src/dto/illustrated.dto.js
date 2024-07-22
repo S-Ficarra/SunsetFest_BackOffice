@@ -1,4 +1,4 @@
-export class InformationsDto {
+export class IllustratedDto {
 
     constructor(id, user, createdAt, modifiedAt, status, type, content) {
         this._id = id;

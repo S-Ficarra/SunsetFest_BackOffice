@@ -1,7 +1,7 @@
 import React, { useState }from "react";
 import './addFaq.css'
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { CreateFaq } from "../../../../controllers/faqs.controllers";
+import { CreateFaq } from "../../../../controllers/faqs.controller";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";

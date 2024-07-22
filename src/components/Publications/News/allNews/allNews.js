@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from "react";
-import './allInformations.css'
+import './allNews.css'
 import { Link } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
-import { GetAllInformations, DeleteInformation } from "../../../../controllers/informations.controller";
+import { GetAllNews } from "../../../../controllers/news.controller";
 import { GetUser } from "../../../../controllers/user.controller";
 import { formatDate } from "../../../../services/utils";
 import Pen from '../../../../assets/pen-solid.svg'
 import Trash from '../../../../assets/trash-solid.svg'
 import { convertToBase64 } from "../../../../services/utils";
 
-function AllInformations () {
+function AllNews () {
 
     const authHeader = useAuthHeader();
     const userId = decodeToken(authHeader);
@@ -25,49 +25,34 @@ function AllInformations () {
         fetchUser();
       }, [authHeader, userId.sub]);
 
-    const [allInformations, setAllInformations] = useState([]);
+
+    const [allNews, setAllNews] = useState([]);
     useEffect(() => {
-        const fetchAllInformations= async () => {
+        const fetchAllNews= async () => {
             try {
-                const allInformations = await GetAllInformations(authHeader);
-                setAllInformations(allInformations);
+                const allNews = await GetAllNews(authHeader);
+                setAllNews(allNews);
             } catch (error) {
                 console.log(error)
             }
         };
 
-        fetchAllInformations();
+        fetchAllNews();
     }, [authHeader]);
 
-
-    const handleDelete = async (e, informationId) => {
-
-        e.preventDefault();
-        const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer cet Information ?");
-
-        if (confirmation) {
-            try {
-                await DeleteInformation(authHeader, informationId);
-                alert(`Information ${informationId} supprimé`);
-                window.location.reload();
-            } catch (error) {
-                alert(`Erreur lors de la suppression de l'information : ${error.message}`);
-            };
-        };
-    };
-
-    if (allInformations.length === 0) {
+    if (allNews.length === 0) {
         return (
             <>
                 <div className="ButtonContainerAllFaq">
-                    <Link to="/backoffice/informations/ajouter"><button>AJOUTER UNE NOUVELLE INFORMATION</button></Link>
+                    <Link to="/backoffice/actualites/ajouter"><button>AJOUTER UNE NOUVELLE ACTUALITÉ</button></Link>
                 </div>
                 <div className="EmptyTitle">
-                    <h2>Il n'y a aucune Information pour le moment</h2>
+                    <h2>Il n'y a aucune Actualité pour le moment</h2>
                 </div>
             </>
         )
     }
+
 
     return (
         <div>
@@ -84,20 +69,20 @@ function AllInformations () {
                 <h2>Créé le</h2>
                 <h2>Modifié le</h2>
             </div>
-            {allInformations.map((information) => (
-                <div className="informationContainer" key={information.id}>
-                    <p>{information.id}</p>
-                    <img src={convertToBase64(information.image)} alt="" />
-                    <p>{information.title}</p>
-                    <div id="text" dangerouslySetInnerHTML={{ __html: information.text }}></div>
-                    <p className={information.status ? "online" : "offline"}>{information.status ? "Publié" : "Non Publié"}</p>
-                    <p>{information.userName}</p>
-                    <p>{formatDate(information.createdAt)}</p>
-                    <p>{formatDate(information.modifiedAt)}</p>
+            {allNews.map((news) => (
+                <div className="informationContainer" key={news.id}>
+                    <p>{news.id}</p>
+                    <img src={convertToBase64(news.image)} alt="" />
+                    <p>{news.title}</p>
+                    <div id="text" dangerouslySetInnerHTML={{ __html: news.text }}></div>
+                    <p className={news.status ? "online" : "offline"}>{news.status ? "Publié" : "Non Publié"}</p>
+                    <p>{news.userName}</p>
+                    <p>{formatDate(news.createdAt)}</p>
+                    <p>{formatDate(news.modifiedAt)}</p>
                     {/*Allow only admin & editor to have the option to delete and edit */}
                     {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
                         <div className="ActionContainerFaq">
-                            <Link to={`/backoffice/informations/${information.id}/editer`}>
+                            <Link to={`/backoffice/actualites/${news.id}/editer`}>
                                 <button>
                                     <div className="EditContainer">
                                             <img src={Pen} alt="Modifier une Information" />
@@ -105,7 +90,7 @@ function AllInformations () {
                                     </div>
                                 </button>
                             </Link>
-                            <button onClick={(e) => handleDelete(e, information.id)}>
+                            <button /*onClick={(e) => handleDelete(e, news.id)}*/>
                                 <div className="DeleteContainer">
                                     <img src={Trash} alt="Supprimer une Information" />
                                     <p>Supprimer</p>
@@ -120,4 +105,4 @@ function AllInformations () {
     );
 
 };
-export default AllInformations;
+export default AllNews;
