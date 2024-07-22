@@ -11,5 +11,17 @@ export const GetAllNews = async (authHeader) => {
     }
     
     throw new Error(`Error: ${response.data.message} Status code: ${response.response.status} ${response.response.statusText}`);
-    
+
 };
+
+
+export const DeleteNews = async (authHeader, newsId) => {
+
+    let { response, data } = await NewsService.deleteNews(authHeader, newsId);
+
+    if (response.status === 200) {
+        return data; 
+    } else {
+        throw new Error(`${data.message} Status code: ${response.status} ${response.statusText}`);
+    };
+}

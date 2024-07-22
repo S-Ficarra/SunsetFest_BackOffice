@@ -3,7 +3,7 @@ import './allNews.css'
 import { Link } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
-import { GetAllNews } from "../../../../controllers/news.controller";
+import { GetAllNews, DeleteNews } from "../../../../controllers/news.controller";
 import { GetUser } from "../../../../controllers/user.controller";
 import { formatDate } from "../../../../services/utils";
 import Pen from '../../../../assets/pen-solid.svg'
@@ -39,6 +39,22 @@ function AllNews () {
 
         fetchAllNews();
     }, [authHeader]);
+
+    const handleDelete = async (e, newsId) => {
+
+        e.preventDefault();
+        const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer cet Actualité ?");
+
+        if (confirmation) {
+            try {
+                await DeleteNews(authHeader, newsId);
+                alert(`Actualité ${newsId} supprimé`);
+                window.location.reload();
+            } catch (error) {
+                alert(`Erreur lors de la suppression de l'actualité : ${error.message}`);
+            };
+        };
+    };
 
     if (allNews.length === 0) {
         return (
@@ -90,7 +106,7 @@ function AllNews () {
                                     </div>
                                 </button>
                             </Link>
-                            <button /*onClick={(e) => handleDelete(e, news.id)}*/>
+                            <button onClick={(e) => handleDelete(e, news.id)}>
                                 <div className="DeleteContainer">
                                     <img src={Trash} alt="Supprimer une Information" />
                                     <p>Supprimer</p>

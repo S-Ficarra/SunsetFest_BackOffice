@@ -20,7 +20,20 @@ export const NewsService = {
         } else {
             return {response, data}; 
         };
-    }
+    },
+
+    async deleteNews (authHeader, newsId) {
+        const response = await fetch(`${BASE_URL}news/${newsId}/delete`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const data = await response.json();
+        return {response, data}; 
+    },
 
 
 
