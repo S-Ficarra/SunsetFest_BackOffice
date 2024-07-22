@@ -22,6 +22,25 @@ export const InformationssService = {
         };
     },
 
+    async fetchInformation (authHeader, informationId) {
+        const response = await fetch (`${BASE_URL}informations/${informationId}`, {
+            headers: {'Authorization': authHeader}});
+            const data = await response.json();
+        if (response.status === 200) {
+            return new InformationsDto (
+                data._id,
+                data._user,
+                data._createdAt,
+                data._modifiedAt,
+                data._status,
+                data._type,
+                data._content,
+            );
+        } else {
+            return response.statusText
+        };
+    },
+
     async createInformation (authHeader, newInformation) {
        
         const response = await fetch (`${BASE_URL}informations/create`, {
@@ -34,6 +53,19 @@ export const InformationssService = {
         
         const data = await response.json();
         console.log(data);
+        return {response, data};
+    },
+
+    async editInformation (authHeader, informationId, informationEdited) {
+        const response = await fetch (`${BASE_URL}informations/${informationId}/edit`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+            },
+            body: informationEdited
+        });
+
+        const data = await response.json();
         return {response, data};
     },
 

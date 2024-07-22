@@ -8,6 +8,7 @@ import { GetUser } from "../../../../controllers/user.controller";
 import { formatDate } from "../../../../services/utils";
 import Pen from '../../../../assets/pen-solid.svg'
 import Trash from '../../../../assets/trash-solid.svg'
+import { convertToBase64 } from "../../../../services/utils";
 
 function AllInformations () {
 
@@ -96,7 +97,7 @@ function AllInformations () {
                     {/*Allow only admin & editor to have the option to delete and edit */}
                     {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
                         <div className="ActionContainerFaq">
-                            <Link to={`/backoffice/faqs/${information.id}/editer`}>
+                            <Link to={`/backoffice/informations/${information.id}/editer`}>
                                 <button>
                                     <div className="EditContainer">
                                             <img src={Pen} alt="Modifier une Information" />
