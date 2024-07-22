@@ -1,19 +1,13 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LoginPage from './views/loginPage/loginPage';
-import DashboardPage from './views/dashboardPage/dashboadPage';
+import LoginPage from './views/LoginPage/loginPage';
+import DashboardPage from './views/DashboardPage/dashboadPage';
 import AuthProvider from 'react-auth-kit';
 import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
 import createStore from 'react-auth-kit/createStore';
-import UsersPage from './views/Users/usersPage/usersPage';
-import AddUserPage from './views/Users/addUserPage/addUserPage';
-import EditUserPage from './views/Users/editUserPage/editUserPage';
-import FaqsPage from './views/Publications/FAQs/allFaqsPage/allFaqsPage';
-import AddFaqPage from './views/Publications/FAQs/addFaqPage/addFaqPage';
-import EditFaqPage from './views/Publications/FAQs/editFaqPage/editFaqPage';
-import AllInformationsPage from './views/Publications/Informations/allInformationsPage/allInformationPage';
-import AddInformationsPage from './views/Publications/Informations/addInformationsPage/addInformationsPage';
-import EditInformationsPage from './views/Publications/Informations/editInformationPage/editInformationPage';
+import UsersPage from './views/UsersPage/UsersPage';
+import FaqsPage from './views/Publications/FAQs/FaqsPage';
+import InformationsPage from './views/Publications/Informations/InformationsPage';
 
 export const BASE_URL = 'http://localhost:3000/'
 
@@ -35,15 +29,9 @@ function App() {
               <Route element={<AuthOutlet fallbackPath='/backoffice/login' />}>
                 <Route path='*' element={<DashboardPage />}/>
                 <Route path='/backoffice/dashboard' element={<DashboardPage />}/>
-                <Route path='/backoffice/utilisateurs' element={<UsersPage />}/>
-                <Route path='/backoffice/utilisateurs/ajouter' element={<AddUserPage />}/>
-                <Route path='/backoffice/utilisateurs/:id/editer' element={<EditUserPage />}/>
-                <Route path='/backoffice/faqs' element={<FaqsPage />}/>
-                <Route path='/backoffice/faqs/ajouter' element={<AddFaqPage />}/>
-                <Route path='/backoffice/faqs/:id/editer' element={<EditFaqPage />}/>
-                <Route path='/backoffice/informations' element={<AllInformationsPage />}/>
-                <Route path='/backoffice/informations/ajouter' element={<AddInformationsPage />}/>
-                <Route path='/backoffice/informations/:id/editer' element={<EditInformationsPage />}/>
+                <Route path='/backoffice/utilisateurs/*' element={<UsersPage />}/>
+                <Route path='/backoffice/faqs/*' element={<FaqsPage />}/>
+                <Route path='/backoffice/informations/*' element={<InformationsPage />}/>
               </Route>
             </Routes>
           </div>
@@ -51,5 +39,4 @@ function App() {
     </AuthProvider>
   );
 }
-
 export default App;

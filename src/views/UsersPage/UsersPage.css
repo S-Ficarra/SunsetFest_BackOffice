@@ -1,0 +1,22 @@
+.UserPage {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.AccessDenied {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.AccessDenied h1 {
+    font-family: 'Reem Kufi';
+    font-size: 3em;
+}
+
+.AccessDenied p {
+    font-family: 'Alegreya Sans SC';
+    font-size: 1.5em;
+}
+
+
