@@ -25,4 +25,18 @@ export const BandService = {
         };
     },
 
+    async createBand (authHeader, newBand) {
+        const response = await fetch (`${BASE_URL}bands/create`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+            },
+            body: newBand
+        });
+        
+        const data = await response.json();
+        return {response, data};
+
+    }
+
 }

@@ -1,0 +1,41 @@
+.TopFormContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.TopFormContainer label {
+    display: none;
+}
+
+.TopFormContainer input {
+    width: 47%;
+}
+
+.SocialsFormContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 2em;
+}
+
+.SocialsFormContainer label {
+    display: none;
+}
+
+.SocialsFormContainer input {
+    width: 96%;
+}
+
+.FileLoadInputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.FileLoadContainer label {
+    font-family: 'Alegreya Sans SC';
+    font-weight: 600;
+    font-size: 1.5em;
+    margin-bottom: 1em;
+}
+

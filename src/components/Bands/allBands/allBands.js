@@ -5,7 +5,6 @@ import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
 import { GetAllBands } from "../../../controllers/band.controller";
 import { GetUser } from "../../../controllers/user.controller";
-import { formatDate } from "../../../services/utils";
 import Pen from '../../../assets/pen-solid.svg'
 import Trash from '../../../assets/trash-solid.svg'
 import { convertToBase64 } from "../../../services/utils";
@@ -52,10 +51,11 @@ function AllBands () {
         )
     }
 
+
     return (
         <div>
             <div className="ButtonContainerAllFaq">
-                <Link to="/backoffice/groupe/ajouter"><button>AJOUTER UN NOUVEAU GROUPE</button></Link>
+                <Link to="/backoffice/groupes/ajouter"><button>AJOUTER UN NOUVEAU GROUPE</button></Link>
             </div>
             <div className="AllBandsContainer">
                 {allBands.map((band) => (

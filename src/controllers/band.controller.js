@@ -12,4 +12,15 @@ export const GetAllBands = async (authHeader) => {
 
     throw new Error(`Error: ${response.data.message} Status code: ${response.response.status} ${response.response.statusText}`);
 
-}
+};
+
+export const CreateBand = async (authHeader, newBand) => {
+   
+    let { response, data } = await BandService.createBand(authHeader, newBand);
+
+    if (response.status === 200) {
+        return BandMapper.transformBandDtoToModel(data);
+    } else {
+        throw new Error(data.message);
+    };
+};
