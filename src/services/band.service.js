@@ -37,6 +37,20 @@ export const BandService = {
         const data = await response.json();
         return {response, data};
 
-    }
+    },
+
+    async deleteBand (authHeader, bandId) {
+        const response = await fetch(`${BASE_URL}bands/${bandId}/delete`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const data = await response.json();
+        return {response, data}; 
+    },
+
 
 }

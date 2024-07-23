@@ -3,7 +3,7 @@ import './allBands.css'
 import { Link } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
-import { GetAllBands } from "../../../controllers/band.controller";
+import { GetAllBands, DeleteBand } from "../../../controllers/band.controller";
 import { GetUser } from "../../../controllers/user.controller";
 import Pen from '../../../assets/pen-solid.svg'
 import Trash from '../../../assets/trash-solid.svg'
@@ -37,6 +37,22 @@ function AllBands () {
 
         fetchAllBands();
     }, [authHeader]);
+
+    const handleDelete = async (e, bandId) => {
+
+        e.preventDefault();
+        const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer ce groupe ?");
+
+        if (confirmation) {
+            try {
+                await DeleteBand(authHeader, bandId);
+                alert(`Groupe ${bandId} supprimé`);
+                window.location.reload();
+            } catch (error) {
+                alert(`Erreur lors de la suppression du groupe : ${error.message}`);
+            };
+        };
+    };
 
     if (allBands.length === 0) {
         return (
@@ -73,7 +89,7 @@ function AllBands () {
                                         </div>
                                     </button>
                                 </Link>
-                                <button /*onClick={(e) => handleDelete(e, news.id)}*/>
+                                <button onClick={(e) => handleDelete(e, band.id)}>
                                     <div className="DeleteContainer">
                                         <img src={Trash} alt="Supprimer une Information" />
                                         <p>Supprimer</p>

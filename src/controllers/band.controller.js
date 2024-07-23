@@ -24,3 +24,14 @@ export const CreateBand = async (authHeader, newBand) => {
         throw new Error(data.message);
     };
 };
+
+export const DeleteBand = async (authHeader, bandId) => {
+
+    let { response, data } = await BandService.deleteBand(authHeader, bandId);
+
+    if (response.status === 200) {
+        return data; 
+    } else {
+        throw new Error(`${data.message} Status code: ${response.status} ${response.statusText}`);
+    };
+}
