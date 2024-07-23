@@ -9,6 +9,7 @@ import UsersPage from './views/UsersPage/UsersPage';
 import FaqsPage from './views/Publications/FAQs/FaqsPage';
 import InformationsPage from './views/Publications/Informations/InformationsPage';
 import NewsPage from './views/Publications/News/NewsPage';
+import BandsPage from './views/Bands/BandsPage';
 
 export const BASE_URL = 'http://localhost:3000/'
 
@@ -34,6 +35,7 @@ function App() {
                 <Route path='/backoffice/faqs/*' element={<FaqsPage />}/>
                 <Route path='/backoffice/informations/*' element={<InformationsPage />}/>
                 <Route path='/backoffice/actualites/*' element={<NewsPage />}/>
+                <Route path='/backoffice/groupes/*' element={<BandsPage />}/>
               </Route>
             </Routes>
           </div>

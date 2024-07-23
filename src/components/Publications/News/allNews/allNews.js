@@ -68,9 +68,6 @@ function AllNews () {
         )
     }
 
-    console.log(allNews);
-
-
     return (
         <div>
             <div className="ButtonContainerAllFaq">
@@ -89,7 +86,7 @@ function AllNews () {
             {allNews.map((news) => (
                 <div className="informationContainer" key={news.id}>
                     <p>{news.id}</p>
-                    <img src={convertToBase64(news.image)} alt="" />
+                    <img src={convertToBase64(news.image)} alt={news.title} />
                     <p>{news.title}</p>
                     <div id="text" dangerouslySetInnerHTML={{ __html: news.text }}></div>
                     <p className={news.status ? "online" : "offline"}>{news.status ? "Publié" : "Non Publié"}</p>
