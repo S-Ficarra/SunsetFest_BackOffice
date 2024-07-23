@@ -101,7 +101,10 @@ function EditUser ({ authHeader }) {
                         </div>
                     </div>
                 </div>
-                <button type="submit">Modifier l'utilisateur</button>
+                <div>
+                    <button type="submit">Modifier l'utilisateur</button>
+                    <Link to='/backoffice/utilisateurs'><button>Annuler</button></Link>
+                </div>
             </form>
         </div>
     );

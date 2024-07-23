@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { GetNews, EditNews as Edit } from "../../../../controllers/news.controller";
 import ReactQuill from 'react-quill';
@@ -10,6 +10,7 @@ import { convertToBase64, formatDate } from "../../../../services/utils";
 function EditNews () {
     
     const { id } = useParams();
+    const navigate = useNavigate()
     const authHeader = useAuthHeader();
     const [newsEdited, setNewsEdited] = useState();
     const [formState, setFormState] = useState({
@@ -151,6 +152,7 @@ function EditNews () {
                     </div>
                     <div className="ButtonContainerAddFaq">
                         <button type="submit">Enregistrer</button>
+                        <Link to='/backoffice/actualites'><button>Annuler</button></Link>
                     </div>
                 </form>
             </div>

@@ -127,6 +127,7 @@ function AddNews () {
                     </div>
                     <div className="ButtonContainerAddFaq">
                         <button type="submit">Enregistrer</button>
+                        <Link to='/backoffice/actualites'><button>Annuler</button></Link>
                     </div>
                 </form>
             </div>

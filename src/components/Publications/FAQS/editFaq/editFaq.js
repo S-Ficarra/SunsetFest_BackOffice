@@ -99,6 +99,7 @@ function EditFaq () {
                     </div>
                     <div className="ButtonContainerAddFaq">
                         <button type="submit">Enregistrer</button>
+                        <Link to='/backoffice/faqs'><button>Annuler</button></Link>
                     </div>
                 </form>
             </div>

@@ -78,7 +78,10 @@ function AddUser ({authHeader}) {
                         </div>
                     </div>
                 </div>
-                <button type="submit">Ajouter un Utilisateur</button>
+                <div>
+                    <button type="submit">Ajouter un Utilisateur</button>
+                    <Link to='/backoffice/utilisateurs'><button>Annuler</button></Link>
+                </div>
             </form>
         </div>
         );
