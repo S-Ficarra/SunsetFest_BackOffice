@@ -15,7 +15,7 @@ export const GetAllInformations = async (authHeader) => {
 
 export const GetInformation = async (authHeader, informationId) => {
 
-    const informationDto = await InformationssService.fetchInformation (authHeader, informationId);
+    const informationDto = await InformationssService.fetchInformation(authHeader, informationId);
     const informationModel = IllustratedMapper.transformIllustratedDtoToModel(informationDto);
 
     return informationModel;

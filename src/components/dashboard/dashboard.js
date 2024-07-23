@@ -7,7 +7,7 @@ function DashBoard () {
 
     return (
         <div className="DashboardButtons">
-            <Link to='/backoffice/alertes'><button>ALERTES</button></Link>
+            {/*<Link to='/backoffice/alertes'><button>ALERTES</button></Link>*/}
             <Link to='/backoffice/actualites'><button>ACTUALITÉS</button></Link>
             <Link to='/backoffice/informations'><button>INFORMATIONS</button></Link>
             <Link to='/backoffice/faqs'><button>FAQS</button></Link>

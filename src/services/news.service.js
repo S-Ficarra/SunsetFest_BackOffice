@@ -22,6 +22,25 @@ export const NewsService = {
         };
     },
 
+    async fetchNews (authHeader, newsId) {
+        const response = await fetch (`${BASE_URL}news/${newsId}`, {
+            headers: {'Authorization': authHeader}});
+            const data = await response.json();
+        if (response.status === 200) {
+            return new IllustratedDto (
+                data._id,
+                data._user,
+                data._createdAt,
+                data._modifiedAt,
+                data._status,
+                data._type,
+                data._content,
+            );
+        } else {
+            return response.statusText
+        };
+    },
+
     async createNews (authHeader, newNews) {
        
         const response = await fetch (`${BASE_URL}news/create`, {
@@ -34,6 +53,19 @@ export const NewsService = {
         
         const data = await response.json();
         console.log(data);
+        return {response, data};
+    },
+
+    async editNews (authHeader, newsId, newsEdited) {
+        const response = await fetch (`${BASE_URL}news/${newsId}/edit`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+            },
+            body: newsEdited
+        });
+
+        const data = await response.json();
         return {response, data};
     },
 

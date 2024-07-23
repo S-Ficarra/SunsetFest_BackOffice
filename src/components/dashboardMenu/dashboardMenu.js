@@ -25,7 +25,7 @@ function DashboardMenu () {
                 <Link to='/backoffice/dahsboard' ><img src={HeroLogo} alt="" /></Link>
             </div>
             <div className="ButtonContainer">
-                <Link to='/backoffice/alertes'><button>ALERTES</button></Link>
+                {/*<Link to='/backoffice/alertes'><button>ALERTES</button></Link>*/}
                 <Link to='/backoffice/actualites'><button>ACTUALITÉS</button></Link>
                 <Link to='/backoffice/informations'><button>INFORMATIONS</button></Link>
                 <Link to='/backoffice/faqs'><button>FAQS</button></Link>

@@ -64,7 +64,7 @@ function EditFaq () {
     if (faqEdited) {
         return (
             <div className="SucessMessage">
-                <h1>FAQ créé avec succès!</h1>
+                <h1>FAQ modifiée avec succès!</h1>
                 <p><span>ID :</span> {faqEdited.id}</p>
                 <p><span>Question :</span> {faqEdited.question}</p>
                 <p><span>Réponse :</span> </p><div dangerouslySetInnerHTML={{ __html: faqEdited.answer }}></div>

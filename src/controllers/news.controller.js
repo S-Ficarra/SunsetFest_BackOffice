@@ -7,11 +7,19 @@ export const GetAllNews = async (authHeader) => {
     
     if (Array.isArray(response)) {
         const NewssModelArray = response.map(dto => IllustratedMapper.transformIllustratedDtoToModel(dto));
-        return NewssModelArray;
+        return NewssModelArray.reverse();
     }
     
     throw new Error(`Error: ${response.data.message} Status code: ${response.response.status} ${response.response.statusText}`);
 
+};
+
+export const GetNews = async (authHeader, newsId) => {
+
+    const newsDto = await NewsService.fetchNews(authHeader, newsId);
+    const newsModel = IllustratedMapper.transformIllustratedDtoToModel(newsDto);
+
+    return newsModel;
 };
 
 export const CreateNews = async (authHeader, newNews) => {
@@ -22,6 +30,17 @@ export const CreateNews = async (authHeader, newNews) => {
         return IllustratedMapper.transformIllustratedDtoToModel(data);
     } else {
         throw new Error(data.message);
+    };
+};
+
+export const EditNews = async (authHeader, editedNews, id) => {
+
+    let { response, data } = await NewsService.editNews(authHeader, id, editedNews);
+
+    if (response.status === 200) {
+        return IllustratedMapper.transformIllustratedDtoToModel(data);
+    } else {
+        throw new Error(`${data.message} Status code: ${response.status} ${response.statusText}`);
     };
 };
 

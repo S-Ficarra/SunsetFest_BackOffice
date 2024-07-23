@@ -1,18 +1,17 @@
 import React, {useState, useEffect} from "react";
-import './editInformations.css'
 import { useParams } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { GetInformation, EditInformation as Edit } from "../../../../controllers/informations.controller";
+import { GetNews, EditNews as Edit } from "../../../../controllers/news.controller";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";
 import { convertToBase64, formatDate } from "../../../../services/utils";
 
-function EditInformation () {
-
+function EditNews () {
+    
     const { id } = useParams();
     const authHeader = useAuthHeader();
-    const [informationEdited, setInformationEdited] = useState()
+    const [newsEdited, setNewsEdited] = useState();
     const [formState, setFormState] = useState({
         title: '',
         text: '',
@@ -23,27 +22,26 @@ function EditInformation () {
     });
 
     useEffect(() => {
-        const fetchInformation = async () => {
-            const information = await GetInformation(authHeader, +id);
-
+        const fetchNews = async () => {
+            const news = await GetNews(authHeader, +id);
+            
             /* transfrom ByteArray received from database into file, to allow users to keep the image without uploading one*/
-            const base64Response = await fetch(`${convertToBase64(information.image)}`);
+            const base64Response = await fetch(`${convertToBase64(news.image)}`);
             const arrayBuffer = await base64Response.arrayBuffer();
             const imageFile = new File([arrayBuffer], "image.jpg", { type: "image/jpeg" });
 
             setFormState({
-                title: information.title,
-                text: information.text,
-                status: information.status.toString(),
+                title: news.title,
+                text: news.text,
+                status: news.status.toString(),
                 image: imageFile,
-                imagePreview: convertToBase64(information.image),
+                imagePreview: convertToBase64(news.image),
                 isLoading: false
             });
         };
 
-        fetchInformation();
+        fetchNews();
       }, [authHeader, id]);
-
 
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
@@ -91,8 +89,8 @@ function EditInformation () {
             formData.append("status", formState.status);
             formData.append("image", formState.image);
  
-            let informationEdited = await Edit(authHeader, formData, id);
-            setInformationEdited(informationEdited);
+            let newsEdited = await Edit(authHeader, formData, id);
+            setNewsEdited(newsEdited);
         } catch (error) {
             alert(error.message); 
         };
@@ -105,20 +103,22 @@ function EditInformation () {
         
     }
 
-    if (informationEdited) {
+    if (newsEdited) {
         return (
             <div className="SucessMessage">
-                <h1>Information modifiée avec succès!</h1>
-                <p><span>ID :</span> {informationEdited.id}</p>
-                <p><span>Titre :</span> {informationEdited.title}</p>
-                <p><span>Texte :</span> </p><div dangerouslySetInnerHTML={{ __html: informationEdited.text }}></div>
-                <p><span>Statut :</span> {informationEdited.status ? 'Publié' : 'Non publié'}</p>
-                <p><span>Auteur :</span> {informationEdited.userName}</p>
-                <p><span>Créé le :</span> {formatDate(informationEdited.createdAt)}</p>
-                <Link to='/backoffice/informations'><button>Retour aux informations</button></Link>
+                <h1>Actualité modifiée avec succès!</h1>
+                <p><span>ID :</span> {newsEdited.id}</p>
+                <p><span>Titre :</span> {newsEdited.title}</p>
+                <p><span>Texte :</span> </p><div dangerouslySetInnerHTML={{ __html: newsEdited.text }}></div>
+                <p><span>Statut :</span> {newsEdited.status ? 'Publié' : 'Non publié'}</p>
+                <p><span>Auteur :</span> {newsEdited.userName}</p>
+                <p><span>Créé le :</span> {formatDate(newsEdited.createdAt)}</p>
+                <Link to='/backoffice/actualites'><button>Retour aux actualités</button></Link>
             </div>
         );
     };
+
+
 
     return (
         <div>
@@ -156,5 +156,6 @@ function EditInformation () {
             </div>
         </div>
     );
-}
-export default EditInformation;
+
+};
+export default EditNews;

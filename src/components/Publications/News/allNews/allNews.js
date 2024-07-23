@@ -68,6 +68,8 @@ function AllNews () {
         )
     }
 
+    console.log(allNews);
+
 
     return (
         <div>
