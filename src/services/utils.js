@@ -17,3 +17,9 @@ export function convertToBase64 (byteArray) {
     const binary = byteArray.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
     return `data:image/jpeg;base64,${btoa(binary)}`;
   };
+
+export async function convertBase64ToFile(base64String, fileName, fileType) {
+    const base64Response = await fetch(base64String);
+    const arrayBuffer = await base64Response.arrayBuffer();
+    return new File([arrayBuffer], fileName, { type: fileType });
+}

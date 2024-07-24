@@ -27,7 +27,7 @@ function EditInformation () {
             const information = await GetInformation(authHeader, +id);
 
             /* transfrom ByteArray received from database into file, to allow users to keep the image without uploading one*/
-            const base64Response = await fetch(`${convertToBase64(information.image)}`);
+            const base64Response = await fetch(convertToBase64(information.image));
             const arrayBuffer = await base64Response.arrayBuffer();
             const imageFile = new File([arrayBuffer], "image.jpg", { type: "image/jpeg" });
 

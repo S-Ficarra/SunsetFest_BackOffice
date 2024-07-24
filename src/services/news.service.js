@@ -6,7 +6,7 @@ export const NewsService = {
     async fetchAllNews (authHeader) {
         const response = await fetch (`${BASE_URL}news`, {
             headers: {'Authorization': authHeader}});
-            const data = await response.json();
+        const data = await response.json();
         if (response.status === 200) {
             return data.map(information => new IllustratedDto (
                 information._id,
@@ -25,7 +25,7 @@ export const NewsService = {
     async fetchNews (authHeader, newsId) {
         const response = await fetch (`${BASE_URL}news/${newsId}`, {
             headers: {'Authorization': authHeader}});
-            const data = await response.json();
+        const data = await response.json();
         if (response.status === 200) {
             return new IllustratedDto (
                 data._id,

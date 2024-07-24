@@ -77,7 +77,7 @@ function AllBands () {
                 {allBands.map((band) => (
                     <div className="BandContainer" key={band.id}>
                         <img src={convertToBase64(band.thumbnailImage)} alt={band.name} />
-                        <p>{band.name}</p>
+                        <p><span>ID: {band.id}</span> {band.name}</p>
                         {/*Allow only admin & editor to have the option to delete and edit */}
                         {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
                             <div className="ActionContainerBand">

@@ -28,6 +28,10 @@
     margin: .2em;
 }
 
+.BandContainer span {
+    color: var(--glampink);
+}
+
 .ActionContainerBand {
     display: flex;
     justify-content: center;
@@ -50,8 +54,10 @@
 }
 
 .ActionContainerBand button img{
-    height: 10px;
-    width: 10px;
+    height: 15px;
+    width: 15px;
+    border-radius: 0;
+    border: none;
 }
 
 .ActionContainerBand p {

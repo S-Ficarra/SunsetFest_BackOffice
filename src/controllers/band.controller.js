@@ -11,7 +11,14 @@ export const GetAllBands = async (authHeader) => {
     };
 
     throw new Error(`Error: ${response.data.message} Status code: ${response.response.status} ${response.response.statusText}`);
+};
 
+export const GetBand = async (authHeader, bandId) => {
+
+    const bandDto = await BandService.fetchBand(authHeader, bandId);
+    const bandModel = BandMapper.transformBandDtoToModel(bandDto);
+
+    return bandModel;
 };
 
 export const CreateBand = async (authHeader, newBand) => {
@@ -22,6 +29,17 @@ export const CreateBand = async (authHeader, newBand) => {
         return BandMapper.transformBandDtoToModel(data);
     } else {
         throw new Error(data.message);
+    };
+};
+
+export const EditBand = async (authHeader, editedBand, id) => {
+
+    let { response, data } = await BandService.editBand(authHeader, id, editedBand);
+
+    if (response.status === 200) {
+        return BandMapper.transformBandDtoToModel(data);
+    } else {
+        throw new Error(`${data.message} Status code: ${response.status} ${response.statusText}`);
     };
 };
 

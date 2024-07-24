@@ -13,8 +13,8 @@ export class BandModel {
         this.youtube = youtube;
         this.spotify = spotify;
         this.website = website;
-        this.spotifyIntegrationLink = spotifyIntegrationLink;
-        this.youtubeIntegrationLink = youtubeIntegrationLink;
+        this.spotifyIntegration = spotifyIntegrationLink;
+        this.youtubeIntegration = youtubeIntegrationLink;
         this.userName = userName;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;

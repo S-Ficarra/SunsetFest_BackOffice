@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { GetNews, EditNews as Edit } from "../../../../controllers/news.controller";
 import ReactQuill from 'react-quill';
@@ -10,7 +10,6 @@ import { convertToBase64, formatDate } from "../../../../services/utils";
 function EditNews () {
     
     const { id } = useParams();
-    const navigate = useNavigate()
     const authHeader = useAuthHeader();
     const [newsEdited, setNewsEdited] = useState();
     const [formState, setFormState] = useState({
@@ -27,7 +26,7 @@ function EditNews () {
             const news = await GetNews(authHeader, +id);
             
             /* transfrom ByteArray received from database into file, to allow users to keep the image without uploading one*/
-            const base64Response = await fetch(`${convertToBase64(news.image)}`);
+            const base64Response = await fetch(convertToBase64(news.image));
             const arrayBuffer = await base64Response.arrayBuffer();
             const imageFile = new File([arrayBuffer], "image.jpg", { type: "image/jpeg" });
 

@@ -86,8 +86,8 @@ function AddBand () {
             formData.append("youtube", formState.youtube);
             formData.append("spotify", formState.spotify);
             formData.append("website", formState.website);
-            formData.append("spotifyIntegration", formState.spotifyIntegrationLink);
-            formData.append("youtubeIntegration", formState.youtubeIntegrationLink);
+            formData.append("spotifyIntegration", formState.spotifyIntegration);
+            formData.append("youtubeIntegration", formState.youtubeIntegration);
             formData.append("thumbnailImage", formState.thumbnailImage);
             formData.append("bannerImage", formState.bannerImage);
     
@@ -168,7 +168,7 @@ function AddBand () {
                 </div>
                 <div className="ButtonContainerAddFaq">
                     <button type="submit">Enregistrer</button>
-                    <Link to='/backoffice/actualites'><button>Annuler</button></Link>
+                    <Link to='/backoffice/groupes'><button>Annuler</button></Link>
                 </div>
             </form>
         </div>

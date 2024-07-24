@@ -6,7 +6,7 @@ export const BandService = {
     async fetchAllBands (authHeader) {
         const response = await fetch (`${BASE_URL}bands`, {
             headers: {'Authorization': authHeader}});
-            const data = await response.json();
+        const data = await response.json();
         if (response.status === 200) {
             return data.map(band => new BandDto(
                 band._id,
@@ -25,6 +25,28 @@ export const BandService = {
         };
     },
 
+    async fetchBand (authHeader, bandId) {
+        const response = await fetch (`${BASE_URL}bands/${bandId}`, {
+            headers: {'Authorization': authHeader}});
+        const data = await response.json();
+        if (response.status === 200) {
+            return new BandDto (
+                data._id,
+                data._name,
+                data._country,
+                data._text,
+                data._socials,
+                data._thumbnailImage,
+                data._bannerImage,
+                data._user,
+                data._createdAt,
+                data._modifiedAt
+            );
+        } else {
+            return {response, data}; 
+        };
+    },
+
     async createBand (authHeader, newBand) {
         const response = await fetch (`${BASE_URL}bands/create`, {
             method: 'POST',
@@ -38,6 +60,20 @@ export const BandService = {
         return {response, data};
 
     },
+
+    async editBand (authHeader, bandId, bandEdited) {
+        const response = await fetch (`${BASE_URL}bands/${bandId}/edit`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+            },
+            body: bandEdited
+        });
+
+        const data = await response.json();
+        return {response, data};
+    },
+
 
     async deleteBand (authHeader, bandId) {
         const response = await fetch(`${BASE_URL}bands/${bandId}/delete`, {
