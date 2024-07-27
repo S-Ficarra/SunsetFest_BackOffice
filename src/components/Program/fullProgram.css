@@ -1,0 +1,41 @@
+.FullProgramDaysButton {
+    display: flex;
+    justify-content: center;
+    height: 75px;
+    margin: 1em;
+}
+
+.FullProgramDaysButton button{
+    width: 200px;
+    font-family: 'Alegreya Sans SC';
+    font-size: 1.5em;
+    font-weight: 800;
+    color: white;
+    background-color: rgba(16, 123, 152, 0.7);
+}
+
+#Selected {
+    background-color: var(--glamblue);
+}
+
+.AddPerformanceButton {
+    display: flex;
+    justify-content: center;
+}
+
+.AddPerformanceButton button{
+    margin: 1em;
+    padding: .5em 2em;
+    font-family: 'Alegreya Sans SC';
+    font-size: 2em;
+    font-weight: 500;
+    color: white;
+    background-color: var(--glamblue);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.AddPerformanceButton button:hover {
+    background-color: var(--glampink);
+}

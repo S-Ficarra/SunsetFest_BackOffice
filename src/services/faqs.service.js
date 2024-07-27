@@ -81,8 +81,6 @@ export const FaqsService = {
             },
         });
 
-        console.log(response);
-
         const data = await response.json();
         return {response, data}; 
     },
