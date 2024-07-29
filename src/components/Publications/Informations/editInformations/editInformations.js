@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import './editInformations.css'
 import { useParams } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { GetInformation, EditInformation as Edit } from "../../../../controllers/informations.controller";
+import { GetInformation, EditInformation as Edit } from "../../../../controllers/Publications/informations.controller";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";

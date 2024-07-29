@@ -1,4 +1,4 @@
-import { IllustratedModel} from "../models/illustrated.model";
+import { IllustratedModel} from "../../models/Publications/illustrated.model";
 
 export const IllustratedMapper = {
 

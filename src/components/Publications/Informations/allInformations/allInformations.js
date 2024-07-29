@@ -3,7 +3,7 @@ import './allInformations.css'
 import { Link } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
-import { GetAllInformations, DeleteInformation } from "../../../../controllers/informations.controller";
+import { GetAllInformations, DeleteInformation } from "../../../../controllers/Publications/informations.controller";
 import { GetUser } from "../../../../controllers/user.controller";
 import { formatDate } from "../../../../services/utils";
 import Pen from '../../../../assets/pen-solid.svg'

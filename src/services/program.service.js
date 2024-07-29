@@ -17,13 +17,16 @@ export const ProgramService = {
         };
     },
 
-    async addPerformanceToProgram (authHeader, year, performanceIdStr) {
-        
+    async addPerformanceToProgram (authHeader, year, performanceId) {
+
+        const perfId = performanceId.toString()
         const response = await fetch(`${BASE_URL}programs/${year}/addperformance`, {
             method: 'POST',
             headers: {
-                'Authorization': authHeader},
-            body: JSON.stringify({performanceId: performanceIdStr})
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ performanceId: perfId })
         });
 
         const data = await response.json();
@@ -31,14 +34,16 @@ export const ProgramService = {
 
     }, 
 
-    async deletePerformanceFromProgram (authHeader, year, performanceIdStr) {
+    async deletePerformanceFromProgram (authHeader, year, performanceId) {
         
+        const perfId = performanceId.toString()
         const response = await fetch(`${BASE_URL}programs/${year}/deleteperformance`, {
             method: 'POST',
             headers: {
                 'Authorization': authHeader,
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({performanceId: performanceIdStr})
+            body: JSON.stringify({performanceId: perfId})
         });
 
         const data = await response.json();

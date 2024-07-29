@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { GetAllBands } from "../../controllers/band.controller";
-import { GetAllStages } from "../../controllers/stages.controller";
+import { GetAllStages } from "../../controllers/Facilities/stages.controller";
 import { AddPerformanceToProgram } from "../../controllers/program.controller";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { formatDateProgram } from "../../services/utils";
+import { Link } from "react-router-dom";
+import './createPerformance.css'
 
 
 function CreatePerformance () {
@@ -17,26 +19,6 @@ function CreatePerformance () {
         stage: '',
         timeFrame: ''
     });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormState({
-            ...formState,
-            [name]: value
-        });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            let performanceAdded = await AddPerformanceToProgram(authHeader, year, formState);
-            setPerformanceCreated(performanceAdded);
-        } catch (error) {
-            alert(error.message); 
-        };
-
-    };
 
     const [allBands, setAllBands] = useState([]);
     useEffect(() => {
@@ -82,37 +64,78 @@ function CreatePerformance () {
         fetchTimeFrames();
     }, []);
 
-    console.log(formState);
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormState({
+            ...formState,
+            [name]: value
+        });
+    };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            let performanceAdded = await AddPerformanceToProgram(authHeader, year, formState);
+            setPerformanceCreated(performanceAdded.perfData);
+        } catch (error) {
+            alert(error.message); 
+        };
+
+    };
+
+    const handleResetForm = () => {
+        setPerformanceCreated();
+    };
+
+
+    if (performanceCreated) {
+        return (
+            <div className="SucessMessage">
+            <h1>Performance créé avec succès!</h1>
+            <p><span>ID :</span> {performanceCreated._id}</p>
+            <p><span>Groupe :</span> {performanceCreated._band._name}</p>
+            <p><span>Scène :</span> {performanceCreated._stage._name}</p>
+            <p><span>Passage :</span> {formatDateProgram(performanceCreated._timeFrame._startingTime)}</p>
+            <Link to='/backoffice/programme/2023'><button>Retour au programme</button></Link>
+            <button onClick={handleResetForm}>Ajouter une nouvelle performance</button>
+        </div>
+        )
+    }
 
     return (
-        <div>
+        <div className="MainContainer">
             <form onSubmit={handleSubmit}>
-                <div>
-                    <select name="band" id="band" onChange={(e) => {handleChange(e)}}>
-                    <option>Selectionnez un groupe</option>
+                <div className="SelectContainer">
+                    <label htmlFor="band">Choisissez le groupe</label><br/>
+                    <select name="band" id="band" onChange={(e) => {handleChange(e)}} required>
+                    <option value=''>Selectionnez un groupe</option>
                         {allBands.map(band => (
                             <option key={band.id} value={band.id} >{band.name}</option>
                         ))}
                     </select>
                 </div>
-                <div>
-                    <select name="stage" id="stage" onChange={(e) => {handleChange(e)}}>
-                        <option>Selectionnez une scène</option>
+                <div className="SelectContainer">
+                    <label htmlFor="stage">Choisissez la scène</label><br/>
+                    <select name="stage" id="stage" onChange={(e) => {handleChange(e)}} required>
+                        <option value=''>Selectionnez une scène</option>
                         {allStages.map(stage => (
                             <option key={stage.id} value={stage.id}>{stage.name}</option>
                         ))}
                     </select>
                 </div>
-                <div>
-                    <select name="timeFrame" id="timeFrame" onChange={(e) => {handleChange(e)}}>
-                        <option>Selectionnez un passage</option>
+                <div className="SelectContainer">
+                    <label htmlFor="timeFrame">Choisissez le passage</label><br/>
+                    <select name="timeFrame" id="timeFrame" onChange={(e) => {handleChange(e)}} required>
+                        <option value=''>Selectionnez un passage</option>
                         {timeFrames.map(timeFrame => (
                             <option key={timeFrame.id} value={timeFrame.id}>{formatDateProgram(timeFrame.starting_time)}</option>
                         ))}
                     </select>
                 </div>
-                <button type="submit">Enregistrer</button>
+                <div className="AddPerformanceButton">
+                    <button type="submit">Enregistrer</button>
+                </div>
             </form>
         </div>
     );

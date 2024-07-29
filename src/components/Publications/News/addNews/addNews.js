@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { CreateNews } from "../../../../controllers/news.controller";
+import { CreateNews } from "../../../../controllers/Publications/news.controller";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { GetNews, EditNews as Edit } from "../../../../controllers/news.controller";
+import { GetNews, EditNews as Edit } from "../../../../controllers/Publications/news.controller";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";

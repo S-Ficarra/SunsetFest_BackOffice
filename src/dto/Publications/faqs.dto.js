@@ -12,13 +12,3 @@ export class FaqsDto {
     };
 
 };
-
-export class CreateFaqsDto {
-
-    constructor(question, answer, status) {
-        this.question = question;
-        this.answer = answer;
-        this.status = status;
-    };
-
-};

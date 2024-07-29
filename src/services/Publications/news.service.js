@@ -1,5 +1,5 @@
-import { BASE_URL } from "../App";
-import { IllustratedDto } from "../dto/illustrated.dto";
+import { BASE_URL } from "../../App";
+import { IllustratedDto } from "../../dto/Publications/illustrated.dto";
 
 export const NewsService = {
 

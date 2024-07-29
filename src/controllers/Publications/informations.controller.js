@@ -1,5 +1,5 @@
-import { InformationssService } from "../services/informations.service";
-import { IllustratedMapper } from "../mappers/illustrated.mapper";
+import { InformationssService } from "../../services/Publications/informations.service";
+import { IllustratedMapper } from "../../mappers/Publications/illustrated.mapper";
 
 export const GetAllInformations = async (authHeader) => {
 

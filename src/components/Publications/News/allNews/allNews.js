@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
-import { GetAllNews, DeleteNews } from "../../../../controllers/news.controller";
+import { GetAllNews, DeleteNews } from "../../../../controllers/Publications/news.controller";
 import { GetUser } from "../../../../controllers/user.controller";
 import { formatDate } from "../../../../services/utils";
 import Pen from '../../../../assets/pen-solid.svg'

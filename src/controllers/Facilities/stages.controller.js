@@ -1,5 +1,5 @@
-import { StagesService } from "../services/stages.service";
-import { StageMapper } from "../mappers/stage.mapper";
+import { StagesService } from "../../services/Facilities/stages.service";
+import { StageMapper } from "../../mappers/Facilities/stage.mapper";
 
 
 export const GetAllStages = async (authHeader) => {

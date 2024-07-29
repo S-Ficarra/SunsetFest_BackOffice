@@ -1,0 +1,30 @@
+.MainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+.MainContainer form {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.SelectContainer label {
+    font-family: 'Reem Kufi';
+    font-size: 2em;
+    font-weight: 800;
+}
+
+.SelectContainer select {
+    font-family: 'Reem Kufi';
+    font-size: 1.5em;
+    padding: .7em;
+    border-radius: 10px;
+    border: solid 3px var(--glampink);
+    margin-top: 1em;
+    text-align: center;
+}

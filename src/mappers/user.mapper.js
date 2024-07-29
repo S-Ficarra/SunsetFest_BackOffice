@@ -11,6 +11,8 @@ export const UserMapper = {
                 return 'Editeur';
             case 3:
                 return 'Administrateur';
+            default:
+                return 'Auteur';
         };
     },
 
@@ -22,6 +24,8 @@ export const UserMapper = {
                 return '2';
             case 'Administrateur':
                 return '3';
+            default :
+                return '1';
         };
     },
     

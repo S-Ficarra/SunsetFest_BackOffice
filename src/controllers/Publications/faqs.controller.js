@@ -1,5 +1,5 @@
-import { FaqsService } from "../services/faqs.service";
-import { FaqsMapper } from "../mappers/faqs.mapper";
+import { FaqsService } from "../../services/Publications/faqs.service";
+import { FaqsMapper } from "../../mappers/Publications/faqs.mapper";
 
 export const GetAllFaqs = async (authHeader) => {
 

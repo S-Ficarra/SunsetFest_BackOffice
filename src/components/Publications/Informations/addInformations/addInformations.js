@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import './addInformations.css'
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { CreateInformation } from "../../../../controllers/informations.controller";
+import { CreateInformation } from "../../../../controllers/Publications/informations.controller";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";

@@ -1,4 +1,4 @@
-import { FaqsModel } from "../models/faqs.model";
+import { FaqsModel } from "../../models/Publications/faqs.model";
 
 export const FaqsMapper = {
 

@@ -11,10 +11,10 @@ export const GetProgramByYear = async (authHeader, year) => {
 
 };
 
-export const AddPerformanceToProgram = async (authHeader, year, performanceId) => {
+export const AddPerformanceToProgram = async (authHeader, year, performance) => {
     
-    let { response : perfResponse, data : perfData } = await PerformanceServices.createPerformance(authHeader, performanceId);
-    let { response: progResponse, data :progData } = await ProgramService.addPerformanceToProgram(authHeader, year, perfData._id.toString());
+    let { response : perfResponse, data : perfData } = await PerformanceServices.createPerformance(authHeader, performance);
+    let { response: progResponse, data :progData } = await ProgramService.addPerformanceToProgram(authHeader, year, perfData._id);
 
     if (perfResponse.status === 200 && progResponse.status === 200) {
         return {perfData, progData}; 
@@ -29,7 +29,7 @@ export const AddPerformanceToProgram = async (authHeader, year, performanceId) =
 export const DeletePerformanceFromProgram = async (authHeader, year, performanceId) => {
 
     let { response : perfResponse, data : perfData } = await ProgramService.deletePerformanceFromProgram(authHeader, year, performanceId);
-    let { response: progResponse, data :progData } = await PerformanceServices.deletePerformance(authHeader, performanceId.toString());
+    let { response: progResponse, data :progData } = await PerformanceServices.deletePerformance(authHeader, performanceId);
 
     if (perfResponse.status === 200 && progResponse.status === 200) {
         return {perfData, progData}; 

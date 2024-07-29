@@ -32,6 +32,7 @@ function DashboardMenu () {
                 <Link to='/backoffice/groupes'><button>GROUPES</button></Link>
                 <Link to='/backoffice/programme/2023'><button>PROGRAMME</button></Link>
                 <Link to='/backoffice/carte'><button>CARTE</button></Link>
+                <Link to='/backoffice/countdown'><button>COUNTDOWN</button></Link>
             </div>
             <div className="BottomContainer">
                 <Link to='/backoffice/utilisateurs'>

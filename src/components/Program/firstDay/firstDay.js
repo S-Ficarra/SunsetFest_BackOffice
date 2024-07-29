@@ -1,4 +1,3 @@
-import { formatDateProgram } from "../../../services/utils";
 import { DeletePerformanceFromProgram } from "../../../controllers/program.controller";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import './firstDay.css'
