@@ -1,9 +1,8 @@
 export class CountdownModel {
 
-    constructor (id, name, startingDateAndTime, endingDateAndTime) {
+    constructor (id, name, endingDateAndTime) {
         this.id = id;
         this.name = name;
-        this.startingDateAndTime = startingDateAndTime;
         this.endingDateAndTime = endingDateAndTime;
     };
 

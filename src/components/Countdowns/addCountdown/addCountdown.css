@@ -1,0 +1,52 @@
+.MainContainerAddCountdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.HeadTitleContainer {
+    font-family: 'Alegreya Sans SC';
+    font-size: 2em;
+}
+
+.MainContainerAddCountdown form {
+    height: 75%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.NameInputContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.MainContainerAddCountdown form label{
+    padding: 1em;
+    font-size: 2em;
+    font-family: 'Alegreya Sans SC';
+    font-weight: 800;
+}
+
+.MainContainerAddCountdown form input{
+    padding: 1em;
+    font-size: 1.5em;
+    width: 75%;
+    border-radius: 10px;
+    border: solid 3px var(--glampink);
+}
+
+.DateInputContainer {
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+}

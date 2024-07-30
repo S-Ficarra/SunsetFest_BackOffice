@@ -6,8 +6,7 @@ export const CountdownMapper = {
         return new CountdownModel (
             countdownDto._id,
             countdownDto._name,
-            countdownDto._startingDateAndTime,
-            countdownDto._endingDateAndTime
+            new Date(countdownDto._endingDateAndTime)
         );
     },
 

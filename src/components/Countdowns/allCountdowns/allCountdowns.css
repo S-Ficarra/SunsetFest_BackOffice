@@ -1,0 +1,55 @@
+.AllCountdownContainer {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.TitleContainerCountdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    font-family: 'Alegreya Sans SC';
+    font-size: 2em;
+}
+
+.CountdownContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    background-color: hsla(193, 81%, 33%, 0.7);
+    border-radius: 10px;
+    padding: .5em;
+    margin: 1em auto;
+}
+
+.CountdownContainer p {
+    margin: 1em;
+    font-family: 'Alegreya Sans SC';
+    color: white;
+    font-size: 2em;
+}
+
+.ActionContainerFaq {
+    display: flex;
+}
+
+.ActionContainerFaq a {
+    text-decoration: none;
+}
+
+.ActionContainerFaq button{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ActionContainerFaq p {
+    margin-bottom: 0;
+    font-size: 1em;
+}
+
+.ActionContainerFaq button img {
+    width: 20px;
+    height: auto;
+}

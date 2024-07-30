@@ -11,7 +11,6 @@ export const CountdownService = {
             return data.map(countdown => new CountdownDto(
                 countdown._id,
                 countdown._name,
-                countdown._startingDateAndTime,
                 countdown._endingDateAndTime
             ));
         } else {
@@ -27,7 +26,6 @@ export const CountdownService = {
             return new CountdownDto (
                 data._id,
                 data._name,
-                data._startingDateAndTime,
                 data._endingDateAndTime
             );
         } else {
@@ -35,6 +33,46 @@ export const CountdownService = {
         };    
     },
 
+    async createCountdown (authHeader, newCountdown) {
+        
+        const response = await fetch (`${BASE_URL}countdowns/create`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newCountdown)
+        });
+        
+        const data = await response.json();
+        return {response, data};
+    },
 
+    async editCountdown (authHeader, countdownId, countdownEdited) {
+        const response = await fetch (`${BASE_URL}countdowns/${countdownId}/edit`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(countdownEdited)
+        });
+
+        const data = await response.json();
+        return {response, data};
+    },
+
+    async deleteCountdown (authHeader, countdownId) {
+        const response = await fetch(`${BASE_URL}countdowns/${countdownId}/delete`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const data = await response.json();
+        return {response, data}; 
+    },
 
 }
