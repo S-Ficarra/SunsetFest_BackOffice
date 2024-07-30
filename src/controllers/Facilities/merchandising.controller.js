@@ -14,3 +14,15 @@ export const GetAllMerchandisings = async (authHeader) => {
     throw new Error(`Error: ${response.data.message} Status code: ${response.response.status} ${response.response.statusText}`);
 
 };
+
+export const DeleteMerchandising = async (authHeader, merchandisingId) => {
+
+    let { response, data } = await MerchandisingService.deleteMerchandising(authHeader, merchandisingId);
+
+    if (response.status === 200) {
+        return data; 
+    } else {
+        throw new Error(`${data.message} Status code: ${response.status} ${response.statusText}`);
+    };
+
+};

@@ -22,6 +22,19 @@ export const VipService = {
         };
     },
 
+    async deleteVip (authHeader, vipId) {
+        const response = await fetch(`${BASE_URL}vips/${vipId}/delete`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const data = await response.json();
+        return {response, data}; 
+    },
+
 
 
 };

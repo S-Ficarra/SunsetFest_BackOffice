@@ -23,6 +23,19 @@ export const MerchandisingService = {
         };
     },
 
+    async deleteMerchandising (authHeader, merchandisingId) {
+        const response = await fetch(`${BASE_URL}merchandisings/${merchandisingId}/delete`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const data = await response.json();
+        return {response, data}; 
+    },
+
 
 
 };

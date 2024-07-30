@@ -10,12 +10,19 @@ import FoodIcon from '../../../assets/food-solid.svg';
 import ShopIcon from '../../../assets/shop-solid.svg';
 import BarIcon from '../../../assets/drink-solid.svg';
 import { useAllStages } from "../../../hooks/useAllStages";
+import { DeleteStage } from "../../../controllers/Facilities/stages.controller";
 import { useAllToilets } from "../../../hooks/useAllToilets";
+import { DeleteToilet } from "../../../controllers/Facilities/toilet.controller";
 import { useAllCampings } from "../../../hooks/useAllCampings";
+import { DeleteCamping } from "../../../controllers/Facilities/camping.controller";
 import { useAllVips } from "../../../hooks/useAllVips";
+import { DeleteVip } from "../../../controllers/Facilities/vip.controller";
 import { useAllBars } from "../../../hooks/useAllBars";
+import { DeleteBar } from "../../../controllers/Facilities/bar.controller";
 import { useAllRestaurants } from "../../../hooks/useAllRestaurants";
+import { DeleteRestaurant } from "../../../controllers/Facilities/restaurant.controller";
 import { useAllMerchandisings } from "../../../hooks/useAllMerchandisings";
+import { DeleteMerchandising } from "../../../controllers/Facilities/merchandising.controller";
 
 function FestivalMap() {
 
@@ -89,16 +96,19 @@ function FestivalMap() {
                     <Map
                         defaultZoom={15}
                         mapId={process.env.REACT_APP_MAP_ID}
-                        defaultCenter={{ lat: 43.723760, lng: 3.749468 }}
+                        defaultCenter={{ lat: 43.727454016718504, lng: 3.7493905082638257}}
                         onClick={handleMapClick}
                     >
-                        {filters.stages && <Markers dataArray={allStages} backgroundColor={'#e2557f'} Img={StageIcon} />}
-                        {filters.toilets && <Markers dataArray={allToilets} backgroundColor={'#0013FF'} Img={ToiletIcon} />}
-                        {filters.campings && <Markers dataArray={allCampings} backgroundColor={'green'} Img={CampingIcon} />}
-                        {filters.vips && <Markers dataArray={allVips} backgroundColor={'black'} Img={VipIcon} />}
-                        {filters.bars && <Markers dataArray={allBars} backgroundColor={'#ffb703'} Img={BarIcon} />}
-                        {filters.restaurants && <Markers dataArray={allRestaurants} backgroundColor={'#9a031e'} Img={FoodIcon} />}
-                        {filters.merchandisings && <Markers dataArray={allMerchandisings} backgroundColor={'purple'} Img={ShopIcon} />}
+                        {filters.stages && <Markers dataArray={allStages} backgroundColor={'#e2557f'} Img={StageIcon} 
+                        deleteController={DeleteStage}/>}
+                        {filters.toilets && <Markers dataArray={allToilets} backgroundColor={'#0013FF'} Img={ToiletIcon} deleteController={DeleteToilet} />}
+                        {filters.campings && <Markers dataArray={allCampings} backgroundColor={'green'} Img={CampingIcon} deleteController={DeleteCamping}/>}
+                        {filters.vips && <Markers dataArray={allVips} backgroundColor={'black'} Img={VipIcon} 
+                        deleteController={DeleteVip}/>}
+                        {filters.bars && <Markers dataArray={allBars} backgroundColor={'#ffb703'} Img={BarIcon} 
+                        deleteController={DeleteBar}/>}
+                        {filters.restaurants && <Markers dataArray={allRestaurants} backgroundColor={'#9a031e'} Img={FoodIcon} deleteController={DeleteRestaurant}/>}
+                        {filters.merchandisings && <Markers dataArray={allMerchandisings} backgroundColor={'purple'} Img={ShopIcon} deleteController={DeleteMerchandising}/>}
                         {clickPosition && (
                             <AdvancedMarker position={clickPosition} title="Clicked Location" />
                         )}

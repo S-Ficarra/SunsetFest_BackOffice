@@ -13,3 +13,15 @@ export const GetAllCamping = async (authHeader) => {
     throw new Error(`Error: ${response.data.message} Status code: ${response.response.status} ${response.response.statusText}`);
 
 };
+
+export const DeleteCamping = async (authHeader, campingId) => {
+
+    let { response, data } = await CampingService.deleteCamping(authHeader, campingId);
+
+    if (response.status === 200) {
+        return data; 
+    } else {
+        throw new Error(`${data.message} Status code: ${response.status} ${response.statusText}`);
+    };
+
+};

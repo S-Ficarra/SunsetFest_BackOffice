@@ -22,6 +22,19 @@ export const BarService = {
         };
     },
 
+    async deleteBar (authHeader, barId) {
+        const response = await fetch(`${BASE_URL}bars/${barId}/delete`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const data = await response.json();
+        return {response, data}; 
+    },
+
 
 
 };

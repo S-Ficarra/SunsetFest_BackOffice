@@ -6,8 +6,10 @@ import { decodeToken } from "react-jwt";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { AdvancedMarker, InfoWindow, Pin } from '@vis.gl/react-google-maps';
 
-function Markers({ dataArray, backgroundColor, Img }) {
+function Markers({ dataArray, backgroundColor, Img, deleteController}) {
 
+  const [activeIndex, setActiveIndex] = useState(null);
+  const markerRefs = useRef([]);
   const authHeader = useAuthHeader();
   const userId = decodeToken(authHeader);
   const [userLogged, setUserLogged] = useState({});
@@ -20,8 +22,20 @@ function Markers({ dataArray, backgroundColor, Img }) {
       fetchUser();
     }, [authHeader, userId.sub]);
 
-  const [activeIndex, setActiveIndex] = useState(null);
-  const markerRefs = useRef([]);
+
+  const handleDelete = async (deleteController, authHeader, itemId, itemName) => {
+    const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer ce lieu?");
+
+    if (confirmation) {
+      try {
+          await deleteController(authHeader, itemId);
+          alert(`${itemName} supprimé`);
+          window.location.reload();
+      } catch (error) {
+          alert(`Erreur lors de la suppression : ${error.message}`);
+      }}
+  };
+
 
   const handleMarkerClick = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
@@ -48,26 +62,27 @@ function Markers({ dataArray, backgroundColor, Img }) {
             </div>
             </Pin>
           </AdvancedMarker>
-          {activeIndex === index && markerRefs.current[index] && (
-            <InfoWindow
-              anchor={markerRefs.current[index]}
-              onCloseClick={() => setActiveIndex(null)}
-            >
-              <div className="InfoWindow" key={data.id}>
-                <h2>{data.name}</h2>
-                {data.openingHour && <p>Ouvre à: {data.openingHour} heures</p>}
-                {data.closingHour && <p>Ferme à: {data.closingHour} heures</p>}
-                {data.merchType && <p>Magasin de : {data.merchType}</p>}
-                {data.foodType && <p>Restaurant de : {data.foodType}</p>}
-                {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
-                <div className="MapButtonContainer">
-                  <Link><button>Modifier</button></Link>
-                  <button>Supprimer</button>
+            {activeIndex === index && markerRefs.current[index] && (
+              <InfoWindow
+                anchor={markerRefs.current[index]}
+                onCloseClick={() => setActiveIndex(null)}
+              >
+                <div className="InfoWindow" key={data.id}>
+                  <h2>{data.name}</h2>
+                  {data.openingHour && <p>Ouvre à: {data.openingHour} heures</p>}
+                  {data.closingHour && <p>Ferme à: {data.closingHour} heures</p>}
+                  {data.capacity && <p>Capacité de : {data.capacity}</p>}
+                  {data.merchType && <p>Magasin de : {data.merchType}</p>}
+                  {data.foodType && <p>Restaurant de : {data.foodType}</p>}
+                  {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
+                  <div className="MapButtonContainer">
+                    <Link><button>Modifier</button></Link>
+                    <button onClick={(e) => handleDelete(deleteController, authHeader, data.id, data.name)}>Supprimer</button>
+                  </div>
+                  )}
                 </div>
-                )}
-              </div>
-            </InfoWindow>
-          )}
+              </InfoWindow>
+            )}
         </React.Fragment>
       ))}
     </>

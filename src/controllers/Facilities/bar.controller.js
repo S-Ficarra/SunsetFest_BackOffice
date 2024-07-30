@@ -14,3 +14,15 @@ export const GetAllBars = async (authHeader) => {
     throw new Error(`Error: ${response.data.message} Status code: ${response.response.status} ${response.response.statusText}`);
 
 };
+
+export const DeleteBar = async (authHeader, barId) => {
+
+    let { response, data } = await BarService.deleteBar(authHeader, barId);
+
+    if (response.status === 200) {
+        return data; 
+    } else {
+        throw new Error(`${data.message} Status code: ${response.status} ${response.statusText}`);
+    };
+
+};
