@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import DashboardMenu from "../../components/dashboardMenu/dashboardMenu";
-import FestivalMap from "../../components/Map/map";
+import FestivalMap from "../../components/Map/festivalMap/festivalMap";
 
 function MapPage () {
 

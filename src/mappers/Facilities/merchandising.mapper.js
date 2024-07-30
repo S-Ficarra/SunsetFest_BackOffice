@@ -1,4 +1,5 @@
 import { MerchandisingModel } from "../../models/Facilities/merchandising.model";
+import { getTime } from "../../services/utils";
 
 export const MerchandisingMapper = {
     
@@ -8,8 +9,8 @@ export const MerchandisingMapper = {
             merchDto._name,
             {lat : parseFloat(merchDto._latitude), lng : parseFloat(merchDto._longitude)},
             merchDto._merchType,
-            new Date(merchDto._openingTimes._openAt).getHours(),
-            new Date(merchDto._openingTimes._closeAt).getHours()          
+            getTime(merchDto._openingTimes._openAt),
+            getTime(merchDto._openingTimes._closeAt)         
         );
     },
 

@@ -15,7 +15,7 @@ export const StagesService = {
                 stage._longitude,
                 stage._latitude,
                 stage._type,
-                stage._capacity,
+                stage._capacity
             ))
         } else {
             return {response, data};
@@ -24,4 +24,4 @@ export const StagesService = {
 
 
 
-}
+};

@@ -32,7 +32,7 @@ function EditCountdown () {
         };
 
         fetchCountdowns();
-    }, [authHeader]);
+    }, [authHeader, id]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
