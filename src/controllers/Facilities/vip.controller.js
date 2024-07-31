@@ -14,6 +14,17 @@ export const GetAllVips = async (authHeader) => {
 
 };
 
+export const CreateVip = async (authHeader, newVip) => {
+
+    let { response, data } = await VipService.createVip(authHeader, newVip);
+
+    if (response.status === 200) {
+        return VipMapper.transformVipDtoToModel(data);
+    } else {
+        throw new Error(data.message);
+    };
+};
+
 
 export const DeleteVip = async (authHeader, vipId) => {
 

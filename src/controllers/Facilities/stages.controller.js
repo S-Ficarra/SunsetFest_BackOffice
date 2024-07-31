@@ -15,6 +15,17 @@ export const GetAllStages = async (authHeader) => {
 
 };
 
+export const CreateStage = async (authHeader, newStage) => {
+
+    let { response, data } = await StagesService.createStage(authHeader, newStage);
+
+    if (response.status === 200) {
+        return StageMapper.transformStageDtoToModel(data);
+    } else {
+        throw new Error(data.message);
+    };
+};
+
 export const DeleteStage = async (authHeader, stageId) => {
 
     let { response, data } = await StagesService.deleteStages(authHeader, stageId);

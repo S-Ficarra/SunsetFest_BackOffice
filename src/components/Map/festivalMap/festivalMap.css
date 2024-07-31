@@ -1,5 +1,69 @@
+.MapContainer {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+}
+
+.FiltersContainer {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: solid 2px var(--glampink);
+  display: flex;
+  flex-direction: column;
+  margin: 3.5em 0 0 2em;
+  z-index: 1;
+  border-radius: 25px;
+  color: white;
+  font-family: 'Alegreya Sans SC';
+  font-size: 1.2em;
+  box-shadow: 0 0 20px var(--glamblue);
+}
+
+.FiltersContainer label {
+  margin: 30px 40px 15px 40px;
+  display: flex;
+  align-items: center;
+}
+
+.FiltersButton {
+  margin: 15px auto;
+  width: 70%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: solid 2px var(--glampink);
+  color: white;
+  font-family: 'Alegreya Sans SC';
+  font-weight: 500;
+  transition: all .3s ease;
+}
+
+.FiltersButton:hover {
+  background-color:var(--glampink);
+}
+
+.IconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  border-radius: 50%;
+  padding: 6px;
+  width: 17px;
+  height: 17px;
+}
+
+.FiltersContainer label img{
+  width: 17px;
+}
+
+.FiltersContainer input[type="checkbox"] {
+  transform: scale(2);
+  margin-right: 10px;
+}
+
 #map {
-    width: 75%;
+    width: 85%;
     height: 75vh;
     min-width: 400px;
     min-height: 400px;

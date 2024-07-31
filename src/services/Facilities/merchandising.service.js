@@ -23,6 +23,21 @@ export const MerchandisingService = {
         };
     },
 
+    async createMerchandising (authHeader, newMerch) {
+        
+        const response = await fetch (`${BASE_URL}merchandisings/create`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newMerch)
+        });
+        
+        const data = await response.json();
+        return {response, data};
+    },
+
     async deleteMerchandising (authHeader, merchandisingId) {
         const response = await fetch(`${BASE_URL}merchandisings/${merchandisingId}/delete`, {
             method: 'POST',

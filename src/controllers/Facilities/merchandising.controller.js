@@ -15,6 +15,17 @@ export const GetAllMerchandisings = async (authHeader) => {
 
 };
 
+export const CreateMerchandising = async (authHeader, newMerch) => {
+
+    let { response, data } = await MerchandisingService.createMerchandising(authHeader, newMerch);
+
+    if (response.status === 200) {
+        return MerchandisingMapper.transformDtoMerchToModel(data);
+    } else {
+        throw new Error(data.message);
+    };
+};
+
 export const DeleteMerchandising = async (authHeader, merchandisingId) => {
 
     let { response, data } = await MerchandisingService.deleteMerchandising(authHeader, merchandisingId);

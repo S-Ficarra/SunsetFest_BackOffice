@@ -22,6 +22,21 @@ export const CampingService = {
         };
     },
 
+    async createCamping (authHeader, newCamping) {
+        
+        const response = await fetch (`${BASE_URL}campings/create`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newCamping)
+        });
+        
+        const data = await response.json();
+        return {response, data};
+    },
+
     async deleteCamping (authHeader, campingId) {
         const response = await fetch(`${BASE_URL}campings/${campingId}/delete`, {
             method: 'POST',

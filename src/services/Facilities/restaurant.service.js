@@ -23,6 +23,21 @@ export const RestaurantService = {
         };
     },
 
+    async createRestaurant (authHeader, newRestaurant) {
+        
+        const response = await fetch (`${BASE_URL}restaurants/create`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newRestaurant)
+        });
+        
+        const data = await response.json();
+        return {response, data};
+    },
+
     async deleteRestaurant (authHeader, restaurantId) {
         const response = await fetch(`${BASE_URL}restaurants/${restaurantId}/delete`, {
             method: 'POST',

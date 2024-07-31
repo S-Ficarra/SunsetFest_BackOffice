@@ -69,11 +69,11 @@ function Markers({ dataArray, backgroundColor, Img, deleteController}) {
               >
                 <div className="InfoWindow" key={data.id}>
                   <h2>{data.name}</h2>
-                  {data.openingHour && <p>Ouvre à: {data.openingHour} heures</p>}
-                  {data.closingHour && <p>Ferme à: {data.closingHour} heures</p>}
+                  {data.openingHour && <p>Ouvre à : {data.openingHour}</p>}
+                  {data.closingHour && <p>Ferme à : {data.closingHour}</p>}
                   {data.capacity && <p>Capacité de : {data.capacity}</p>}
-                  {data.merchType && <p>Magasin de : {data.merchType}</p>}
-                  {data.foodType && <p>Restaurant de : {data.foodType}</p>}
+                  {data.merchType && <p>Magasin de {data.merchType}</p>}
+                  {data.foodType && <p>Restaurant de {data.foodType}</p>}
                   {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
                   <div className="MapButtonContainer">
                     <Link><button>Modifier</button></Link>

@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, AdvancedMarker, Pin} from '@vis.gl/react-google-maps';
 import './festivalMap.css';
+import Filters from "../filters/filters";
 import Markers from "../markers/markers";
-import StageIcon from '../../../assets/music-solid.svg';
-import ToiletIcon from '../../../assets/restroom-solid.svg';
-import CampingIcon from '../../../assets/campground-solid.svg';
-import VipIcon from '../../../assets/vip-solid.svg';
-import FoodIcon from '../../../assets/food-solid.svg';
-import ShopIcon from '../../../assets/shop-solid.svg';
-import BarIcon from '../../../assets/drink-solid.svg';
+import AddLocation from "../addLocation/addLocation";
+import { StageIcon, ToiletIcon, CampingIcon, VipIcon, FoodIcon, ShopIcon, BarIcon } from "../../../assets/iconsModule";
 import { useAllStages } from "../../../hooks/useAllStages";
 import { DeleteStage } from "../../../controllers/Facilities/stages.controller";
 import { useAllToilets } from "../../../hooks/useAllToilets";
@@ -34,7 +30,9 @@ function FestivalMap() {
     const { allRestaurants } = useAllRestaurants();
     const { allMerchandisings } = useAllMerchandisings();
 
-    const [clickPosition, setClickPosition] = useState(null);
+    const [showAddLocation, setShowAddLocation] = useState(false);
+    const [clickPosition, setClickPosition] = useState();
+
     const [filters, setFilters] = useState({
         stages: true,
         toilets: true,
@@ -45,10 +43,14 @@ function FestivalMap() {
         merchandisings: true,
     });
 
+    const handleShowAddLocation = () => {
+        setShowAddLocation(!showAddLocation);
+        setClickPosition({ lat: 43.727454016718504, lng: 3.7493905082638257 });
+    }
+
     const handleMapClick = (event) => {
         const latitude = event.detail.latLng.lat;
         const longitude = event.detail.latLng.lng;
-        console.log('latitude', latitude, 'longitude', longitude);
         setClickPosition({ lat: latitude, lng: longitude });
     };
 
@@ -59,39 +61,11 @@ function FestivalMap() {
         }));
     };
 
+
     return (
-        <div id="map-container">
-            <div id="filters">
-                <label>
-                    <input type="checkbox" checked={filters.stages} onChange={() => handleFilterChange('stages')}/>
-                    Scènes
-                </label>
-                <label>
-                    <input type="checkbox" checked={filters.toilets} onChange={() => handleFilterChange('toilets')}/>
-                    Toilettes
-                </label>
-                <label>
-                    <input type="checkbox" checked={filters.campings} onChange={() => handleFilterChange('campings')}/>
-                    Campings
-                </label>
-                <label>
-                    <input type="checkbox" checked={filters.vips} onChange={() => handleFilterChange('vips')}/>
-                    VIP
-                </label>
-                <label>
-                    <input type="checkbox" checked={filters.bars} onChange={() => handleFilterChange('bars')}/>
-                    Bars
-                </label>
-                <label>
-                    <input type="checkbox" checked={filters.restaurants} onChange={() => handleFilterChange('restaurants')}/>
-                    Restaurants
-                </label>
-                <label>
-                    <input type="checkbox" checked={filters.merchandisings} onChange={() => handleFilterChange('merchandisings')}/>
-                    Marchandises
-                </label>
-            </div>
+        <div className="MapContainer">
             <div id="map">
+            <Filters filters={filters} onFilterChange={handleFilterChange} />
                 <APIProvider apiKey={process.env.REACT_APP_GOOGLE_API_KEY} onLoad={() => console.log('Maps API has loaded.')}>
                     <Map
                         defaultZoom={15}
@@ -109,12 +83,27 @@ function FestivalMap() {
                         deleteController={DeleteBar}/>}
                         {filters.restaurants && <Markers dataArray={allRestaurants} backgroundColor={'#9a031e'} Img={FoodIcon} deleteController={DeleteRestaurant}/>}
                         {filters.merchandisings && <Markers dataArray={allMerchandisings} backgroundColor={'purple'} Img={ShopIcon} deleteController={DeleteMerchandising}/>}
-                        {clickPosition && (
-                            <AdvancedMarker position={clickPosition} title="Clicked Location" />
+                        {clickPosition && showAddLocation && (
+                            <AdvancedMarker position={clickPosition} title="Nouveau lieu" >
+                                <Pin
+                                background={'white'}
+                                borderColor={'black'}
+                                scale={1.5}>
+                                </Pin>
+                            </AdvancedMarker>
                         )}
                     </Map>
                 </APIProvider>
+            <div className="ButtonContainerAllFaq">
+                <button onClick={handleShowAddLocation}>{showAddLocation ? 'ANNULER' : 'AJOUTER UN NOUVEAU LIEU'}</button>
             </div>
+            </div>
+
+            {showAddLocation && (
+                <AddLocation
+                    clickPosition={clickPosition}
+                />
+            )}
         </div>
     );
 }

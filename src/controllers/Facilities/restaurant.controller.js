@@ -15,6 +15,17 @@ export const GetAllRestaurants = async (authHeader) => {
 
 };
 
+export const CreateRestaurant = async (authHeader, newRestaurant) => {
+
+    let { response, data } = await RestaurantService.createRestaurant(authHeader, newRestaurant);
+
+    if (response.status === 200) {
+        return RestaurantMapper.transformDtoRestaurantToModel(data);
+    } else {
+        throw new Error(data.message);
+    };
+};
+
 export const DeleteRestaurant = async (authHeader, restaurantId) => {
 
     let { response, data } = await RestaurantService.deleteRestaurant(authHeader, restaurantId);

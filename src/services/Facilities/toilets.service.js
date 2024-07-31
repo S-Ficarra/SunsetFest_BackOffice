@@ -20,6 +20,21 @@ export const ToiletService = {
         };
     },
 
+    async createToilet (authHeader, newToilet) {
+        
+        const response = await fetch (`${BASE_URL}toilets/create`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newToilet)
+        });
+        
+        const data = await response.json();
+        return {response, data};
+    },
+
     async deleteToilet (authHeader, toiletId) {
         const response = await fetch(`${BASE_URL}toilets/${toiletId}/delete`, {
             method: 'POST',

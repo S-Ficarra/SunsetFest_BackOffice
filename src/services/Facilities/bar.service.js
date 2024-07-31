@@ -22,6 +22,21 @@ export const BarService = {
         };
     },
 
+    async createBar (authHeader, newBar) {
+        
+        const response = await fetch (`${BASE_URL}bars/create`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newBar)
+        });
+        
+        const data = await response.json();
+        return {response, data};
+    },
+
     async deleteBar (authHeader, barId) {
         const response = await fetch(`${BASE_URL}bars/${barId}/delete`, {
             method: 'POST',

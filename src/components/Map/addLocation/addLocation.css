@@ -1,0 +1,68 @@
+.AllFormsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    justify-content: center;
+    font-family: 'Alegreya Sans SC';
+}
+
+.FormSection {
+    margin: .5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Button button{
+    border-radius: 10px;
+    width: 15em;
+    box-shadow: 0 0 10px var(--glamblue);
+    color: white;
+    background-color: rgb(0, 0, 0, 0.7);
+    border: solid 2px var(--glampink);
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+.Button button:hover{
+    background-color: var(--glampink);
+}
+
+.AllFormsContainer form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 1em;
+}
+
+
+.AllFormsContainer label {
+    font-weight: 500;
+}
+
+
+.AllFormsContainer input {
+    font-family: 'Alegreya Sans SC';
+    font-weight: 500;
+    padding: .5em;
+    font-size: 1.2em;
+    border-radius: 10px;
+    border: solid 2px var(--glampink);
+}
+
+.SubmitButton {
+    background-color: var(--glamblue);
+    padding: .5em;
+    margin: 1em;
+    font-size: 1.2em;
+    color: white;
+    font-family: 'Alegreya Sans SC';
+    border-radius: 10px;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+.SubmitButton:hover {
+    background-color: var(--glampink);
+}
+

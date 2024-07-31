@@ -14,6 +14,17 @@ export const GetAllToilets = async (authHeader) => {
 
 };
 
+export const CreateToilet = async (authHeader, newToilet) => {
+
+    let { response, data } = await ToiletService.createToilet(authHeader, newToilet);
+
+    if (response.status === 200) {
+        return ToiletMapper.transformToiletDtoToModel(data);
+    } else {
+        throw new Error(data.message);
+    };
+};
+
 export const DeleteToilet = async (authHeader, toiletId) => {
 
     let { response, data } = await ToiletService.deleteToilet(authHeader, toiletId);
