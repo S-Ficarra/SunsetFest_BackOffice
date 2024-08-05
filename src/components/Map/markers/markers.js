@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import './markers.css'
-import { Link } from "react-router-dom";
 import { GetUser } from "../../../controllers/user.controller";
 import { decodeToken } from "react-jwt";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { AdvancedMarker, InfoWindow, Pin } from '@vis.gl/react-google-maps';
 
-function Markers({ dataArray, backgroundColor, Img, deleteController}) {
+function Markers({ dataArray, backgroundColor, Img, deleteController, handleEditLocation}) {
 
   const [activeIndex, setActiveIndex] = useState(null);
   const markerRefs = useRef([]);
@@ -35,7 +34,6 @@ function Markers({ dataArray, backgroundColor, Img, deleteController}) {
           alert(`Erreur lors de la suppression : ${error.message}`);
       }}
   };
-
 
   const handleMarkerClick = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
@@ -76,7 +74,7 @@ function Markers({ dataArray, backgroundColor, Img, deleteController}) {
                   {data.foodType && <p>Restaurant de {data.foodType}</p>}
                   {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
                   <div className="MapButtonContainer">
-                    <Link><button>Modifier</button></Link>
+                    <button onClick={(e) => handleEditLocation(data.id, data.type)}>Modifier</button>
                     <button onClick={(e) => handleDelete(deleteController, authHeader, data.id, data.name)}>Supprimer</button>
                   </div>
                   )}

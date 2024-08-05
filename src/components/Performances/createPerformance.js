@@ -104,7 +104,7 @@ function CreatePerformance () {
     }
 
     return (
-        <div className="MainContainer">
+        <div className="MainContainerPerf">
             <form onSubmit={handleSubmit}>
                 <div className="SelectContainer">
                     <label htmlFor="band">Choisissez le groupe</label><br/>
@@ -135,6 +135,7 @@ function CreatePerformance () {
                 </div>
                 <div className="AddPerformanceButton">
                     <button type="submit">Enregistrer</button>
+                    <Link to='/backoffice/programme/2023'><button type="submit">Annuler</button></Link>
                 </div>
             </form>
         </div>

@@ -22,6 +22,23 @@ export const VipService = {
         };
     },
 
+    async fetchVip (vipId) {
+        const response = await fetch (`${BASE_URL}vips/${vipId}`);
+        const data = await response.json();
+        if (response.status === 200) {
+            return new VipDto (
+                data._id,
+                data._name,
+                data._longitude,
+                data._latitude,
+                data._type,
+                data._capacity,
+            );
+        } else {
+            return {response, data}; 
+        };
+    },
+
     async createVip (authHeader, newVip) {
         
         const response = await fetch (`${BASE_URL}vips/create`, {
@@ -33,6 +50,20 @@ export const VipService = {
             body: JSON.stringify(newVip)
         });
         
+        const data = await response.json();
+        return {response, data};
+    },
+
+    async editVip (authHeader, vipId, vipEdited) {
+        const response = await fetch (`${BASE_URL}vips/${vipId}/edit`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(vipEdited)
+        });
+
         const data = await response.json();
         return {response, data};
     },

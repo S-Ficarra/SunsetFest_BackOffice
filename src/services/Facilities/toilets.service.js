@@ -20,6 +20,23 @@ export const ToiletService = {
         };
     },
 
+    
+    async fetchToilet (toiletId) {
+        const response = await fetch (`${BASE_URL}toilets/${toiletId}`);
+        const data = await response.json();
+        if (response.status === 200) {
+            return new ToiletDto (
+                data._id,
+                data._name,
+                data._longitude,
+                data._latitude,
+                data._type,
+            );
+        } else {
+            return {response, data}; 
+        };
+    },
+
     async createToilet (authHeader, newToilet) {
         
         const response = await fetch (`${BASE_URL}toilets/create`, {
@@ -31,6 +48,20 @@ export const ToiletService = {
             body: JSON.stringify(newToilet)
         });
         
+        const data = await response.json();
+        return {response, data};
+    },
+
+    async editToilet (authHeader, toiletId, toiletEdited) {
+        const response = await fetch (`${BASE_URL}toilets/${toiletId}/edit`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(toiletEdited)
+        });
+
         const data = await response.json();
         return {response, data};
     },

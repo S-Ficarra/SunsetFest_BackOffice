@@ -5,6 +5,7 @@ export class CampingModel {
         this.name = name;
         this.location = location
         this.capacity = capacity;
+        this.type = 'camping'
     };
 
 };

@@ -15,9 +15,29 @@ export const GetAllStages = async (authHeader) => {
 
 };
 
+export const GetStage = async (stageId) => {
+
+    const stageDto = await StagesService.fetchStage(stageId);
+    const stageModel = StageMapper.transformStageDtoToModel(stageDto);
+
+    return stageModel;
+};
+
 export const CreateStage = async (authHeader, newStage) => {
 
     let { response, data } = await StagesService.createStage(authHeader, newStage);
+
+    if (response.status === 200) {
+        return StageMapper.transformStageDtoToModel(data);
+    } else {
+        throw new Error(data.message);
+    };
+};
+
+
+export const EditStage = async (authHeader, id, stageEdited) => {
+
+    let { response, data } = await StagesService.editStage(authHeader, id, stageEdited);
 
     if (response.status === 200) {
         return StageMapper.transformStageDtoToModel(data);

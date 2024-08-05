@@ -14,9 +14,28 @@ export const GetAllCamping = async (authHeader) => {
 
 };
 
+export const GetCamping = async (campingId) => {
+
+    const campingDto = await CampingService.fetchCamping(campingId);
+    const campingModel = CampingMapper.transformCampingDtoToModel(campingDto);
+
+    return campingModel;
+};
+
 export const CreateCamping = async (authHeader, newCamping) => {
 
     let { response, data } = await CampingService.createCamping(authHeader, newCamping);
+
+    if (response.status === 200) {
+        return CampingMapper.transformCampingDtoToModel(data);
+    } else {
+        throw new Error(data.message);
+    };
+};
+
+export const EditCamping = async (authHeader, id, campingEdited) => {
+
+    let { response, data } = await CampingService.editCamping(authHeader, id, campingEdited);
 
     if (response.status === 200) {
         return CampingMapper.transformCampingDtoToModel(data);

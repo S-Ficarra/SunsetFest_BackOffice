@@ -22,6 +22,23 @@ export const BarService = {
         };
     },
 
+    async fetchBar (barId) {
+        const response = await fetch (`${BASE_URL}bars/${barId}`);
+        const data = await response.json();
+        if (response.status === 200) {
+            return new BarDto (
+                data._id,
+                data._name,
+                data._longitude,
+                data._latitude,
+                data._type,
+                data._openingTimes,
+            );
+        } else {
+            return {response, data}; 
+        };
+    },
+
     async createBar (authHeader, newBar) {
         
         const response = await fetch (`${BASE_URL}bars/create`, {
@@ -33,6 +50,20 @@ export const BarService = {
             body: JSON.stringify(newBar)
         });
         
+        const data = await response.json();
+        return {response, data};
+    },
+
+    async editBar (authHeader, barId, barEdited) {
+        const response = await fetch (`${BASE_URL}bars/${barId}/edit`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(barEdited)
+        });
+
         const data = await response.json();
         return {response, data};
     },

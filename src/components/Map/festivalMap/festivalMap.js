@@ -4,6 +4,7 @@ import './festivalMap.css';
 import Filters from "../filters/filters";
 import Markers from "../markers/markers";
 import AddLocation from "../addLocation/addLocation";
+import EditLocation from "../editLocation/editLocation";
 import { StageIcon, ToiletIcon, CampingIcon, VipIcon, FoodIcon, ShopIcon, BarIcon } from "../../../assets/iconsModule";
 import { useAllStages } from "../../../hooks/useAllStages";
 import { DeleteStage } from "../../../controllers/Facilities/stages.controller";
@@ -31,6 +32,10 @@ function FestivalMap() {
     const { allMerchandisings } = useAllMerchandisings();
 
     const [showAddLocation, setShowAddLocation] = useState(false);
+    const [showEditLocation, setShowEditLocation] = useState(false);
+    const [locationToEdit, setLocationToEdit] = useState()
+   
+
     const [clickPosition, setClickPosition] = useState();
 
     const [filters, setFilters] = useState({
@@ -61,6 +66,13 @@ function FestivalMap() {
         }));
     };
 
+    //function to make the ID come up from markers and be send down to EditLocation
+    const handleEditLocation = (id, type) => {
+        setLocationToEdit({id: id, type: type})
+        setClickPosition({ lat: 43.727454016718504, lng: 3.7493905082638257 });
+        setShowEditLocation(!showEditLocation)
+    }
+
 
     return (
         <div className="MapContainer">
@@ -72,23 +84,23 @@ function FestivalMap() {
                         mapId={process.env.REACT_APP_MAP_ID}
                         defaultCenter={{ lat: 43.727454016718504, lng: 3.7493905082638257}}
                         onClick={handleMapClick}
-                    >
+                    >   {/*Delete controller passed direclty in the markers to be able to delete POI from them */}
                         {filters.stages && <Markers dataArray={allStages} backgroundColor={'#e2557f'} Img={StageIcon} 
-                        deleteController={DeleteStage}/>}
-                        {filters.toilets && <Markers dataArray={allToilets} backgroundColor={'#0013FF'} Img={ToiletIcon} deleteController={DeleteToilet} />}
-                        {filters.campings && <Markers dataArray={allCampings} backgroundColor={'green'} Img={CampingIcon} deleteController={DeleteCamping}/>}
+                        deleteController={DeleteStage} handleEditLocation={handleEditLocation}/>}
+                        {filters.toilets && <Markers dataArray={allToilets} backgroundColor={'#0013FF'} Img={ToiletIcon} deleteController={DeleteToilet} handleEditLocation={handleEditLocation}/>}
+                        {filters.campings && <Markers dataArray={allCampings} backgroundColor={'green'} Img={CampingIcon} deleteController={DeleteCamping} handleEditLocation={handleEditLocation}/>}
                         {filters.vips && <Markers dataArray={allVips} backgroundColor={'black'} Img={VipIcon} 
-                        deleteController={DeleteVip}/>}
+                        deleteController={DeleteVip} handleEditLocation={handleEditLocation}/>}
                         {filters.bars && <Markers dataArray={allBars} backgroundColor={'#ffb703'} Img={BarIcon} 
-                        deleteController={DeleteBar}/>}
-                        {filters.restaurants && <Markers dataArray={allRestaurants} backgroundColor={'#9a031e'} Img={FoodIcon} deleteController={DeleteRestaurant}/>}
-                        {filters.merchandisings && <Markers dataArray={allMerchandisings} backgroundColor={'purple'} Img={ShopIcon} deleteController={DeleteMerchandising}/>}
-                        {clickPosition && showAddLocation && (
+                        deleteController={DeleteBar} handleEditLocation={handleEditLocation}/>}
+                        {filters.restaurants && <Markers dataArray={allRestaurants} backgroundColor={'#9a031e'} Img={FoodIcon} deleteController={DeleteRestaurant} handleEditLocation={handleEditLocation}/>}
+                        {filters.merchandisings && <Markers dataArray={allMerchandisings} backgroundColor={'purple'} Img={ShopIcon} deleteController={DeleteMerchandising} handleEditLocation={handleEditLocation}/>}
+                        {clickPosition && (showAddLocation || showEditLocation) && (
                             <AdvancedMarker position={clickPosition} title="Nouveau lieu" >
                                 <Pin
                                 background={'white'}
                                 borderColor={'black'}
-                                scale={1.5}>
+                                scale={2}>
                                 </Pin>
                             </AdvancedMarker>
                         )}
@@ -102,6 +114,13 @@ function FestivalMap() {
             {showAddLocation && (
                 <AddLocation
                     clickPosition={clickPosition}
+                />
+            )}
+            {showEditLocation && (
+                <EditLocation
+                    clickPosition={clickPosition}
+                    locationToEdit={locationToEdit}
+                    handleEditLocation={handleEditLocation}
                 />
             )}
         </div>

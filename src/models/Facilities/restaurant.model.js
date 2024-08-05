@@ -7,6 +7,7 @@ export class RestaurantModel {
         this.foodType = foodType;
         this.openingHour = openingHour;
         this.closingHour = closingHour;
+        this.type = 'restaurant'
     };
 
 };

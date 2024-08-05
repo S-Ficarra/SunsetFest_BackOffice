@@ -5,6 +5,7 @@ export class StageModel {
         this.name = name;
         this.location = location
         this.capacity = capacity;
+        this.type = 'stage'
     };
 
 };

@@ -13,8 +13,6 @@ function Filters ({ filters, onFilterChange }) {
 
     const [expended, setExpended] = useState(true)
 
-    console.log(expended);
-
 
     return (
         <div className="FiltersContainer">

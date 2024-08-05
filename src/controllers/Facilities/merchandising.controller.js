@@ -15,9 +15,28 @@ export const GetAllMerchandisings = async (authHeader) => {
 
 };
 
+export const GetMerchandising = async (merchId) => {
+
+    const merchDto = await MerchandisingService.fetchMerchandising(merchId);
+    const merchModel = MerchandisingMapper.transformDtoMerchToModel(merchDto);
+
+    return merchModel;
+};
+
 export const CreateMerchandising = async (authHeader, newMerch) => {
 
     let { response, data } = await MerchandisingService.createMerchandising(authHeader, newMerch);
+
+    if (response.status === 200) {
+        return MerchandisingMapper.transformDtoMerchToModel(data);
+    } else {
+        throw new Error(data.message);
+    };
+};
+
+export const EditMerchandising = async (authHeader, id, merchEdited) => {
+
+    let { response, data } = await MerchandisingService.editMerchandising(authHeader, id, merchEdited);
 
     if (response.status === 200) {
         return MerchandisingMapper.transformDtoMerchToModel(data);

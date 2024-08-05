@@ -6,6 +6,7 @@ export class BarModel {
         this.location = location;
         this.openingHour = openingHour;
         this.closingHour = closingHour;
+        this.type = 'bar'
     };
 
 };

@@ -15,6 +15,14 @@ export const GetAllBars = async (authHeader) => {
 
 };
 
+export const GetBar = async (barId) => {
+
+    const barDto = await BarService.fetchBar(barId);
+    const barModel = BarMapper.transformBarDtoToModel(barDto);
+
+    return barModel;
+};
+
 export const CreateBar = async (authHeader, newBar) => {
 
     let { response, data } = await BarService.createBar(authHeader, newBar);
@@ -25,6 +33,18 @@ export const CreateBar = async (authHeader, newBar) => {
         throw new Error(data.message);
     };
 };
+
+export const EditBar = async (authHeader, id, barEdited) => {
+
+    let { response, data } = await BarService.editBar(authHeader, id, barEdited);
+
+    if (response.status === 200) {
+        return BarMapper.transformBarDtoToModel(data);
+    } else {
+        throw new Error(data.message);
+    };
+};
+
 
 export const DeleteBar = async (authHeader, barId) => {
 

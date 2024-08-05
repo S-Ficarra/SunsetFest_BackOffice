@@ -7,6 +7,6 @@ export class MerchandisingModel {
         this.merchType = merchType;
         this.openingHour = openingHour;
         this.closingHour = closingHour;
-    };
-
+        this.type = 'merchandising'
+    }
 };
