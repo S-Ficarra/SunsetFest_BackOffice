@@ -7,6 +7,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";
 import { formatDate } from "../../../../services/utils";
+import DOMPurify from 'dompurify';
+
 
 function EditFaq () {
 
@@ -42,12 +44,13 @@ function EditFaq () {
     };
 
     const handleQuillChange = (content) => {
-        setFormState((prevState) => ({
-            //prevstate used to prevent issues from asynchronous state updates.
-            ...prevState,
-            answer: content
-        }));
+        const sanitizedContent = DOMPurify.sanitize(content);
+        setFormState({
+            ...formState,
+            text: sanitizedContent
+        });
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();

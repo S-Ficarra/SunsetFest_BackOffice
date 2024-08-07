@@ -5,6 +5,7 @@ import { CreateFaq } from "../../../../controllers/Publications/faqs.controller"
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";
+import DOMPurify from 'dompurify';
 import { formatDate } from "../../../../services/utils";
 
 
@@ -29,9 +30,10 @@ function AddFaq () {
     };
 
     const handleQuillChange = (content) => {
+        const sanitizedContent = DOMPurify.sanitize(content);
         setFormState({
             ...formState,
-            answer: content
+            text: sanitizedContent
         });
     };
 

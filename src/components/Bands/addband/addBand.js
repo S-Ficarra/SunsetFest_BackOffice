@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import './addBand.css'
+import DOMPurify from 'dompurify';
+import ReactQuill from 'react-quill';
+import { Link } from "react-router-dom";
+import 'react-quill/dist/quill.snow.css';
+import { formatDate } from "../../../services/utils";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { CreateBand } from "../../../controllers/band.controller";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { Link } from "react-router-dom";
-import { formatDate } from "../../../services/utils";
+
 
 function AddBand () {
 
@@ -52,9 +54,10 @@ function AddBand () {
     };
 
     const handleQuillChange = (content) => {
+        const sanitizedContent = DOMPurify.sanitize(content);
         setFormState({
             ...formState,
-            text: content
+            text: sanitizedContent
         });
     };
 
@@ -126,7 +129,7 @@ function AddBand () {
                         <input name="country" id='country' type="text" placeholder="Pays" required onChange={(e) => {handleChange(e)}}/>
                     </div>
                     <label htmlFor="text"></label>
-                    <ReactQuill name="coreText" id='coreText' type="text" placeholder="Texte" required onChange={(e) => {handleQuillChange(e)}}/>
+                    <ReactQuill name="text" id='text' type="text" placeholder="Texte" required onChange={(e) => {handleQuillChange(e)}}/>
                     <div className="SocialsFormContainer">
                         <label htmlFor="facebook"></label>
                         <input name="facebook" id='facebook' type="url" placeholder="Facebook" required onChange={(e) => {handleChange(e)}}/>

@@ -6,6 +6,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";
 import { convertToBase64, formatDate } from "../../../../services/utils";
+import DOMPurify from 'dompurify';
+
 
 function EditNews () {
     
@@ -65,9 +67,10 @@ function EditNews () {
     };
 
     const handleQuillChange = (content) => {
+        const sanitizedContent = DOMPurify.sanitize(content);
         setFormState({
             ...formState,
-            text: content
+            text: sanitizedContent
         });
     };
 

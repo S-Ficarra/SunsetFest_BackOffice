@@ -52,7 +52,6 @@ export const NewsService = {
         });
         
         const data = await response.json();
-        console.log(data);
         return {response, data};
     },
 

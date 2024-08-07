@@ -44,7 +44,6 @@ export const EditUser = async (authHeader, formData, id) => {
 export const DeleteUser = async (authHeader, userId) => {
 
     let { response, data } = await UserService.deleteUser(authHeader, userId);
-    console.log(response, data);
 
     if (response.status === 200) {
         return data; 

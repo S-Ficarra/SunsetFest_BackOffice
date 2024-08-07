@@ -5,6 +5,7 @@ import { GetBand, EditBand as Edit } from "../../../controllers/band.controller"
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";
+import DOMPurify from 'dompurify';
 import { convertToBase64, formatDate } from "../../../services/utils";
 
 export function EditBand () {
@@ -90,9 +91,10 @@ export function EditBand () {
     };
 
     const handleQuillChange = (content) => {
+        const sanitizedContent = DOMPurify.sanitize(content);
         setFormState({
             ...formState,
-            text: content
+            text: sanitizedContent
         });
     };
 
