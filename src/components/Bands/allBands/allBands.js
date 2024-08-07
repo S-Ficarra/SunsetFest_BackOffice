@@ -1,42 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import './allBands.css'
 import { Link } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
-import { GetAllBands, DeleteBand } from "../../../controllers/band.controller";
-import { GetUser } from "../../../controllers/user.controller";
+import { DeleteBand } from "../../../controllers/band.controller";
 import Pen from '../../../assets/pen-solid.svg'
 import Trash from '../../../assets/trash-solid.svg'
 import { convertToBase64 } from "../../../services/utils";
+import { useUser } from "../../../hooks/useUser";
+import { useAllBands } from "../../../hooks/useAllBands";
 
 function AllBands () {
 
     const authHeader = useAuthHeader();
     const userId = decodeToken(authHeader);
 
-    const [userLogged, setUserLogged] = useState({});
-    useEffect(() => {
-        const fetchUser = async () => {
-            const user = await GetUser(authHeader, userId.sub);
-            setUserLogged(user)
-        };
+    const { userLogged } = useUser(authHeader, userId.sub)
+    const { allBands } = useAllBands(authHeader)
 
-        fetchUser();
-    }, [authHeader, userId.sub]);
-
-    const [allBands, setAllBands] = useState([]);
-    useEffect(() => {
-        const fetchAllBands= async () => {
-            try {
-                const allBands = await GetAllBands(authHeader);
-                setAllBands(allBands);
-            } catch (error) {
-                console.log(error)
-            }
-        };
-
-        fetchAllBands();
-    }, [authHeader]);
 
     const handleDelete = async (e, bandId) => {
 

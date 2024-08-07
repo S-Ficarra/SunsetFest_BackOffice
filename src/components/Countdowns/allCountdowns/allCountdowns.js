@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import './allCountdowns.css'
-import { GetAllCountdowns, DeleteCountdown } from "../../../controllers/countdown.controller";
-import { GetUser } from "../../../controllers/user.controller";
+import { DeleteCountdown } from "../../../controllers/countdown.controller";
+import { useAllCountdowns } from "../../../hooks/useAllCountdowns";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
 import { formatDate } from "../../../services/utils";
 import Pen from '../../../assets/pen-solid.svg'
 import Trash from '../../../assets/trash-solid.svg'
+import { useUser } from "../../../hooks/useUser";
 
 
 
@@ -16,29 +17,8 @@ function AllCountdowns () {
     const authHeader = useAuthHeader();
     const userId = decodeToken(authHeader);
 
-    const [userLogged, setUserLogged] = useState({});
-    useEffect(() => {
-        const fetchUser = async () => {
-            const user = await GetUser(authHeader, userId.sub);
-            setUserLogged(user)
-        };
-
-        fetchUser();
-      }, [authHeader, userId.sub]);
-
-    const [allCountdowns, setAllCountdowns] = useState([]);
-    useEffect(() => {
-        const fetchAllCountdowns = async () => {
-            try {
-                const allCountdowns = await GetAllCountdowns(authHeader);
-                setAllCountdowns(allCountdowns);
-            } catch (error) {
-                console.log(error)
-            }
-        };
-
-        fetchAllCountdowns();
-    }, [authHeader]);
+    const { userLogged } = useUser(authHeader, userId.sub)
+    const { allCountdowns } = useAllCountdowns(authHeader)
 
     const handleDelete = async (e, countdownId) => {
 

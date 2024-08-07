@@ -1,43 +1,22 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
-import { GetAllNews, DeleteNews } from "../../../../controllers/Publications/news.controller";
-import { GetUser } from "../../../../controllers/user.controller";
+import { DeleteNews } from "../../../../controllers/Publications/news.controller";
+import { useUser } from "../../../../hooks/useUser";
 import { formatDate } from "../../../../services/utils";
 import Pen from '../../../../assets/pen-solid.svg'
 import Trash from '../../../../assets/trash-solid.svg'
 import { convertToBase64 } from "../../../../services/utils";
+import { useAllNews } from "../../../../hooks/Publications/useAllNews";
 
 function AllNews () {
 
     const authHeader = useAuthHeader();
-    const userId = decodeToken(authHeader);
-
-    const [userLogged, setUserLogged] = useState({});
-    useEffect(() => {
-        const fetchUser = async () => {
-            const user = await GetUser(authHeader, userId.sub);
-            setUserLogged(user)
-        };
-
-        fetchUser();
-      }, [authHeader, userId.sub]);
-
-
-    const [allNews, setAllNews] = useState([]);
-    useEffect(() => {
-        const fetchAllNews= async () => {
-            try {
-                const allNews = await GetAllNews(authHeader);
-                setAllNews(allNews);
-            } catch (error) {
-                console.log(error)
-            }
-        };
-
-        fetchAllNews();
-    }, [authHeader]);
+    const userId = decodeToken(authHeader)
+    
+    const { userLogged } = useUser(authHeader, userId.sub)
+    const { allNews }= useAllNews(authHeader)
 
     const handleDelete = async (e, newsId) => {
 

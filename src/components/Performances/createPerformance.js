@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { GetAllBands } from "../../controllers/band.controller";
-import { GetAllStages } from "../../controllers/Facilities/stages.controller";
 import { AddPerformanceToProgram } from "../../controllers/program.controller";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { formatDateProgram } from "../../services/utils";
 import { Link } from "react-router-dom";
 import './createPerformance.css'
+import { useAllBands } from "../../hooks/useAllBands";
+import { useAllStages } from "../../hooks/Facilities/useAllStages";
 
 
 function CreatePerformance () {
@@ -20,33 +20,8 @@ function CreatePerformance () {
         timeFrame: ''
     });
 
-    const [allBands, setAllBands] = useState([]);
-    useEffect(() => {
-        const fetchAllBands= async () => {
-            try {
-                const allBands = await GetAllBands(authHeader);
-                setAllBands(allBands);
-            } catch (error) {
-                console.log(error)
-            }
-        };
-
-        fetchAllBands();
-    }, [authHeader]);
-
-    const [allStages, setAllStages] = useState([]);
-    useEffect(() => {
-        const fetchAllStages= async () => {
-            try {
-                const allStages = await GetAllStages(authHeader);
-                setAllStages(allStages);
-            } catch (error) {
-                console.log(error)
-            }
-        };
-
-        fetchAllStages();
-    }, [authHeader]);
+    const { allBands } = useAllBands(authHeader)
+    const { allStages } = useAllStages(authHeader)
 
     const [timeFrames, setTimeFrames] = useState([]);
     useEffect(() => {

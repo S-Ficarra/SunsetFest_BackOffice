@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetAllStages } from "../controllers/Facilities/stages.controller";
+import { GetAllStages } from "../../controllers/Facilities/stages.controller";
 
 export const useAllStages = () => {
 

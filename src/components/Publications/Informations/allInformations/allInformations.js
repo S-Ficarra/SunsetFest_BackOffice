@@ -1,43 +1,23 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import './allInformations.css'
 import { Link } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
-import { GetAllInformations, DeleteInformation } from "../../../../controllers/Publications/informations.controller";
-import { GetUser } from "../../../../controllers/user.controller";
+import { DeleteInformation } from "../../../../controllers/Publications/informations.controller";
+import { useUser } from "../../../../hooks/useUser";
 import { formatDate } from "../../../../services/utils";
 import Pen from '../../../../assets/pen-solid.svg'
 import Trash from '../../../../assets/trash-solid.svg'
 import { convertToBase64 } from "../../../../services/utils";
+import { useAllInformations } from "../../../../hooks/Publications/useAllInformations";
 
 function AllInformations () {
 
     const authHeader = useAuthHeader();
-    const userId = decodeToken(authHeader);
-
-    const [userLogged, setUserLogged] = useState({});
-    useEffect(() => {
-        const fetchUser = async () => {
-            const user = await GetUser(authHeader, userId.sub);
-            setUserLogged(user)
-        };
-
-        fetchUser();
-      }, [authHeader, userId.sub]);
-
-    const [allInformations, setAllInformations] = useState([]);
-    useEffect(() => {
-        const fetchAllInformations= async () => {
-            try {
-                const allInformations = await GetAllInformations(authHeader);
-                setAllInformations(allInformations);
-            } catch (error) {
-                console.log(error)
-            }
-        };
-
-        fetchAllInformations();
-    }, [authHeader]);
+    const userId = decodeToken(authHeader)
+    
+    const { userLogged } = useUser(authHeader, userId.sub)
+    const { allInformations } = useAllInformations(authHeader)
 
 
     const handleDelete = async (e, informationId) => {

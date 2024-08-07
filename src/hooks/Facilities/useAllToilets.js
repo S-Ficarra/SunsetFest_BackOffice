@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetAllToilets } from "../controllers/Facilities/toilet.controller";
+import { GetAllToilets } from "../../controllers/Facilities/toilet.controller";
 
 export const useAllToilets = () => {
 

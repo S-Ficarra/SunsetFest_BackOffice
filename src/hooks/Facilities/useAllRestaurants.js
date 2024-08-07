@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetAllRestaurants } from "../controllers/Facilities/restaurant.controller";
+import { GetAllRestaurants } from "../../controllers/Facilities/restaurant.controller";
 
 export const useAllRestaurants = () => {
 

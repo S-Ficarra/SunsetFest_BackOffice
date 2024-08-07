@@ -1,45 +1,23 @@
-import React, { useState, useEffect }from "react";
+import React from "react";
 import './allFaqs.css'
 import { Link } from "react-router-dom";
 import { decodeToken } from "react-jwt";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { GetAllFaqs, DeleteFaq } from "../../../../controllers/Publications/faqs.controller";
-import { GetUser } from "../../../../controllers/user.controller";
+import { DeleteFaq } from "../../../../controllers/Publications/faqs.controller";
+import { useUser } from "../../../../hooks/useUser";
 import { formatDate } from "../../../../services/utils";
 import Pen from '../../../../assets/pen-solid.svg'
 import Trash from '../../../../assets/trash-solid.svg'
+import { useAllFaqs } from "../../../../hooks/Publications/useAllFaqs";
 
 
 function AllFaqs () {
 
     const authHeader = useAuthHeader();
-    const userId = decodeToken(authHeader);
+    const userId = decodeToken(authHeader)
+    const { userLogged } = useUser(authHeader, userId.sub)
+    const { allFaqs } = useAllFaqs(authHeader)
 
-
-    const [userLogged, setUserLogged] = useState({});
-    useEffect(() => {
-        const fetchUser = async () => {
-            const user = await GetUser(authHeader, userId.sub);
-            setUserLogged(user)
-        };
-
-        fetchUser();
-      }, [authHeader, userId.sub]);
-
-
-    const [allFaqs, setAllFaqs] = useState([]);
-    useEffect(() => {
-        const fetchAllFaqs = async () => {
-            try {
-                const allFaqs = await GetAllFaqs(authHeader);
-                setAllFaqs(allFaqs);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        fetchAllFaqs();
-    }, [authHeader]);
 
     const handleDelete = async (e, faqId) => {
 
@@ -69,7 +47,6 @@ function AllFaqs () {
             </>
         )
     }
-
     
     return (
         <div className="AllFaqsContainer">

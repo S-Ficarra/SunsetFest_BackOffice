@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetAllVips } from "../controllers/Facilities/vip.controller";
+import { GetAllVips } from "../../controllers/Facilities/vip.controller";
 
 export const useAllVips = () => {
 

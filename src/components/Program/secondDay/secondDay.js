@@ -1,11 +1,16 @@
 import { DeletePerformanceFromProgram } from "../../../controllers/program.controller";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
+import { decodeToken } from "react-jwt";
+import { useUser } from "../../../hooks/useUser";
 
 function SecondDay ({performances}) {
 
+    const year = '2023'
 
     const authHeader = useAuthHeader();
-    const year = '2023'
+    const userId = decodeToken(authHeader)
+    const { userLogged } = useUser(authHeader, userId.sub)
+    
 
     const handleDelete = async (e, performanceId) => {
 
@@ -41,64 +46,72 @@ function SecondDay ({performances}) {
             <div className="StageContainer">
                 <h1 className="top-row">SCENE<br/>ROXY</h1>
                 {saturdayPerfs
-                    .filter(performance => performance._stage._name === "roxy")
+                    .filter(performance => String(performance._stage._id) === '1')
                     .map(performance => {
                         const time =  new Date (performance._timeFrame._startingTime)
                         const hour = time.getHours()
                         return (
                             <div key={performance._id} className={`row-${hour} PerformanceContainer`}>
                                 <p>{performance._band._name}</p>
+                                {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
                                 <div>
                                     <button onClick={(e) => handleDelete(e, performance._id)}>Supprimer du programme</button>
                                 </div>
+                                )}
                             </div>)
                     })}
             </div>
             <div className="StageContainer">
                 <h1 className="top-row">SCENE<br/>RAINBOW</h1>
                 {saturdayPerfs
-                    .filter(performance => performance._stage._name === "rainbow")
+                    .filter(performance => String(performance._stage._id) === '2')
                     .map(performance => {
                         const time =  new Date (performance._timeFrame._startingTime)
                         const hour = time.getHours()
                         return (
                             <div key={performance._id} className={`row-${hour} PerformanceContainer`}>
                                 <p>{performance._band._name}</p>
+                                {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
                                 <div>
                                     <button onClick={(e) => handleDelete(e, performance._id)}>Supprimer du programme</button>
                                 </div>
+                                )}
                             </div>)
                     })}
             </div>
             <div className="StageContainer">
                 <h1 className="top-row">SCENE<br/>WHISKEY</h1>
                 {saturdayPerfs
-                    .filter(performance => performance._stage._name === "whiskey")
+                    .filter(performance => String(performance._stage._id) === '3')
                     .map(performance => {
                         const time =  new Date (performance._timeFrame._startingTime)
                         const hour = time.getHours()
                         return (
                             <div key={performance._id} className={`row-${hour} PerformanceContainer`}>
                                 <p>{performance._band._name}</p>
+                                {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
                                 <div>
                                     <button onClick={(e) => handleDelete(e, performance._id)}>Supprimer du programme</button>
                                 </div>
+                                )}
                             </div>)
                     })}
             </div>
             <div className="StageContainer">
                 <h1 className="top-row">SCENE<br/>VIPER</h1>
                 {saturdayPerfs
-                    .filter(performance => performance._stage._name === "viper")
+                    .filter(performance => String(performance._stage._id) === '4')
                     .map(performance => {
                         const time =  new Date (performance._timeFrame._startingTime)
                         const hour = time.getHours()
                         return (
                             <div key={performance._id} className={`row-${hour} PerformanceContainer`}>
                                 <p>{performance._band._name}</p>
+                                {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
                                 <div>
                                     <button onClick={(e) => handleDelete(e, performance._id)}>Supprimer du programme</button>
                                 </div>
+                                )}
                             </div>)
                     })}
             </div>

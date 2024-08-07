@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetAllMerchandisings } from "../controllers/Facilities/merchandising.controller";
+import { GetAllMerchandisings } from "../../controllers/Facilities/merchandising.controller";
 
 export const useAllMerchandisings = () => {
 

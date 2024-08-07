@@ -19,12 +19,11 @@ function EditCountdown () {
     useEffect(() => {
         const fetchCountdowns = async () => {
             try {
-                const countdown = await GetCountdown(authHeader, id);
-
+                const countdown = await GetCountdown(authHeader, id);               
                 setFormState({
                     name: countdown.name,
                     date: getFullDateCountdown(countdown.endingDateAndTime),
-                    time: getTime(countdown.endingDateAndTime)
+                    time: getTime(countdown.endingDateAndTime).replace('h', ':')
                 });
             } catch (error) {
                 console.log(error)

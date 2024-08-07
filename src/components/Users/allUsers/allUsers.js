@@ -1,39 +1,22 @@
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import React, {useState, useEffect} from "react";
-import { GetAllUser, GetUser } from "../../../controllers/user.controller";
+import React from "react";
+import { useUser } from "../../../hooks/useUser";
 import { decodeToken } from "react-jwt";
 import './allUsers.css'
 import { Link } from "react-router-dom";
 import Pen from '../../../assets/pen-solid.svg'
 import Trash from '../../../assets/trash-solid.svg'
 import { DeleteUser } from "../../../controllers/user.controller";
+import { useAllUsers } from "../../../hooks/useAllUsers";
 
 
 function AllUsers () {
 
     const authHeader = useAuthHeader();
-    const userId = decodeToken(authHeader);
+    const userId = decodeToken(authHeader)
 
-    const [allUsers, setAllUsers] = useState([]);
-    useEffect(() => {
-        const fetchAllUser = async () => {
-            const allUsers = await GetAllUser(authHeader);
-            setAllUsers(allUsers)
-        };
-
-        fetchAllUser();
-      }, [authHeader]);
-
-
-    const [userLogged, setUserLogged] = useState({});
-    useEffect(() => {
-        const fetchUser = async () => {
-            const user = await GetUser(authHeader, userId.sub);
-            setUserLogged(user)
-        };
-
-        fetchUser();
-      }, [authHeader, userId.sub]);
+    const { userLogged } = useUser(authHeader, userId.sub)
+    const { allUsers }= useAllUsers(authHeader)
       
 
     const handleDelete = async (e, userId) => {

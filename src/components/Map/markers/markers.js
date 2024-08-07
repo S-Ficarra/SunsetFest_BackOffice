@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import './markers.css'
-import { GetUser } from "../../../controllers/user.controller";
 import { decodeToken } from "react-jwt";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { AdvancedMarker, InfoWindow, Pin } from '@vis.gl/react-google-maps';
+import { useUser } from "../../../hooks/useUser";
 
 function Markers({ dataArray, backgroundColor, Img, deleteController, handleEditLocation}) {
 
@@ -11,15 +11,8 @@ function Markers({ dataArray, backgroundColor, Img, deleteController, handleEdit
   const markerRefs = useRef([]);
   const authHeader = useAuthHeader();
   const userId = decodeToken(authHeader);
-  const [userLogged, setUserLogged] = useState({});
-  useEffect(() => {
-      const fetchUser = async () => {
-          const user = await GetUser(authHeader, userId.sub);
-          setUserLogged(user)
-      };
 
-      fetchUser();
-    }, [authHeader, userId.sub]);
+  const { userLogged } = useUser(authHeader, userId.sub)
 
 
   const handleDelete = async (deleteController, authHeader, itemId, itemName) => {

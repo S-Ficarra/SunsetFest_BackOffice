@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetAllBars } from "../controllers/Facilities/bar.controller";
+import { GetAllBars } from "../../controllers/Facilities/bar.controller";
 
 export const useAllBars = () => {
 

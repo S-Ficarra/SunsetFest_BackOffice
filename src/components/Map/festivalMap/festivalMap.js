@@ -6,19 +6,19 @@ import Markers from "../markers/markers";
 import AddLocation from "../addLocation/addLocation";
 import EditLocation from "../editLocation/editLocation";
 import { StageIcon, ToiletIcon, CampingIcon, VipIcon, FoodIcon, ShopIcon, BarIcon } from "../../../assets/iconsModule";
-import { useAllStages } from "../../../hooks/useAllStages";
+import { useAllStages } from "../../../hooks/Facilities/useAllStages";
 import { DeleteStage } from "../../../controllers/Facilities/stages.controller";
-import { useAllToilets } from "../../../hooks/useAllToilets";
+import { useAllToilets } from "../../../hooks/Facilities/useAllToilets";
 import { DeleteToilet } from "../../../controllers/Facilities/toilet.controller";
-import { useAllCampings } from "../../../hooks/useAllCampings";
+import { useAllCampings } from "../../../hooks/Facilities/useAllCampings";
 import { DeleteCamping } from "../../../controllers/Facilities/camping.controller";
-import { useAllVips } from "../../../hooks/useAllVips";
+import { useAllVips } from "../../../hooks/Facilities/useAllVips";
 import { DeleteVip } from "../../../controllers/Facilities/vip.controller";
-import { useAllBars } from "../../../hooks/useAllBars";
+import { useAllBars } from "../../../hooks/Facilities/useAllBars";
 import { DeleteBar } from "../../../controllers/Facilities/bar.controller";
-import { useAllRestaurants } from "../../../hooks/useAllRestaurants";
+import { useAllRestaurants } from "../../../hooks/Facilities/useAllRestaurants";
 import { DeleteRestaurant } from "../../../controllers/Facilities/restaurant.controller";
-import { useAllMerchandisings } from "../../../hooks/useAllMerchandisings";
+import { useAllMerchandisings } from "../../../hooks/Facilities/useAllMerchandisings";
 import { DeleteMerchandising } from "../../../controllers/Facilities/merchandising.controller";
 
 function FestivalMap() {

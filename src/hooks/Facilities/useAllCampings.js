@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetAllCamping } from "../controllers/Facilities/camping.controller";
+import { GetAllCamping } from "../../controllers/Facilities/camping.controller";
 
 export const useAllCampings = () => {
 

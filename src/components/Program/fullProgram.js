@@ -1,34 +1,25 @@
-import React, { useState, useEffect }from "react";
+import React, { useState }from "react";
 import './fullProgram.css'
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { GetProgramByYear } from "../../controllers/program.controller";
 import FirstDay from "./firstDay/firstDay";
 import SecondDay from "./secondDay/secondDay";
 import ThirdDay from "./thirdDay/thirdDay";
 import { Link } from "react-router-dom";
+import { useProgram } from "../../hooks/useProgram";
 
 
 function FullProgram () {
 
-    const id = 2023 
+    const year = 2023 
     const authHeader = useAuthHeader();
-    const [performances, setPerformances] = useState([])
-
+   
+    const { performances } = useProgram(authHeader, year)
     const [daySelected, setDaySelected] = useState('friday');
 
     const handleClick = (e, value) => {
         e.preventDefault()
         setDaySelected(value)
     }
-
-    useEffect(() => {
-        const fetchProgram = async () => {
-            const program = await GetProgramByYear(authHeader, id);
-            setPerformances(program.performances)
-        };
-
-        fetchProgram();
-      }, [authHeader, id]);
     
     if (performances.length === 0) {
         return <div>chargement</div>
