@@ -50,6 +50,7 @@ function FestivalMap() {
 
     const handleShowAddLocation = () => {
         setShowAddLocation(!showAddLocation);
+        setShowEditLocation(false)
         setClickPosition({ lat: 43.727454016718504, lng: 3.7493905082638257 });
     }
 
@@ -71,6 +72,7 @@ function FestivalMap() {
         setLocationToEdit({id: id, type: type})
         setClickPosition({ lat: 43.727454016718504, lng: 3.7493905082638257 });
         setShowEditLocation(!showEditLocation)
+        setShowAddLocation(false)
     }
 
 
@@ -106,9 +108,9 @@ function FestivalMap() {
                         )}
                     </Map>
                 </APIProvider>
-            <div className="ButtonContainerAllFaq">
-                <button onClick={handleShowAddLocation}>{showAddLocation ? 'ANNULER' : 'AJOUTER UN NOUVEAU LIEU'}</button>
-            </div>
+                <div className="CreateNewItemButtonContainer">
+                    <button className="CreateNewItemButton" onClick={handleShowAddLocation}>{showAddLocation ? 'ANNULER' : 'AJOUTER UN NOUVEAU LIEU'}</button>
+                </div>
             </div>
 
             {showAddLocation && (

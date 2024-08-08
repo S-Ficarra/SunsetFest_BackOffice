@@ -1,5 +1,4 @@
 import React from "react";
-import './allInformations.css'
 import { Link } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { decodeToken } from "react-jwt";
@@ -39,8 +38,8 @@ function AllInformations () {
     if (allInformations.length === 0) {
         return (
             <>
-                <div className="ButtonContainerAllFaq">
-                    <Link to="/backoffice/informations/ajouter"><button>AJOUTER UNE NOUVELLE INFORMATION</button></Link>
+                <div className="CreateNewItemButtonContainer">
+                    <Link to="/backoffice/informations/ajouter"><button className="CreateNewItemButton">AJOUTER UNE NOUVELLE INFORMATION</button></Link>
                 </div>
                 <div className="EmptyTitle">
                     <h2>Il n'y a aucune Information pour le moment</h2>
@@ -51,10 +50,10 @@ function AllInformations () {
 
     return (
         <div>
-            <div className="ButtonContainerAllFaq">
-                <Link to="/backoffice/informations/ajouter"><button>AJOUTER UNE NOUVELLE INFORMATION</button></Link>
+            <div className="CreateNewItemButtonContainer">
+                <Link to="/backoffice/informations/ajouter"><button className="CreateNewItemButton">AJOUTER UNE NOUVELLE INFORMATION</button></Link>
             </div>
-            <div className="TitleContainer">
+            <div className="TitleContainerIllustrated">
                 <h2>ID</h2>
                 <h2>Image</h2>
                 <h2>Titre</h2>
@@ -65,30 +64,30 @@ function AllInformations () {
                 <h2>Modifié le</h2>
             </div>
             {allInformations.map((information) => (
-                <div className="informationContainer" key={information.id}>
+                <div className="IllustratedContainer" key={information.id}>
                     <p>{information.id}</p>
-                    <img src={convertToBase64(information.image)} alt="" />
+                    <img className="IllustratedContainerImg" src={convertToBase64(information.image)} alt="" />
                     <p>{information.title}</p>
-                    <div id="text" dangerouslySetInnerHTML={{ __html: information.text }}></div>
+                    <div id="textDisplay" dangerouslySetInnerHTML={{ __html: information.text }}></div>
                     <p className={information.status ? "online" : "offline"}>{information.status ? "Publié" : "Non Publié"}</p>
                     <p>{information.userName}</p>
                     <p>{formatDate(information.createdAt)}</p>
                     <p>{formatDate(information.modifiedAt)}</p>
                     {/*Allow only admin & editor to have the option to delete and edit */}
                     {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
-                        <div className="ActionContainerFaq">
+                        <div className="ActionContainerVertical">
                             <Link to={`/backoffice/informations/${information.id}/editer`}>
-                                <button>
+                                <button className="ActionButton">
                                     <div className="EditContainer">
-                                            <img src={Pen} alt="Modifier une Information" />
-                                            <p>Modifier</p>
+                                            <img className="ActionButtonImg" src={Pen} alt="Modifier une Information" />
+                                            <p className="ActionButtonP">Modifier</p>
                                     </div>
                                 </button>
                             </Link>
-                            <button onClick={(e) => handleDelete(e, information.id)}>
+                            <button className="ActionButton" onClick={(e) => handleDelete(e, information.id)}>
                                 <div className="DeleteContainer">
-                                    <img src={Trash} alt="Supprimer une Information" />
-                                    <p>Supprimer</p>
+                                    <img className="ActionButtonImg" src={Trash} alt="Supprimer une Information" />
+                                    <p className="ActionButtonP">Supprimer</p>
                                 </div>
                             </button>
                         </div>

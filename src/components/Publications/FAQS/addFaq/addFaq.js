@@ -74,11 +74,11 @@ function AddFaq () {
             <h1 className="MainTitle">Ajouter une FAQ</h1>
             <div className="FormContainer">
                 <form onSubmit={handleSubmit}>
-                    <div className="InputContainerAddFaq">
-                        <label htmlFor="answer"></label>
+                    <div className="InputContainer">
+                        <label htmlFor="answer">Question</label>
                         <input name="question" id='question' type="text" placeholder="Indiquez la question" required onChange={(e) => {handleChange(e)}}/>
-                        <label htmlFor="answer"></label>
-                        <ReactQuill name="answer" id='answer' type="text" placeholder="Indiquez la réponse" required onChange={(e) => {handleQuillChange(e)}}/>
+                        <label htmlFor="answer">Réponse</label>
+                        <ReactQuill className="quill" name="answer" id='answer' type="text" placeholder="Réponse" required onChange={(e) => {handleQuillChange(e)}}/>
                     </div>
                     <div className="RadioContainer RadioFaq">
                         <div>
@@ -90,9 +90,9 @@ function AddFaq () {
                             <label htmlFor="">Non Publié</label>
                         </div>
                     </div>
-                    <div className="ButtonContainerAddFaq">
-                        <button type="submit">Enregistrer</button>
-                        <Link to='/backoffice/faqs'><button>Annuler</button></Link>
+                    <div className="ValidateFormButtonContainer">
+                        <button className="ValidateFormButton" type="submit">Enregistrer</button>
+                        <Link to='/backoffice/faqs'><button className="ValidateFormButton">Annuler</button></Link>
                     </div>
                 </form>
             </div>

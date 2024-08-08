@@ -13,10 +13,6 @@
     height: 100%;
 }
 
-.AddUserContainer button {
-    width: 100%;
-}
-
 
 .AddUserContainer label {
     font-family: 'Alegreya Sans SC';
@@ -36,19 +32,6 @@
     transition: all .3s ease;
     background-color: rgb(215, 215, 215);
     
-}
-
-.AddUserContainer input:hover, 
- .AddUserContainer input:focus{
-    background-color: var(--glampink);
-    
-}
-
-.InputContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .RoleContainer {
@@ -81,39 +64,3 @@
     font-weight: 400;
 }
 
-.AddUserContainer button {
-    font-family: 'Alegreya Sans SC';
-    font-size: 1.5em;
-    font-weight: 800;
-    color: white;
-    background-color: var(--glamblue);
-    border-radius: 10px;
-    padding: 1em;
-    cursor: pointer;
-    transition: all .3s ease;
-    margin: .5em 0;
-}
-
-.AddUserContainer button:hover {
-    background-color: var(--glampink);
-}
-
-.SucessMessage {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.SucessMessage h1 {
-    font-family: 'Alegreya Sans SC';
-    font-size: 2em;
-    font-weight: 600;
-}
-
-.SucessMessage p {
-    font-family: 'Alegreya Sans SC';
-    font-size: 1.5em;
-    font-weight: 500;
-}

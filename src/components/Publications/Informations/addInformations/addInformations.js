@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import './addInformations.css'
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { CreateInformation } from "../../../../controllers/Publications/informations.controller";
 import ReactQuill from 'react-quill';
@@ -51,7 +50,6 @@ function AddInformation () {
             text: sanitizedContent
         });
     };
-
 
     const handleResetForm = () => {
         setInformationCreated(null);
@@ -105,15 +103,15 @@ function AddInformation () {
             <h1 className="MainTitle">Ajouter une information</h1>
             <div className="FormContainer">
                 <form onSubmit={handleSubmit}>
-                    <div className="InputContainerAddFaq">
-                        <label htmlFor="title"></label>
-                        <input name="title" id='title' type="text" placeholder="Titre" required onChange={(e) => {handleChange(e)}}/>
-                        <label htmlFor="text"></label>
-                        <ReactQuill name="coreText" id='coreText' type="text" placeholder="Texte" required onChange={(e) => {handleQuillChange(e)}}/>
+                    <div className="InputContainer">
+                        <label htmlFor="title">Titre</label>
+                        <input name="title" id='title' type="text" placeholder="Indiquez le titre" required onChange={(e) => {handleChange(e)}}/>
+                        <label htmlFor="text">Texte</label>
+                        <ReactQuill className="quill" name="text" id='text' type="text" placeholder="Texte" required onChange={(e) => {handleQuillChange(e)}}/>
                     </div>
                     <div className="FileLoadContainer">
                         <div>
-                            <input type="file" onChange={(e) => {handleChange(e)}} required accept=".jpg, .jpeg, .png"/>
+                            <input type="file" id="file" onChange={(e) => {handleChange(e)}} required accept=".jpg, .jpeg, .png"/>
                         </div>
                         <div className="IMGContainer">
                             <img id="image" name="image" src={formState.image ? formState.imagePreview : ''} alt=""/>
@@ -130,9 +128,9 @@ function AddInformation () {
                             <label htmlFor="">Non Publié</label>
                         </div>
                     </div>
-                    <div className="ButtonContainerAddFaq">
-                        <button type="submit">Enregistrer</button>
-                        <Link to='/backoffice/informations'><button>Annuler</button></Link>
+                    <div className="ValidateFormButtonContainer">
+                        <button className="ValidateFormButton" type="submit">Enregistrer</button>
+                        <Link to='/backoffice/informations'><button className="ValidateFormButton">Annuler</button></Link>
                     </div>
                 </form>
             </div>

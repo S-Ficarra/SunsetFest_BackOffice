@@ -12,11 +12,18 @@
 }
 
 .ImgContainer {
-    margin-top: 1em;
+    margin: 1em;
 }
 
 .ImgContainer img {
     width: 8vw;
+    transition: all .3s ease;
+    padding: 10px;
+}
+
+.ImgContainer img:hover {
+    background-color: #0c5f76;
+    border-radius: 10px;
 }
 
 .ButtonContainer {
@@ -61,6 +68,12 @@
 
 .BottomContainer a {
     width: 2em;  
+    padding: 10px;
+}
+
+.BottomContainer a:hover {
+    background-color: #0c5f76;
+    border-radius: 10px;
 }
 
 .BottomContainer button {

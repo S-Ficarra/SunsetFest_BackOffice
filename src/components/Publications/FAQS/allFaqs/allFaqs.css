@@ -5,28 +5,6 @@
     font-weight: 500;
 }
 
-.ButtonContainerAllFaq {
-    display: flex;
-    justify-content: center;
-}
-
-.ButtonContainerAllFaq button{
-    margin: 1em;
-    padding: .5em 2em;
-    font-family: 'Alegreya Sans SC';
-    font-size: 2em;
-    font-weight: 500;
-    color: white;
-    background-color: var(--glamblue);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all .3s ease;
-}
-
-.ButtonContainerAllFaq button:hover {
-    background-color: var(--glampink);
-}
-
 .TitleContainer {
     margin: 1em auto;
     grid-template-columns: .5fr 1fr 2.5fr 1fr .7fr .7fr .7fr .5fr;
@@ -78,52 +56,5 @@
     background: #d4d4d4; 
 }
 
-.online:before {
-    display: inline-block;
-    content: ' ';
-    background-color: chartreuse;
-    height: 10px;
-    width: 10px;
-    border-radius: 25px;
-    z-index: 1;
-    margin-right: 5px;
-}
 
-.offline:before {
-    display: inline-block;
-    content: ' ';
-    background-color: red;
-    height: 10px;
-    width: 10px;
-    border-radius: 25px;
-    z-index: 1;
-    margin-right: 5px;
-}
 
-.ActionContainerFaq {
-    display: inline-block;
-}
-
-.ActionContainerFaq button {
-    padding: .5em;
-    margin: .5em;
-    font-size: 1em;
-    width: 8em;
-    height: 8em;
-    border-radius: 10px;
-    background-color: var(--glamblue);
-    transition: all .3s ease;
-}
-
-.ActionContainerFaq button:hover {
-    background-color: var(--glampink);
-}
-
-.ActionContainerFaq button img{
-    height: 10px;
-    width: 10px;
-}
-
-.ActionContainerFaq p {
-    margin: 0;
-}

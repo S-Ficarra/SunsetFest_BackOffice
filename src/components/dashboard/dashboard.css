@@ -24,4 +24,10 @@
     -webkit-text-stroke: 1px black;
     box-shadow: grey 2px 2px 1px;
     cursor: pointer;
+    transition: all .3s ease;
+}
+
+.DashboardButtons button:hover {
+    background-color: #c12050;
+    box-shadow: 0px 0px 20px var(--glampink);
 }

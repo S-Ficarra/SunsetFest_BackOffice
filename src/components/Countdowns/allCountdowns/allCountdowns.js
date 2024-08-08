@@ -49,8 +49,8 @@ function AllCountdowns () {
 
     return (
         <div className="AllCountdownContainer">
-            <div className="ButtonContainerAllFaq">
-                <Link to="/backoffice/countdown/ajouter"><button>AJOUTER UN NOUVEAU COUNTDOWN</button></Link>
+            <div className="CreateNewItemButtonContainer">
+                <Link to="/backoffice/countdown/ajouter"><button className="CreateNewItemButton">AJOUTER UN NOUVEAU COUNTDOWN</button></Link>
             </div>
             <div className="TitleContainerCountdown">
                 <h2>ID</h2>
@@ -64,19 +64,19 @@ function AllCountdowns () {
                     <p>{formatDate(countdown.endingDateAndTime)}</p>
                     {/*Allow only admin & editor to have the option to delete and edit */}
                     {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
-                            <div className="ActionContainerFaq">
+                            <div className="ActionContainerHorizontal">
                                 <Link to={`/backoffice/countdown/${countdown.id}/editer`}>
-                                    <button>
+                                    <button className="ActionButton">
                                         <div className="EditContainer">
-                                                <img src={Pen} alt="Modifier un countdown" />
-                                                <p>Modifier</p>
+                                                <img className="ActionButtonImg"src={Pen} alt="Modifier un countdown" />
+                                                <p className="ActionButtonP">Modifier</p>
                                         </div>
                                     </button>
                                 </Link>
-                                <button onClick={(e) => handleDelete(e, countdown.id)}>
+                                <button className="ActionButton" onClick={(e) => handleDelete(e, countdown.id)}>
                                     <div className="DeleteContainer">
-                                        <img src={Trash} alt="Supprimer un countdown" />
-                                        <p>Supprimer</p>
+                                        <img className="ActionButtonImg" src={Trash} alt="Supprimer un countdown" />
+                                        <p className="ActionButtonP">Supprimer</p>
                                     </div>
                                 </button>
                             </div>

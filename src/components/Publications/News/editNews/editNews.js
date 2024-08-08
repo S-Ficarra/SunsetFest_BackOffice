@@ -127,7 +127,7 @@ function EditNews () {
         <div>
             <div className="FormContainer">
                 <form onSubmit={handleSubmit}>
-                    <div className="InputContainerAddFaq">
+                    <div className="InputContainer">
                         <label htmlFor="title"></label>
                         <input name="title" id='title' type="text" placeholder="Titre" defaultValue={formState.title} required onChange={(e) => {handleChange(e)}}/>
                         <label htmlFor="text"></label>
@@ -152,9 +152,9 @@ function EditNews () {
                             <label htmlFor="">Non Publié</label>
                         </div>
                     </div>
-                    <div className="ButtonContainerAddFaq">
-                        <button type="submit">Enregistrer</button>
-                        <Link to='/backoffice/actualites'><button>Annuler</button></Link>
+                    <div className="ValidateFormButtonContainer">
+                        <button type="submit" className="ValidateFormButton">Enregistrer</button>
+                        <Link to='/backoffice/actualites'><button className="ValidateFormButton">Annuler</button></Link>
                     </div>
                 </form>
             </div>

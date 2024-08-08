@@ -160,7 +160,7 @@ export function EditBand () {
         <h1 className="MainTitle">Ajouter un groupe</h1>
         <div className="FormContainer">
             <form onSubmit={handleSubmit}>
-                <div className="InputContainerAddFaq">
+                <div className="InputContainer">
 
                     <div className="TopFormContainer">
                         <label htmlFor="name">Nom</label>
@@ -215,9 +215,9 @@ export function EditBand () {
                     </div>
                 </div>
 
-                <div className="ButtonContainerAddFaq">
-                    <button type="submit">Enregistrer</button>
-                    <Link to='/backoffice/groupes'><button>Annuler</button></Link>
+                <div className="ValidateFormButtonContainer">
+                    <button type="submit" className="ValidateFormButton">Enregistrer</button>
+                    <Link to='/backoffice/groupes'><button className="ValidateFormButton">Annuler</button></Link>
                 </div>
             </form>
         </div>

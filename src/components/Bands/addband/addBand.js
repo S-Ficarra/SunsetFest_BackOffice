@@ -121,7 +121,7 @@ function AddBand () {
         <h1 className="MainTitle">Ajouter un groupe</h1>
         <div className="FormContainer">
             <form onSubmit={handleSubmit}>
-                <div className="InputContainerAddFaq">
+                <div className="InputContainer">
                     <div className="TopFormContainer">
                         <label htmlFor="name"></label>
                         <input name="name" id='name' type="text" placeholder="Nom" required onChange={(e) => {handleChange(e)}}/>
@@ -129,7 +129,7 @@ function AddBand () {
                         <input name="country" id='country' type="text" placeholder="Pays" required onChange={(e) => {handleChange(e)}}/>
                     </div>
                     <label htmlFor="text"></label>
-                    <ReactQuill name="text" id='text' type="text" placeholder="Texte" required onChange={(e) => {handleQuillChange(e)}}/>
+                    <ReactQuill className="quill" name="text" id='text' type="text" placeholder="Texte" required onChange={(e) => {handleQuillChange(e)}}/>
                     <div className="SocialsFormContainer">
                         <label htmlFor="facebook"></label>
                         <input name="facebook" id='facebook' type="url" placeholder="Facebook" required onChange={(e) => {handleChange(e)}}/>
@@ -169,9 +169,9 @@ function AddBand () {
                         <p onClick={handleResetImage} htmlFor="">X</p>
                     </div>
                 </div>
-                <div className="ButtonContainerAddFaq">
-                    <button type="submit">Enregistrer</button>
-                    <Link to='/backoffice/groupes'><button>Annuler</button></Link>
+                <div className="ValidateFormButtonContainer">
+                    <button type="submit" className="ValidateFormButton">Enregistrer</button>
+                    <Link to='/backoffice/groupes'><button className="ValidateFormButton">Annuler</button></Link>
                 </div>
             </form>
         </div>

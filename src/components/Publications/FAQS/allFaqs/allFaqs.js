@@ -38,8 +38,8 @@ function AllFaqs () {
     if (allFaqs.length === 0) {
         return (
             <>
-                <div className="ButtonContainerAllFaq">
-                    <Link to="/backoffice/faqs/ajouter"><button>AJOUTER UNE NOUVELLE FAQ</button></Link>
+                <div className="CreateNewItemButtonContainer">
+                    <Link to="/backoffice/faqs/ajouter"><button className="CreateNewItemButton">AJOUTER UNE NOUVELLE FAQ</button></Link>
                 </div>
                 <div className="EmptyTitle">
                     <h2>Il n'y a aucune FAQ pour le moment</h2>
@@ -50,10 +50,10 @@ function AllFaqs () {
     
     return (
         <div className="AllFaqsContainer">
-            <div className="ButtonContainerAllFaq">
-                <Link to="/backoffice/faqs/ajouter"><button>AJOUTER UNE NOUVELLE FAQ</button></Link>
+            <div className="CreateNewItemButtonContainer">
+                <Link to="/backoffice/faqs/ajouter"><button className="CreateNewItemButton">AJOUTER UNE NOUVELLE FAQ</button></Link>
             </div>
-            <div className="TitleContainer">
+            <div className="TitleContainerFaq">
                 <h2>ID</h2>
                 <h2>Question</h2>
                 <h2>Réponse</h2>
@@ -73,19 +73,19 @@ function AllFaqs () {
                     <p>{formatDate(faqs.modifiedAt)}</p>
                     {/*Allow only admin & editor to have the option to delete and edit */}
                     {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
-                            <div className="ActionContainerFaq">
+                            <div className="ActionContainerVertical">
                                 <Link to={`/backoffice/faqs/${faqs.id}/editer`}>
-                                    <button>
+                                    <button className="ActionButton">
                                         <div className="EditContainer">
-                                                <img src={Pen} alt="Modifier une FAQ" />
-                                                <p>Modifier</p>
+                                                <img className="ActionButtonImg" src={Pen} alt="Modifier une FAQ" />
+                                                <p className="ActionButtonP">Modifier</p>
                                         </div>
                                     </button>
                                 </Link>
-                                <button onClick={(e) => handleDelete(e, faqs.id)}>
+                                <button className="ActionButton" onClick={(e) => handleDelete(e, faqs.id)}>
                                     <div className="DeleteContainer">
-                                        <img src={Trash} alt="Supprimer une FAQ" />
-                                        <p>Supprimer</p>
+                                        <img className="ActionButtonImg" src={Trash} alt="Supprimer une FAQ" />
+                                        <p className="ActionButtonP">Supprimer</p>
                                     </div>
                                 </button>
                             </div>

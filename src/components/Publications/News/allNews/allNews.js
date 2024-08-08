@@ -37,8 +37,8 @@ function AllNews () {
     if (allNews.length === 0) {
         return (
             <>
-                <div className="ButtonContainerAllFaq">
-                    <Link to="/backoffice/actualites/ajouter"><button>AJOUTER UNE NOUVELLE ACTUALITÉ</button></Link>
+                <div className="CreateNewItemButtonContainer">
+                    <Link to="/backoffice/actualites/ajouter"><button className="CreateNewItemButton">AJOUTER UNE NOUVELLE ACTUALITÉ</button></Link>
                 </div>
                 <div className="EmptyTitle">
                     <h2>Il n'y a aucune Actualité pour le moment</h2>
@@ -49,10 +49,10 @@ function AllNews () {
 
     return (
         <div>
-            <div className="ButtonContainerAllFaq">
-                <Link to="/backoffice/actualites/ajouter"><button>AJOUTER UNE NOUVELLE ACTUALITÉ</button></Link>
+            <div className="CreateNewItemButtonContainer">
+                <Link to="/backoffice/actualites/ajouter"><button className="CreateNewItemButton">AJOUTER UNE NOUVELLE ACTUALITÉ</button></Link>
             </div>
-            <div className="TitleContainer">
+            <div className="TitleContainerIllustrated">
                 <h2>ID</h2>
                 <h2>Image</h2>
                 <h2>Titre</h2>
@@ -63,30 +63,30 @@ function AllNews () {
                 <h2>Modifié le</h2>
             </div>
             {allNews.map((news) => (
-                <div className="informationContainer" key={news.id}>
+                <div className="IllustratedContainer" key={news.id}>
                     <p>{news.id}</p>
-                    <img src={convertToBase64(news.image)} alt={news.title} />
+                    <img className="IllustratedContainerImg" src={convertToBase64(news.image)} alt={news.title} />
                     <p>{news.title}</p>
-                    <div id="text" dangerouslySetInnerHTML={{ __html: news.text }}></div>
+                    <div id="textDisplay" dangerouslySetInnerHTML={{ __html: news.text }}></div>
                     <p className={news.status ? "online" : "offline"}>{news.status ? "Publié" : "Non Publié"}</p>
                     <p>{news.userName}</p>
                     <p>{formatDate(news.createdAt)}</p>
                     <p>{formatDate(news.modifiedAt)}</p>
                     {/*Allow only admin & editor to have the option to delete and edit */}
                     {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
-                        <div className="ActionContainerFaq">
+                        <div className="ActionContainerVertical">
                             <Link to={`/backoffice/actualites/${news.id}/editer`}>
-                                <button>
+                                <button className="ActionButton">
                                     <div className="EditContainer">
-                                            <img src={Pen} alt="Modifier une Information" />
-                                            <p>Modifier</p>
+                                            <img className="ActionButtonImg" src={Pen} alt="Modifier une Information" />
+                                            <p className="ActionButtonP" >Modifier</p>
                                     </div>
                                 </button>
                             </Link>
-                            <button onClick={(e) => handleDelete(e, news.id)}>
+                            <button className="ActionButton" onClick={(e) => handleDelete(e, news.id)}>
                                 <div className="DeleteContainer">
-                                    <img src={Trash} alt="Supprimer une Information" />
-                                    <p>Supprimer</p>
+                                    <img className="ActionButtonImg" src={Trash} alt="Supprimer une Information" />
+                                    <p className="ActionButtonP" >Supprimer</p>
                                 </div>
                             </button>
                         </div>

@@ -58,7 +58,7 @@ function AddCountdown () {
                 <h1>Ajouter un compte à rebours</h1>
             </div>
             <form onSubmit={handleSubmit}>
-                <div className="NameInputContainer">
+                <div className="InputContainer">
                     <input type="text" id="name" name="name" placeholder="Nom" required onChange={(e) => {handleChange(e)}}/>
                 </div>
                 <div className="DateInputContainer">

@@ -35,8 +35,8 @@ function FullProgram () {
             {daySelected === 'friday' && <FirstDay performances={performances} />}
             {daySelected === 'saturday' && <SecondDay performances={performances} />}
             {daySelected === 'sunday' && <ThirdDay performances={performances} />}
-            <div className="AddPerformanceButton">
-                <Link to='ajouter' ><button>Ajouter une performance</button></Link>
+            <div className="CreateNewItemButtonContainer">
+                <Link to="ajouter"><button className="CreateNewItemButton">AJOUTER UNE NOUVELLE PERFORMANCE</button></Link>
             </div>
         </div>
     );

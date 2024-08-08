@@ -101,11 +101,11 @@ function AddNews () {
             <h1 className="MainTitle">Ajouter une actualité</h1>
             <div className="FormContainer">
                 <form onSubmit={handleSubmit}>
-                    <div className="InputContainerAddFaq">
-                        <label htmlFor="title"></label>
-                        <input name="title" id='title' type="text" placeholder="Titre" required onChange={(e) => {handleChange(e)}}/>
-                        <label htmlFor="text"></label>
-                        <ReactQuill name="coreText" id='coreText' type="text" placeholder="Texte" required onChange={(e) => {handleQuillChange(e)}}/>
+                    <div className="InputContainer">
+                        <label htmlFor="title">Titre</label>
+                        <input name="title" id='title' type="text" placeholder="Indiquez le titre" required onChange={(e) => {handleChange(e)}}/>
+                        <label htmlFor="text">Texte</label>
+                        <ReactQuill className="quill" name="text" id='text' type="text" placeholder="Texte" required onChange={(e) => {handleQuillChange(e)}}/>
                     </div>
                     <div className="FileLoadContainer">
                         <div>
@@ -126,9 +126,9 @@ function AddNews () {
                             <label htmlFor="">Non Publié</label>
                         </div>
                     </div>
-                    <div className="ButtonContainerAddFaq">
-                        <button type="submit">Enregistrer</button>
-                        <Link to='/backoffice/actualites'><button>Annuler</button></Link>
+                    <div className="ValidateFormButtonContainer">
+                        <button className="ValidateFormButton" type="submit">Enregistrer</button>
+                        <Link to='/backoffice/actualites'><button className="ValidateFormButton">Annuler</button></Link>
                     </div>
                 </form>
             </div>

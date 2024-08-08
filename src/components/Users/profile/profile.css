@@ -20,20 +20,3 @@
     font-weight: 800;
 
 }
-
-.AddUserButtonContainer button {
-    font-family: 'Alegreya Sans SC';
-    font-size: 1.5em;
-    font-weight: 800;
-    color: white;
-    background-color: var(--glamblue);
-    border-radius: 10px;
-    padding: 1em;
-    cursor: pointer;
-    transition: all .3s ease;
-    margin: 1em 0 1em 0;
-}
-
-.AddUserButtonContainer button:hover {
-    background-color: var(--glampink);
-}

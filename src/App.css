@@ -7,10 +7,438 @@
   --glamwhite: #e3eae9;
   --glamgrey: #bbbcc1;
   --glamblack: #111417;
-  --glamgradient: linear-gradient(to bottom, #107a98, #e2557f);
 }
 
 body {
   margin: 0;
 }
 
+.CreateNewItemButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.CreateNewItemButton {
+  margin: 1em;
+  padding: .5em 2em;
+  font-family: 'Alegreya Sans SC';
+  font-size: 2em;
+  font-weight: 500;
+  color: white;
+  background-color: var(--glamblue);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.CreateNewItemButton:hover {
+  background-color: var(--glampink);
+}
+
+/*Container for the buttons Edit or Delete item*/
+
+.ActionContainerHorizontal {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.ActionContainerVertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+/*Buttons to Edit or Delete item*/
+
+.ActionButton{
+  width: 6.5em;
+  background-color: var(--glamblue);
+  border-radius: 10px;
+  padding: .5em;
+  cursor: pointer;
+  transition: all .3s ease;
+  margin: .5em;
+}
+
+.ActionButtonImg {
+  width: 15px;
+  height: 15px;
+}
+
+.ActionButton p.ActionButtonP{
+  margin: .5em 0 0 0;
+  font-size: 1.2em;
+}
+
+.ActionButton:hover{
+  background-color: var(--glampink);
+}
+
+/*Headers for Illustrated items table (news and informations)*/
+
+.TitleContainerIllustrated {
+  display: grid;
+  width: 95%;
+  margin: 1em auto;
+  padding: .5em;
+  text-align: center;
+  font-family: 'Alegreya Sans SC';
+  grid-template-columns: .5fr 2.2fr 1fr 2fr .7fr .7fr .7fr .7fr .7fr;
+}
+
+.TitleContainerIllustrated h2 {
+  display: inline;
+  margin: 1em;
+}
+
+/*Headers for FAQ item table*/
+
+
+.TitleContainerFaq {
+  margin: 1em auto;
+  display: grid;
+  grid-template-columns: .5fr 1fr 2.5fr 1fr .7fr .7fr .7fr .5fr;
+  width: 90%;
+  padding: .5em;
+  text-align: center;
+  font-family: 'Alegreya Sans SC';
+}
+
+/*Headers for Countdown item table*/
+
+.TitleContainerCountdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  font-family: 'Alegreya Sans SC';
+  font-size: 2em;
+}
+
+/*Red or green dot depending on the status of the publication*/
+
+.online:before {
+  display: inline-block;
+  content: ' ';
+  background-color: chartreuse;
+  height: 10px;
+  width: 10px;
+  border-radius: 25px;
+  z-index: 1;
+  margin-right: 5px;
+}
+
+.offline:before {
+  display: inline-block;
+  content: ' ';
+  background-color: red;
+  height: 10px;
+  width: 10px;
+  border-radius: 25px;
+  z-index: 1;
+  margin-right: 5px;
+}
+
+/*Buttons at the button of form to create new items*/
+
+.ValidateFormButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.ValidateFormButton {
+  background-color: var(--glamblue);
+  padding: .5em;
+  margin: 2em;
+  font-size: 1.5em;
+  color: white;
+  font-family: 'Alegreya Sans SC';
+  border-radius: 10px;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.ValidateFormButton:hover {
+  background-color: var(--glampink);
+}
+
+/*Message displayed when a new items have been created*/
+
+.SucessMessage {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.SucessMessage span {
+  color: var(--glampink);
+}
+
+.SucessMessage h1 {
+  font-family: 'Alegreya Sans SC';
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.SucessMessage p {
+  font-family: 'Alegreya Sans SC';
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+.SucessMessage button {
+  font-family: 'Alegreya Sans SC';
+  font-weight: 500;
+  color: white;
+  background-color: var(--glamblue);
+  font-size: 1.5em;
+  padding: .5em;
+  border-radius: 10px;
+  box-shadow: grey 2px 2px 1px;
+  cursor: pointer;
+  margin-top: 1em;
+  transition: all .3s ease;
+}
+
+.SucessMessage button:hover {
+  background-color: var(--glampink);
+}
+
+/*Style for WYSIWYG input*/
+
+.quill {
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgb(215, 215, 215, 0.4);
+  margin: 2em auto;
+  margin-top: 0;
+  border: solid 2px var(--glampink);
+}
+
+.quill .ql-toolbar {
+  border-radius: 10px 10px 0 0;
+  background-color: white;
+}
+
+#text .ql-container {
+  border-radius: 0 0 10px 10px;
+  height: 20em;
+}
+
+#answer .ql-container {
+  border-radius: 0 0 10px 10px;
+  height: 20em;
+}
+
+.quill .ql-editor {
+  font-family: 'Alegreya Sans SC';
+  font-size: 2em;
+  font-weight: 600;
+}
+
+/*Style for the forms input*/
+
+.InputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+
+.InputContainer input {
+  text-align: left;
+  font-family: 'Alegreya Sans SC';
+  width: 98.5%;
+  font-size: 2em;
+  outline: none;
+  font-weight: 600;
+  padding: 1em 0 1em .5em;
+  border-radius: 10px;
+  transition: all .3s ease;
+  background-color: rgba(215, 215, 215, 0.4);
+  border: solid 2px var(--glampink);
+  margin: 0 auto;
+}
+
+.InputContainer label {
+  font-family: 'Alegreya Sans SC';
+  font-size: 2em;
+  font-weight: 600;
+  margin-bottom: .3em;
+  margin-top: .3em;
+}
+
+.InputContainer input:hover {
+    background-color: var(--glampink);
+}
+
+/*Style for the input that allow to add an image to illustrated items*/
+
+.FileLoadContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.FileLoadContainer label {
+  font-family: 'Alegreya Sans SC';
+  font-weight: bold;
+}
+
+.IMGContainer {
+  margin-right: 0;
+  position: relative;
+  height: 300px;
+  width: 70%;
+  display: inline-block;
+  border: solid 2px var(--glampink);
+  margin-bottom: 2em;
+  border-radius: 10px;
+  padding: .5em;
+  background-color: rgba(215, 215, 215, 0.4);
+}
+
+.IMGContainer img{
+  z-index: 0;
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  border-radius: 20px;
+}
+
+.IMGContainer p{
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  top: 10px;
+  right: 10px;
+  background-color: var(--glamblue);
+  border-radius: 50%;
+  padding: .5em;
+  color: white;
+  font-family: monospace;
+  margin: 0;
+  cursor: pointer;
+  width: 10px; /* Largeur fixe */
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type=file] {
+  color: grey;
+  font-family: "Alegreya Sans SC";
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+input[type=file]::file-selector-button  {
+  font-family: "Alegreya Sans SC";
+  font-size: 1.3em;
+  font-weight: 600;
+  padding: 1em;
+  height: fit-content;
+  border: 2px solid black;
+  border-radius: 10px;
+  color: white;
+  background-color: var(--glamblue);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: fit-content;
+  display: inline-block;
+}
+
+input[type=file]::file-selector-button:hover {
+  background-color: var(--glamblue);
+}
+
+/*Table container for news and informations*/
+
+.IllustratedContainer {
+  margin: 1em auto;
+  display: grid;
+  grid-template-columns: .5fr 2fr 1fr 2fr .7fr .7fr .7fr .7fr .5fr;
+  justify-items: center;
+  align-items: center;
+  width: 95%;
+  height: 20em;
+  background-color: hsla(193, 81%, 33%, 0.7);
+  border-radius: 10px;
+  padding: .5em;
+}
+
+.IllustratedContainerImg {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+}
+
+.IllustratedContainer p {
+  margin: 1em;
+  font-family: 'Alegreya Sans SC';
+  color: white;
+  font-size: 1.2em;
+  overflow: hidden;
+}
+
+/*Style for the text displayed on illustrated items table*/
+
+#textDisplay {
+  height: 80%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#textDisplay::-webkit-scrollbar {
+  width: 12px;
+}
+
+#textDisplay::-webkit-scrollbar-track {
+  background: var(--glamblue); 
+  border-radius: 10px;
+}
+
+#textDisplay::-webkit-scrollbar-thumb {
+  background: #ffffff; 
+  border-radius: 6px;
+  padding: 2px;
+  border: solid 4px var(--glamblue);
+}
+
+#textDisplay::-webkit-scrollbar-thumb:hover {
+  background: #d4d4d4; 
+}
+
+/*Title to add a new item forms*/
+
+.MainTitle {
+  text-align: center;
+  font-family: 'Alegreya Sans SC';
+  font-size: 3em;
+  font-weight: 800;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/*Container for all the forms*/
+
+.FormContainer {
+  width: 75%;
+  margin: 6em auto;
+}
+
+.FormContainer form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}

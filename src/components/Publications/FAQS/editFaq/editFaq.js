@@ -1,5 +1,4 @@
 import React, { useState, useEffect }from "react";
-import './editFaq.css'
 import { useParams } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { GetFaq, EditFaq as Edit} from "../../../../controllers/Publications/faqs.controller";
@@ -84,7 +83,7 @@ function EditFaq () {
         <div>
             <div className="FormContainer">
                 <form onSubmit={handleSubmit}>
-                    <div className="InputContainerAddFaq">
+                    <div className="InputContainer">
                         <label htmlFor="answer"></label>
                         <input name="question" id='question' type="text" defaultValue={formState.question} required onChange={(e) => {handleChange(e)}}/>
                         <label htmlFor="answer"></label>
@@ -100,9 +99,9 @@ function EditFaq () {
                             <label htmlFor="">Non Publié</label>
                         </div>
                     </div>
-                    <div className="ButtonContainerAddFaq">
-                        <button type="submit">Enregistrer</button>
-                        <Link to='/backoffice/faqs'><button>Annuler</button></Link>
+                    <div className="ValidateFormButtonContainer">
+                        <button type="submit" className="ValidateFormButton">Enregistrer</button>
+                        <Link to='/backoffice/faqs'><button className="ValidateFormButton">Annuler</button></Link>
                     </div>
                 </form>
             </div>

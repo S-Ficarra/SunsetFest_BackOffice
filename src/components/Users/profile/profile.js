@@ -1,38 +1,30 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import './profile.css'
-import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { GetUser } from "../../../controllers/user.controller";
 import { decodeToken } from "react-jwt";
 import { Link } from "react-router-dom";
+import { useUser } from "../../../hooks/useUser";
+import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
+
 
 export function Profile () {
 
     const authHeader = useAuthHeader()
     const userId = decodeToken(authHeader)
-    const [user, setUser] = useState({});
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            const user = await GetUser(authHeader, userId.sub);
-            setUser(user)
-        };
-
-        fetchUser();
-      }, [authHeader, userId.sub]);
+    const { userLogged } = useUser(authHeader, userId.sub)
 
     return (
         <div className="MainContainer">
-            <h1>Votre Profil</h1>
+            <h1>VOTRE PROFIL</h1>
             <div className="ProfileContainer">
                 <div className="InfoContainer">
-                    <p><span>NOM : </span>{user.name}</p>
-                    <p><span>PRÉNOM : </span>{user.firstName} {user.name}</p>
-                    <p><span>ADRESSE EMAIL : </span>{user.email}</p>
-                    <p><span>RÔLE : </span>{user.role}</p>
+                    <p><span>NOM : </span>{userLogged.name}</p>
+                    <p><span>PRÉNOM : </span>{userLogged.firstName} {userLogged.name}</p>
+                    <p><span>ADRESSE EMAIL : </span>{userLogged.email}</p>
+                    <p><span>RÔLE : </span>{userLogged.role}</p>
                 </div>
                 {/*Allow only admin to have the option to add user*/}
-                {user.role === 'Administrateur' && (<div className="AddUserButtonContainer">
-                    <Link to='/backoffice/utilisateurs/ajouter'><button>AJOUTER UN UTILISATEUR</button></Link>
+                {userLogged.role === 'Administrateur' && (<div>
+                    <Link to='/backoffice/utilisateurs/ajouter'><button className="CreateNewItemButton">AJOUTER UN UTILISATEUR</button></Link>
                 </div>)}
             </div>
         </div>

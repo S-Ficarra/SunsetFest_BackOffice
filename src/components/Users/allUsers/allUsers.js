@@ -39,7 +39,7 @@ function AllUsers () {
         <div className="MainContainer">
             <h1>VOTRE ÉQUIPE</h1>
             <div className="UsersHeader">
-                <div className="TitleContainer">
+                <div className="TitleContainerUser">
                     <h2>ID</h2>
                     <h2>Nom</h2>
                     <h2>Adresse Email</h2>
@@ -55,19 +55,19 @@ function AllUsers () {
                         <p>{user.role}</p>
                         {/*Allow only admin to have the option to delete and edit user*/}
                         {userLogged.role === 'Administrateur' && (
-                            <div className="ActionContainer">
+                            <div className="ActionContainerHorizontal">
                                 <Link to={`/backoffice/utilisateurs/${user.id}/editer`}>
-                                    <button>
+                                    <button className="ActionButton">
                                         <div className="EditContainer">
-                                                <img src={Pen} alt="Modifier un utilisateur" />
-                                                <p>Modifier</p>
+                                                <img className="ActionButtonImg" src={Pen} alt="Modifier un utilisateur" />
+                                                <p className="ActionButtonP" >Modifier</p>
                                         </div>
                                     </button>
                                 </Link>
-                                <button onClick={(e) => handleDelete(e, user.id)}>
+                                <button className="ActionButton" onClick={(e) => handleDelete(e, user.id)}>
                                     <div className="DeleteContainer">
-                                        <img src={Trash} alt="Supprimer un utilisateur" />
-                                        <p>Supprimer</p>
+                                        <img className="ActionButtonImg" src={Trash} alt="Supprimer un utilisateur" />
+                                        <p className="ActionButtonP">Supprimer</p>
                                     </div>
                                 </button>
                             </div>

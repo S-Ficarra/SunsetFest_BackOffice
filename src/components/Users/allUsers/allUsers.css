@@ -15,7 +15,7 @@
     justify-content: center;
 }
 
-.TitleContainer {
+.TitleContainerUser {
     width: 90%;
     display: grid;
     grid-template-columns: 1fr 1fr 2fr 1fr 2fr;
@@ -50,33 +50,4 @@
     font-size: 1.5em;
 }
 
-.ActionContainer img {
-    width: 20px;
-    height: 20px;
-}
-
-
-.ActionContainer {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-}
-
-.ActionContainer button{
-    background-color: var(--glamblue);
-    border-radius: 10px;
-    padding: 1em;
-    cursor: pointer;
-    transition: all .3s ease;
-    margin: 1em 0 1em 0;
-}
-
-.ActionContainer button:hover{
-    background-color: var(--glampink);
-}
-
-.ActionContainer p {
-    margin: .5em 0 0 0;
-}
 

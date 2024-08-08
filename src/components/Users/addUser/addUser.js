@@ -78,9 +78,9 @@ function AddUser ({authHeader}) {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <button type="submit">Ajouter un Utilisateur</button>
-                    <Link to='/backoffice/utilisateurs'><button>Annuler</button></Link>
+                <div className="ValidateFormButtonContainer">
+                    <button type="submit" className="ValidateFormButton">Enregistrer</button>
+                    <Link to='/backoffice/utilisateurs'><button className="ValidateFormButton">Annuler</button></Link>
                 </div>
             </form>
         </div>

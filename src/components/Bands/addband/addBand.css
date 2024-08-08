@@ -8,7 +8,9 @@
 }
 
 .TopFormContainer input {
-    width: 47%;
+    width: 47.2%;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .SocialsFormContainer {
@@ -24,18 +26,5 @@
 
 .SocialsFormContainer input {
     width: 96%;
-}
-
-.FileLoadInputContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.FileLoadContainer label {
-    font-family: 'Alegreya Sans SC';
-    font-weight: 600;
-    font-size: 1.5em;
-    margin-bottom: 1em;
 }
 

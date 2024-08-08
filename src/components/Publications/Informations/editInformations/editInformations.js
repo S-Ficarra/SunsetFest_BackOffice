@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import './editInformations.css'
 import { useParams } from "react-router-dom";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { GetInformation, EditInformation as Edit } from "../../../../controllers/Publications/informations.controller";
@@ -127,7 +126,7 @@ function EditInformation () {
         <div>
             <div className="FormContainer">
                 <form onSubmit={handleSubmit}>
-                    <div className="InputContainerAddFaq">
+                    <div className="InputContainer">
                         <label htmlFor="title"></label>
                         <input name="title" id='title' type="text" placeholder="Titre" defaultValue={formState.title} required onChange={(e) => {handleChange(e)}}/>
                         <label htmlFor="text"></label>
@@ -152,9 +151,9 @@ function EditInformation () {
                             <label htmlFor="">Non Publié</label>
                         </div>
                     </div>
-                    <div className="ButtonContainerAddFaq">
-                        <button type="submit">Enregistrer</button>
-                        <Link to='/backoffice/informations'><button>Annuler</button></Link>
+                    <div className="ValidateFormButtonContainer">
+                        <button type="submit" className="ValidateFormButton">Enregistrer</button>
+                        <Link to='/backoffice/informations'><button className="ValidateFormButton">Annuler</button></Link>
                     </div>
                 </form>
             </div>

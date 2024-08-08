@@ -38,8 +38,8 @@ function AllBands () {
     if (allBands.length === 0) {
         return (
             <>
-                <div className="ButtonContainerAllFaq">
-                    <Link to="/backoffice/groupes/ajouter"><button>AJOUTER UN NOUVEAU GROUPE</button></Link>
+                <div className="CreateNewItemButtonContainer">
+                    <Link to="/backoffice/actualites/ajouter"><button className="CreateNewItemButton">AJOUTER UN NOUVEAU GROUPE</button></Link>
                 </div>
                 <div className="EmptyTitle">
                     <h2>Il n'y a aucun Groupe pour le moment</h2>
@@ -51,8 +51,8 @@ function AllBands () {
 
     return (
         <div>
-            <div className="ButtonContainerAllFaq">
-                <Link to="/backoffice/groupes/ajouter"><button>AJOUTER UN NOUVEAU GROUPE</button></Link>
+            <div className="CreateNewItemButtonContainer">
+                <Link to="/backoffice/groupes/ajouter"><button className="CreateNewItemButton">AJOUTER UN NOUVEAU GROUPE</button></Link>
             </div>
             <div className="AllBandsContainer">
                 {allBands.map((band) => (

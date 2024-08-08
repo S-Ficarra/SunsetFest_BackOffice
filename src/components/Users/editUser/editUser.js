@@ -4,7 +4,6 @@ import { GetUser, EditUser as Edit} from "../../../controllers/user.controller";
 import { UserMapper } from "../../../mappers/user.mapper"; 
 import { translator } from "../../../services/utils";
 import { Link } from "react-router-dom";
-import './editUser.css'
 
 function EditUser ({ authHeader }) {
     
@@ -101,9 +100,9 @@ function EditUser ({ authHeader }) {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <button type="submit">Modifier l'utilisateur</button>
-                    <Link to='/backoffice/utilisateurs'><button>Annuler</button></Link>
+                <div className="ValidateFormButtonContainer">
+                    <button type="submit" className="ValidateFormButton">Enregistrer</button>
+                    <Link to='/backoffice/utilisateurs'><button className="ValidateFormButton">Annuler</button></Link>
                 </div>
             </form>
         </div>

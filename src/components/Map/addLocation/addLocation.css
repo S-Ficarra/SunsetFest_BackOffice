@@ -48,6 +48,11 @@
     font-size: 1.2em;
     border-radius: 10px;
     border: solid 2px var(--glampink);
+    transition: all .3s ease;
+}
+
+.AllFormsContainer input:hover {
+    background-color: var(--glampink);
 }
 
 .SubmitButton {

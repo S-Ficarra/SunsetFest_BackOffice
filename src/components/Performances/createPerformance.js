@@ -108,9 +108,9 @@ function CreatePerformance () {
                         ))}
                     </select>
                 </div>
-                <div className="AddPerformanceButton">
-                    <button type="submit">Enregistrer</button>
-                    <Link to='/backoffice/programme/2023'><button type="submit">Annuler</button></Link>
+                <div className="ValidateFormButtonContainer">
+                    <button type="submit" className="ValidateFormButton">Enregistrer</button>
+                    <Link to='/backoffice/programme/2023'><button type="submit" className="ValidateFormButton">Annuler</button></Link>
                 </div>
             </form>
         </div>
