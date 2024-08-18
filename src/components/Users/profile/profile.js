@@ -10,7 +10,7 @@ export function Profile () {
 
     const authHeader = useAuthHeader()
     const userId = decodeToken(authHeader)
-    const { userLogged } = useUser(authHeader, userId.sub)
+    const { userLogged } = useUser(authHeader, userId.sub)  
 
     return (
         <div className="MainContainer">

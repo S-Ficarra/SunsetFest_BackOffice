@@ -104,9 +104,9 @@ function AddBand () {
     if (bandCreated) {
         return (
             <div className="SucessMessage">
-                <h1>Actualité créé avec succès!</h1>
+                <h1>Groupe créé avec succès!</h1>
                 <p><span>ID :</span> {bandCreated.id}</p>
-                <p><span>Titre :</span> {bandCreated.name}</p>
+                <p><span>Nom :</span> {bandCreated.name}</p>
                 <p><span>Texte :</span> </p><div dangerouslySetInnerHTML={{ __html: bandCreated.text }}></div>
                 <p><span>Auteur :</span> {bandCreated.userName}</p>
                 <p><span>Créé le :</span> {formatDate(bandCreated.createdAt)}</p>

@@ -74,13 +74,13 @@ function EditUser ({ authHeader }) {
             <form onSubmit={handleSubmit}>
                 <div className="InputContainer">
                     <label htmlFor="firstName">PRENOM :</label>
-                    <input name='firstName' type="text" required defaultValue={formState.firstName} onChange={(e) => {handleChange(e)}}/>
+                    <input id="firstName" name='firstName' type="text" required defaultValue={formState.firstName} onChange={(e) => {handleChange(e)}}/>
                     <label htmlFor="name">NOM :</label>
-                    <input name='name' type="text" required defaultValue={formState.name} onChange={(e) => {handleChange(e)}}/>
+                    <input id="name" name='name' type="text" required defaultValue={formState.name} onChange={(e) => {handleChange(e)}}/>
                     <label htmlFor="email">ADRESSE E-MAIL :</label>
-                    <input name='email' type="email" required defaultValue={formState.email} onChange={(e) => {handleChange(e)}}/>
+                    <input id="email" name='email' type="email" required defaultValue={formState.email} onChange={(e) => {handleChange(e)}}/>
                     <label htmlFor="password">MOT DE PASSE : </label>
-                    <input name='password' type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$" title='Votre mot de passe doit contenir minimum 8 caractères, au moins 1 chiffre, 1 majuscule, 1 minuscle et 1 caractère spécial' required onChange={(e) => {handleChange(e)}}/>
+                    <input id="password" name='password' type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$" title='Votre mot de passe doit contenir minimum 8 caractères, au moins 1 chiffre, 1 majuscule, 1 minuscle et 1 caractère spécial' required onChange={(e) => {handleChange(e)}}/>
                     </div>
                     
                 <div className="RoleContainer">

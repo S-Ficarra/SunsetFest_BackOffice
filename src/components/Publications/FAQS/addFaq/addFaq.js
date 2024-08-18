@@ -33,7 +33,7 @@ function AddFaq () {
         const sanitizedContent = DOMPurify.sanitize(content);
         setFormState({
             ...formState,
-            text: sanitizedContent
+            answer: sanitizedContent
         });
     };
 
