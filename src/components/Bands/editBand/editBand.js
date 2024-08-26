@@ -75,6 +75,16 @@ export function EditBand () {
         if (type === "file") {
             const file = files[0];
             if (file) {
+
+                const maxSizeInKB = 500;
+                const maxSizeInBytes = maxSizeInKB * 1024;
+    
+                if (file.size > maxSizeInBytes) {
+                    alert(`Le fichier dépasse la taille maximale autorisée de ${maxSizeInKB} Ko.`);
+                    e.target.value = '';
+                    return;
+                }
+
                 const imagePreview = URL.createObjectURL(file);
                 setFormState(prevState => ({
                     ...prevState,
@@ -195,7 +205,7 @@ export function EditBand () {
 
                 <div className="FileLoadContainer">
                     <div className="FileLoadInputContainer">
-                        <label htmlFor="thumbnailImage">Choisir la miniature</label>
+                        <label htmlFor="thumbnailImage">Choisir la miniature (500Ko max)</label>
                         <input type="file" id="thumbnailImage" name="thumbnailImage" onChange={(e) => {handleChange(e)}} accept=".jpg, .jpeg, .png"/>
                     </div>
                     <div className="IMGContainer">
@@ -206,7 +216,7 @@ export function EditBand () {
 
                 <div className="FileLoadContainer">
                     <div className="FileLoadInputContainer">
-                        <label htmlFor="bannerImage">Choisir la bannière</label>
+                        <label htmlFor="bannerImage">Choisir la bannière (500Ko max)</label>
                         <input type="file" id="bannerImage" name="bannerImage" onChange={(e) => {handleChange(e)}} accept=".jpg, .jpeg, .png"/>
                     </div>
                     <div className="IMGContainer">

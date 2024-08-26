@@ -51,6 +51,15 @@ function EditNews () {
         if (type === "file") {
             const file = files[0];
             if (file) {
+
+                const maxSizeInKB = 500;
+                const maxSizeInBytes = maxSizeInKB * 1024;
+    
+                if (file.size > maxSizeInBytes) {
+                    alert(`Le fichier dépasse la taille maximale autorisée de ${maxSizeInKB} Ko.`);
+                    e.target.value = '';
+                    return;
+                }
                 const imagePreview = URL.createObjectURL(file);
                 setFormState({
                     ...formState,
@@ -135,6 +144,7 @@ function EditNews () {
                     </div>
                     <div className="FileLoadContainer">
                         <div>
+                            <label>Choisir l'illustration (500Ko max)</label>
                             <input type="file" onChange={(e) => {handleChange(e)}} accept=".jpg, .jpeg, .png"/>
                         </div>
                         <div className="IMGContainer">
