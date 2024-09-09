@@ -27,7 +27,11 @@ function CreatePerformance () {
     useEffect(() => {
         const fetchTimeFrames = async () => {
             try {
-                const response = await fetch('/timeFrame.json');
+                const response = await fetch('/timeFrame.json', {
+                    headers:{
+                      accept: 'application/json',
+                    }
+                  });
                 const data = await response.json();
 
                 setTimeFrames(data);
