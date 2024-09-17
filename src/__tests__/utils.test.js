@@ -1,4 +1,4 @@
-import { translator, formatDate, formatDateProgram, getFullDateCountdown, getTime, convertToBase64, convertBase64ToFile } from '../services/utils';
+import { translator, formatDate, formatDateProgram, getFullDateCountdown, getTime } from '../services/utils';
 
 // Mock fetch for tests
 global.fetch = jest.fn();
@@ -77,55 +77,4 @@ describe('Utility Functions', () => {
             expect(time).toBe('NaNhNaN');
         });
     });
-
-    describe('convertToBase64', () => {
-        it('should convert a byte array to a base64 string correctly', () => {
-            const byteArray = [72, 101, 108, 108, 111]; // "Hello" in ASCII
-            const base64String = convertToBase64(byteArray);
-            expect(base64String).toBe('data:image/jpeg;base64,SGVsbG8=');
-        });
-
-        it('should return an empty base64 string for an empty byte array', () => {
-            const byteArray = [];
-            const base64String = convertToBase64(byteArray);
-            expect(base64String).toBe('data:image/jpeg;base64,');
-        });
-    });
-
-    describe('convertBase64ToFile', () => {
-        beforeEach(() => {
-            // Mock `fetch` to return controlled responses
-            global.fetch.mockImplementation((url) => {
-                if (url === 'data:image/jpeg;base64,SGVsbG8=') {
-                    return Promise.resolve(new Response(new Uint8Array([72, 101, 108, 108, 111])));
-                }
-                return Promise.resolve(new Response(new Uint8Array([])));
-            });
-        });
-
-        it('should convert a base64 string to a File object correctly', async () => {
-            const base64String = 'data:image/jpeg;base64,SGVsbG8='; // "Hello"
-            const fileName = 'test.jpg';
-            const fileType = 'image/jpeg';
-            
-            const file = await convertBase64ToFile(base64String, fileName, fileType);
-
-            expect(file).toBeInstanceOf(File);
-            expect(file.name).toBe(fileName);
-            expect(file.type).toBe(fileType);
-        });
-
-        it('should handle invalid base64 strings gracefully', async () => {
-            const base64String = 'data:image/jpeg;base64,';
-            const fileName = 'test.jpg';
-            const fileType = 'image/jpeg';
-            
-            const file = await convertBase64ToFile(base64String, fileName, fileType);
-
-            expect(file).toBeInstanceOf(File);
-            expect(file.name).toBe(fileName);
-            expect(file.type).toBe(fileType);
-        });
-    });
-
 });

@@ -6,9 +6,9 @@ import { decodeToken } from "react-jwt";
 import { DeleteBand } from "../../../controllers/band.controller";
 import Pen from '../../../assets/pen-solid.svg'
 import Trash from '../../../assets/trash-solid.svg'
-import { convertToBase64 } from "../../../services/utils";
 import { useUser } from "../../../hooks/useUser";
 import { useAllBands } from "../../../hooks/useAllBands";
+import { BASE_URL } from "../../../App";
 
 function AllBands () {
 
@@ -57,7 +57,7 @@ function AllBands () {
             <div className="AllBandsContainer">
                 {allBands.map((band) => (
                     <div className="BandContainer" key={band.id}>
-                        <img src={convertToBase64(band.thumbnailImage)} alt={band.name} />
+                        <img src={`${BASE_URL}${band.thumbnailImage}`} alt={band.name} />
                         <p><span>ID: {band.id}</span> {band.name}</p>
                         {/*Allow only admin & editor to have the option to delete and edit */}
                         {(userLogged.role === 'Administrateur' || userLogged.role === 'Editeur') && (
@@ -65,8 +65,8 @@ function AllBands () {
                                 <Link to={`/backoffice/groupes/${band.id}/editer`}>
                                     <button>
                                         <div className="EditContainer">
-                                                <img src={Pen} alt="Modifier une Information" />
-                                                <p>Modifier</p>
+                                            <img src={Pen} alt="Modifier une Information" />
+                                            <p>Modifier</p>
                                         </div>
                                     </button>
                                 </Link>

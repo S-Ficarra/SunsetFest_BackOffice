@@ -5,8 +5,9 @@ import { GetInformation, EditInformation as Edit } from "../../../../controllers
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";
-import { convertToBase64, formatDate } from "../../../../services/utils";
+import { formatDate } from "../../../../services/utils";
 import DOMPurify from 'dompurify';
+import { BASE_URL } from "../../../../App";
 
 
 function EditInformation () {
@@ -27,17 +28,21 @@ function EditInformation () {
         const fetchInformation = async () => {
             const information = await GetInformation(authHeader, +id);
 
-            /* transfrom ByteArray received from database into file, to allow users to keep the image without uploading one*/
-            const base64Response = await fetch(convertToBase64(information.image));
-            const arrayBuffer = await base64Response.arrayBuffer();
-            const imageFile = new File([arrayBuffer], "image.jpg", { type: "image/jpeg" });
+            /* Transform URL from the server into a File */
+            const urlToFile = async (url, filename, mimeType) => {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                return new File([blob], filename, { type: mimeType });
+            };
+
+            const imageFile = await urlToFile(information.image, "image.jpg", "image/jpeg");
 
             setFormState({
                 title: information.title,
                 text: information.text,
                 status: information.status.toString(),
                 image: imageFile,
-                imagePreview: convertToBase64(information.image),
+                imagePreview: `${BASE_URL}${information.image}`,
                 isLoading: false
             });
         };

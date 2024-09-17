@@ -5,8 +5,9 @@ import { GetNews, EditNews as Edit } from "../../../../controllers/Publications/
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";
-import { convertToBase64, formatDate } from "../../../../services/utils";
+import { formatDate } from "../../../../services/utils";
 import DOMPurify from 'dompurify';
+import { BASE_URL } from "../../../../App";
 
 
 function EditNews () {
@@ -27,17 +28,21 @@ function EditNews () {
         const fetchNews = async () => {
             const news = await GetNews(authHeader, +id);
             
-            /* transfrom ByteArray received from database into file, to allow users to keep the image without uploading one*/
-            const base64Response = await fetch(convertToBase64(news.image));
-            const arrayBuffer = await base64Response.arrayBuffer();
-            const imageFile = new File([arrayBuffer], "image.jpg", { type: "image/jpeg" });
+            /* Transform URL from the server into a File */
+            const urlToFile = async (url, filename, mimeType) => {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                return new File([blob], filename, { type: mimeType });
+            };
+
+            const imageFile = await urlToFile(news.image, "image.jpg", "image/jpeg");
 
             setFormState({
                 title: news.title,
                 text: news.text,
                 status: news.status.toString(),
                 image: imageFile,
-                imagePreview: convertToBase64(news.image),
+                imagePreview: `${BASE_URL}${news.image}`,
                 isLoading: false
             });
         };
@@ -129,7 +134,6 @@ function EditNews () {
             </div>
         );
     };
-
 
 
     return (

@@ -3,9 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
 import { decodeToken } from 'react-jwt';
-import { DeleteBand } from '../../controllers/band.controller';
 import { useUser } from '../../hooks/useUser';
-import { convertToBase64 } from '../../services/utils';
 import { useAllBands } from '../../hooks/useAllBands';
 import AllBands from '../../components/Bands/allBands/allBands';
 
@@ -23,9 +21,7 @@ jest.mock('../../hooks/useAllBands', () => ({
 jest.mock('../../controllers/band.controller', () => ({
     DeleteBand: jest.fn(),
 }));
-jest.mock('../../services/utils', () => ({
-    convertToBase64: jest.fn(),
-}));
+
 
 describe('AllBands Component', () => {
     const mockAuthHeader = 'Bearer mockToken';
@@ -41,7 +37,6 @@ describe('AllBands Component', () => {
         decodeToken.mockReturnValue({ sub: 'user123' });
         useUser.mockReturnValue({ userLogged: mockUser });
         useAllBands.mockReturnValue({ allBands: mockBands });
-        convertToBase64.mockImplementation(image => `data:image/png;base64,${image}`);
     });
 
     const renderWithRouter = (ui) => {

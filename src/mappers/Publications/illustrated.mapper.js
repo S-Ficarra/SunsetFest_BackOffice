@@ -12,7 +12,7 @@ export const IllustratedMapper = {
             illustratedDto._status,
             illustratedDto._content._title,
             illustratedDto._content._text,
-            illustratedDto._content._image.data
+            illustratedDto._content._imageUrl
         );
     },
 

@@ -7,8 +7,9 @@ import { useUser } from "../../../../hooks/useUser";
 import { formatDate } from "../../../../services/utils";
 import Pen from '../../../../assets/pen-solid.svg'
 import Trash from '../../../../assets/trash-solid.svg'
-import { convertToBase64 } from "../../../../services/utils";
 import { useAllNews } from "../../../../hooks/Publications/useAllNews";
+import { BASE_URL } from "../../../../App";
+
 
 function AllNews () {
 
@@ -65,7 +66,7 @@ function AllNews () {
             {allNews.map((news) => (
                 <div className="IllustratedContainer" key={news.id}>
                     <p>{news.id}</p>
-                    <img className="IllustratedContainerImg" src={convertToBase64(news.image)} alt={news.title} />
+                    <img className="IllustratedContainerImg" src={`${BASE_URL}${news.image}`} alt={news.title} />
                     <p>{news.title}</p>
                     <div id="textDisplay" dangerouslySetInnerHTML={{ __html: news.text }}></div>
                     <p className={news.status ? "online" : "offline"}>{news.status ? "Publié" : "Non Publié"}</p>

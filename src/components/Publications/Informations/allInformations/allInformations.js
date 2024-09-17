@@ -7,8 +7,8 @@ import { useUser } from "../../../../hooks/useUser";
 import { formatDate } from "../../../../services/utils";
 import Pen from '../../../../assets/pen-solid.svg'
 import Trash from '../../../../assets/trash-solid.svg'
-import { convertToBase64 } from "../../../../services/utils";
 import { useAllInformations } from "../../../../hooks/Publications/useAllInformations";
+import { BASE_URL } from "../../../../App";
 
 function AllInformations () {
 
@@ -66,7 +66,7 @@ function AllInformations () {
             {allInformations.map((information) => (
                 <div className="IllustratedContainer" key={information.id}>
                     <p>{information.id}</p>
-                    <img className="IllustratedContainerImg" src={convertToBase64(information.image)} alt="" />
+                    <img className="IllustratedContainerImg" src={`${BASE_URL}${information.image}`} alt={information.title} />
                     <p>{information.title}</p>
                     <div id="textDisplay" dangerouslySetInnerHTML={{ __html: information.text }}></div>
                     <p className={information.status ? "online" : "offline"}>{information.status ? "Publié" : "Non Publié"}</p>

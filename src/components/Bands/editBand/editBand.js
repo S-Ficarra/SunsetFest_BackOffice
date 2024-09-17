@@ -6,7 +6,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from "react-router-dom";
 import DOMPurify from 'dompurify';
-import { convertToBase64, formatDate } from "../../../services/utils";
+import { formatDate } from "../../../services/utils";
+import { BASE_URL } from "../../../App";
 
 export function EditBand () {
 
@@ -37,14 +38,15 @@ export function EditBand () {
         const fetchBand = async () => {
             const band = await GetBand(authHeader, +id);
             
-            /* transfrom ByteArray received from database into file, to allow users to keep the image without uploading a new one*/
-            const base64ResponseThumbnail = await fetch(convertToBase64(band.thumbnailImage));
-            const arrayBufferThumbnail = await base64ResponseThumbnail.arrayBuffer();
-            const thumbnailImageFile = new File([arrayBufferThumbnail], "thumbnail.jpg", { type: "image/jpeg" });
-    
-            const base64ResponseBanner = await fetch(convertToBase64(band.bannerImage));
-            const arrayBufferBanner = await base64ResponseBanner.arrayBuffer();
-            const bannerImageFile = new File([arrayBufferBanner], "banner.jpg", { type: "image/jpeg" });
+            /* Transform URL from the server into a File */
+            const urlToFile = async (url, filename, mimeType) => {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                return new File([blob], filename, { type: mimeType });
+            };
+
+            const thumbnailImageFile = await urlToFile(band.thumbnailImage, "thumbnail.jpg", "image/jpeg");
+            const bannerImageFile = await urlToFile(band.bannerImage, "banner.jpg", "image/jpeg");
 
             setFormState({
                 name: band.name,
@@ -59,9 +61,9 @@ export function EditBand () {
                 spotifyIntegration: band.spotifyIntegration,
                 youtubeIntegration: band.youtubeIntegration,
                 thumbnailImage: thumbnailImageFile,
-                thumbnailImagePreview: convertToBase64(band.thumbnailImage),
+                thumbnailImagePreview: `${BASE_URL}${band.thumbnailImage}`,
                 bannerImage: bannerImageFile,
-                bannerImagePreview: convertToBase64(band.bannerImage),
+                bannerImagePreview: `${BASE_URL}${band.bannerImage}`,
                 isLoading: false
             });
         };
