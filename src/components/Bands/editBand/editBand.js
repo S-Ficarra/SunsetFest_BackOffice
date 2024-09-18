@@ -33,7 +33,11 @@ export function EditBand () {
         isLoading: true,
     });
 
+    const extractFilename = (url) => {
+        return url.split('/').pop().split('?')[0];
+    };
 
+    
     useEffect(() => {
         const fetchBand = async () => {
             const band = await GetBand(authHeader, +id);
@@ -45,8 +49,9 @@ export function EditBand () {
                 return new File([blob], filename, { type: mimeType });
             };
 
-            const thumbnailImageFile = await urlToFile(band.thumbnailImage, "thumbnail.jpg", "image/jpeg");
-            const bannerImageFile = await urlToFile(band.bannerImage, "banner.jpg", "image/jpeg");
+            const thumbnailImageFile = await urlToFile(`${BASE_URL}${band.thumbnailImage}`, extractFilename(band.thumbnailImage), "image/jpeg");
+            const bannerImageFile = await urlToFile(`${BASE_URL}${band.bannerImage}`, extractFilename(band.bannerImage), "image/jpeg");
+       
 
             setFormState({
                 name: band.name,

@@ -37,7 +37,7 @@ export const BandService = {
                 data._text,
                 data._socials,
                 data._thumbnailImageUrl,
-                data._thumbnailImageUrl,
+                data._bannerImageUrl,
                 data._user,
                 data._createdAt,
                 data._modifiedAt
