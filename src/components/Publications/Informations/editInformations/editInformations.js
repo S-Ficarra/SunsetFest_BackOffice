@@ -24,6 +24,10 @@ function EditInformation () {
         isLoading: true,
     });
 
+    const extractFilename = (url) => {
+        return url.split('/').pop().split('?')[0];
+    };
+
     useEffect(() => {
         const fetchInformation = async () => {
             const information = await GetInformation(authHeader, +id);
@@ -35,7 +39,8 @@ function EditInformation () {
                 return new File([blob], filename, { type: mimeType });
             };
 
-            const imageFile = await urlToFile(information.image, "image.jpg", "image/jpeg");
+            const imageFile = await urlToFile(`${BASE_URL}${information.image}`, extractFilename(information.image), "image/jpeg");
+
 
             setFormState({
                 title: information.title,

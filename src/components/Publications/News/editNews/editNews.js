@@ -24,9 +24,13 @@ function EditNews () {
         isLoading: true,
     });
 
+    const extractFilename = (url) => {
+        return url.split('/').pop().split('?')[0];
+    };
+
     useEffect(() => {
         const fetchNews = async () => {
-            const news = await GetNews(authHeader, +id);
+            const news = await GetNews(authHeader, +id);            
             
             /* Transform URL from the server into a File */
             const urlToFile = async (url, filename, mimeType) => {
@@ -35,7 +39,7 @@ function EditNews () {
                 return new File([blob], filename, { type: mimeType });
             };
 
-            const imageFile = await urlToFile(news.image, "image.jpg", "image/jpeg");
+            const imageFile = await urlToFile(`${BASE_URL}${news.image}`, extractFilename(news.image), "image/jpeg");
 
             setFormState({
                 title: news.title,
